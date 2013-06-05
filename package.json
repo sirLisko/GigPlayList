@@ -1,20 +1,12 @@
 {
+  "author": "Luca Lischetti <sirlisko@gmail.com> (http://sirlisko.com)",
   "name": "shouldilistenit",
-  "version": "0.0.1",
   "description": "Should I listen set you up for your next Gig.",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://sirlisko@bitbucket.org/sirLisko/shouldilistenit.git"
+    "url": "git://github.com/sirLisko/sirLisko/shouldilistenit.git"
   },
-  "keywords": [
-    "music",
-    "gig",
-    "live"
-  ],
-  "author": "Luca Lischetti",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.4.1",
@@ -26,5 +18,13 @@
     "grunt-contrib-watch": "~0.4.3",
     "grunt-includes": "~0.2.4",
     "grunt-notify": "~0.2.3"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "music",
+    "gig",
+    "live"
+  ]
 }
