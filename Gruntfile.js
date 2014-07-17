@@ -1,23 +1,32 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 	'use strict';
 
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-htmlmin');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-includes');
-	grunt.loadNpmTasks('grunt-notify');
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		clean: ['js', 'styles', './*.html'],
+		bower: {
+			install: {
+				options: {
+					targetDir: './dist/js/ext',
+					install: true,
+					cleanTargetDir: false,
+					cleanBowerDir: true
+				}
+			}
+		},
+		clean: ['dist/'],
 		concat: {
 			dist: {
 				src: ['src/**/*.js'],
-				dest: 'js/base.js'
+				dest: 'dist/js/base.js'
+			}
+		},
+		copy: {
+			'public': {
+				files: [
+					{expand: true, src: ['public/**'], dest: 'dist/'}
+				]
 			}
 		},
 		htmlmin: {
@@ -27,66 +36,54 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'index.html': 'index.html'
+					'index.html': 'dist/index.html'
 				}
 			}
 		},
 		jshint: {
 			files: ['gruntfile.js', 'src/**/*.js'],
 			options: {
-				globals: {
-					bitwise: true,
-					browser: true,
-					camelcase: true,
-					curly: true,
-					eqeqeq: true,
-					eqnull: true,
-					forin: true,
-					immed: true,
-					indent: 1,
-					latedef: true,
-					newcap: true,
-					noarg: true,
-					noempty: true,
-					strict: true,
-					undef: true,
-					trailing: true,
-					unused: true
-				}
+				jshintrc: '.jshintrc'
 			}
 		},
 		less: {
 			dev: {
 				options: {
-					paths: ["src/styles"],
+					paths: ['src/styles'],
 					yuicompress: false
 				},
 				files: {
-					"styles/style.css": "src/styles/style.less"
+					'dist/styles/style.css': 'src/styles/style.less'
 				}
 			},
 			prod: {
 				options: {
-					paths: ["src/styles"],
+					paths: ['src/styles'],
 					yuicompress: true
 				},
 				files: {
-					"styles/style.css": "src/styles/style.less"
+					'dist/styles/style.css': 'src/styles/style.less'
 				}
 			}
 		},
 		includes: {
 			files: {
 				src: ['src/**/*.html', '!src/**/partials/*.html'],
-				dest: '.',
+				dest: 'dist/',
 				flatten: true,
 				cwd: '.'
+			}
+		},
+		open: {
+			page : {
+				path: './dist/index.html',
+				app: 'Google Chrome'
 			}
 		},
 		uglify: {
 			dist: {
 				files: {
-					'js/base.js': ['<%= concat.dist.dest %>']
+					'dist/js/base.js': ['<%= concat.dist.dest %>']
 				}
 			}
 		},
@@ -101,11 +98,11 @@ module.exports = function(grunt) {
 			},
 			javascripts: {
 				files: ['src/**/*.js'],
-				tasks: ['jshint', 'concat']
+				tasks: ['concat']
 			}
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'jshint', 'concat', 'less:dev']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:prod', 'includes', 'htmlmin']);
+	grunt.registerTask('dev', ['includes', 'jshint', 'concat', 'bower', 'less:dev', 'copy:public']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin', 'copy:public']);
 };

@@ -1,32 +1,41 @@
-/*global Mustache */
+/*global jQuery, Mustache, testResult */
 
-(function($){
+(function ($) {
 	'use strict';
 
-	function render (json) {
-		var template = '{{#tracks}}<li class="track"><span class="name">{{name}}</span><span class="count">{{count}}</span><span class="color"></span></li>{{/tracks}}';
+	function render(json) {
+		var template = '<ul>{{#tracks}}<li class="track"><p class="tr-name" data-count="{{count}}">{{name}}</p><p class="tr-percentage"></p></li>{{/tracks}}</ul>';
 		$('.result').html(Mustache.render(template, json));
-		var $tracks = $(".track");
-		var max = $tracks.first().find('.count').text();
-		$tracks.each(function(){
-			$(this).children('.color').css('width', $(this).children('.count').text()/max*100 + "%");
+
+		var $tracks = $('.track');
+		var max = $tracks.first().find('[data-count]').data('count');
+		$tracks.each(function () {
+			var track = this;
+			setTimeout(function () {
+				$(track).children('.tr-percentage').css('width', $(track).children('[data-count]').data('count') / max * 100 + '%');
+			}, 0);
 		});
+
 	}
 
-	function problem (data) {
+	function problem(data) {
 		if (data.status === 404) {
 			$('.result').html('Not Found!');
 		}
 	}
 
-	$('form').submit(function(e){
+	$('form').submit(function (e) {
 		e.preventDefault();
 		var artist = $('input[name="artist"]').val();
-		$.ajax({
-			url: 'http://api.shouldilisten.it/' + artist,
-			success: render,
-			error: problem
-		});
+		if (artist === '123prova123') {
+			render(testResult);
+		} else {
+			$.ajax({
+				url: 'http://api.shouldilisten.it/' + artist,
+				success: render,
+				error: problem
+			});
+		}
 	});
 
 })(jQuery);
