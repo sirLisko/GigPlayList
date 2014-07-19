@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-	include "partials/head.html"
+	@@include('./partials/head.html')
 <body>
 	<article class="container">
-		include "partials/input.html"
-		include "partials/test.html"
+		@@include('./partials/input.html')
+		@@include('./partials/test.html')
 	</article>
-	<script type="text/javascript" src="js/ext/jquery/index.js"></script>
-	<script type="text/javascript" src="js/ext/mustache/index.js"></script>
+	<script type="text/javascript" src="js/ext/jquery.js"></script>
+	<script type="text/javascript" src="js/ext/mustache.js"></script>
 	<script type="text/javascript" src="js/base.js"></script>
 </body>
 </html>
