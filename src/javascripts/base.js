@@ -1,10 +1,10 @@
-/*global jQuery, Mustache, testResult */
+/*global jQuery, Mustache */
 
 (function ($) {
 	'use strict';
 
 	function render(json) {
-		var template = '<ul>{{#tracks}}<li class="track"><p class="tr-name" data-count="{{count}}">{{name}}</p><p class="tr-percentage"></p></li>{{/tracks}}</ul>';
+		var template = '<ul>{{#tracks}}<li class="track"><p class="track__title" data-count="{{count}}">{{title}}</p><p class="track__percentage"></p></li>{{/tracks}}</ul>';
 		$('.result').html(Mustache.render(template, json));
 
 		var $tracks = $('.track');
@@ -12,7 +12,7 @@
 		$tracks.each(function () {
 			var track = this;
 			setTimeout(function () {
-				$(track).children('.tr-percentage').css('width', $(track).children('[data-count]').data('count') / max * 100 + '%');
+				$(track).children('.track__percentage').css('width', $(track).children('[data-count]').data('count') / max * 100 + '%');
 			}, 0);
 		});
 
@@ -24,14 +24,12 @@
 		}
 	}
 
-	$('form').submit(function (e) {
+	$('.search form').submit(function (e) {
 		e.preventDefault();
-		var artist = $('input[name="artist"]').val();
-		if (artist === '123prova123') {
-			render(testResult);
-		} else {
+		var artist = $('.search__artist').val();
+		if (artist !== '') {
 			$.ajax({
-				url: 'http://api.shouldilisten.it/' + artist,
+				url: 'http://api.shouldilisten.it/v1/artist/' + artist,
 				success: render,
 				error: problem
 			});

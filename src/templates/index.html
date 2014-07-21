@@ -2,12 +2,17 @@
 <html lang="en">
 	@@include('./partials/head.html')
 <body>
-	<article class="container">
-		@@include('./partials/input.html')
-		@@include('./partials/test.html')
-	</article>
-	<script type="text/javascript" src="js/ext/jquery.js"></script>
-	<script type="text/javascript" src="js/ext/mustache.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
+<article class="container">
+	<section class="search">
+		<form>
+			<input class="search__artist" name="artist" type="search" placeholder="Artist Name" autofocus="">
+			<input class="search__go" type="submit" value="a">
+		</form>
+	</section>
+	<div class="result"></div>
+</article>
+<script type="text/javascript" src="js/ext/jquery.js"></script>
+<script type="text/javascript" src="js/ext/mustache.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
 </body>
 </html>
