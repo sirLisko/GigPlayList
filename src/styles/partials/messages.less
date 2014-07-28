@@ -1,0 +1,40 @@
+.message__text {
+	margin: 5%;
+	text-align: center;
+}
+.message__header {
+	font-size: 50px;
+}
+.message__title {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	-webkit-transform: rotate(-2deg);
+	width: 400px;
+}
+.message__subtitle {
+	font-size: 30px;
+}
+
+.message__loading {
+	-webkit-animation: spin 0.75s linear infinite;
+	-moz-animation: spin 0.75s linear infinite;
+	animation: spin 0.75s linear infinite;
+	display: none;
+	height: 25px;
+	margin: 0 auto;
+	width: 25px;
+}
+
+@media (max-width: @mobile-trigger) {
+	.message__header {
+		font-size: 35px;
+	}
+	.message__title {
+		width: 285px;
+	}
+	.message__subtitle {
+		font-size: 20px;
+		line-height: 35px
+	}
+}

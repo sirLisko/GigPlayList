@@ -26,8 +26,8 @@ gulp.task('bower', function(cb){
 var clean = require('gulp-clean');
 
 gulp.task('clean', function () {
-  return gulp.src('./dist', {read: false})
-    .pipe(clean());
+	return gulp.src('./dist', {read: false})
+	  .pipe(clean());
 });
 
 
@@ -37,23 +37,25 @@ var uglify = require('gulp-uglify');
 
 gulp.task('js:prod', function() {
   return gulp.src('./src/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(concat('base.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js/'));
+	.pipe(jshint())
+	.pipe(jshint.reporter('default'))
+	.pipe(concat('base.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('js:dev', function() {
   return gulp.src('./src/**/*.js')
-    .pipe(concat('base.js'))
-    .pipe(gulp.dest('./dist/js/'));
+	.pipe(concat('base.js'))
+	.pipe(gulp.dest('./dist/js/'));
 });
 
 
 gulp.task('copy', function(){
   gulp.src('./public/**/*')
-    .pipe(gulp.dest('./dist/public/'));
+	.pipe(gulp.dest('./dist/public/'));
+  gulp.src('./extras/**/*')
+	.pipe(gulp.dest('./dist/'));
 });
 
 
@@ -61,8 +63,8 @@ var fileinclude = require('gulp-file-include');
 
 gulp.task('fileinclude', function() {
   gulp.src(['./src/templates/index.html'])
-    .pipe(fileinclude())
-    .pipe(gulp.dest('./dist'));
+	.pipe(fileinclude())
+	.pipe(gulp.dest('./dist'));
 });
 
 
@@ -82,7 +84,7 @@ var openFile = require('gulp-open');
 
 gulp.task('open', function(){
   gulp.src('./dist/index.html')
-  .pipe(openFile('<%file.path%>'));
+	.pipe(openFile('<%file.path%>'));
 });
 
 

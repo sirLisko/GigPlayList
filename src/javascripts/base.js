@@ -4,7 +4,8 @@
 	'use strict';
 
 	function render(json) {
-		var template = '<ul>{{#tracks}}<li class="track"><p class="track__title" data-count="{{count}}">{{title}}</p><p class="track__percentage"></p></li>{{/tracks}}</ul>';
+		var template = '<ul>{{#songs}}<li class="track"><p class="track__title" data-count="{{count}}">{{title}}</p><p class="track__percentage"></p></li>{{/songs}}</ul>';
+		template += '<p class="result__credits">{{credits}}</p>';
 		$('.result').html(Mustache.render(template, json));
 
 		var $tracks = $('.track');
@@ -26,8 +27,13 @@
 
 	$('.search form').submit(function (e) {
 		e.preventDefault();
+
 		var artist = $('.search__artist').val();
 		if (artist !== '') {
+
+			$('.message__loading').show();
+			$('.message__subtitle').hide();
+
 			$.ajax({
 				url: 'http://api.shouldilisten.it/v1/artist/' + artist,
 				success: render,
@@ -36,4 +42,7 @@
 		}
 	});
 
+	$('.search__artist').on('click', function(){
+		this.select();
+	});
 })(jQuery);

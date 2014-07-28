@@ -7,11 +7,33 @@
 
 @main-font: "oswald", Arial, sans-serif;
 
-@mobile-trigger: 650px;
+@mobile-trigger: 500px;
 @desktop-trigger: 1000px;
+
+@fluorescent-blue: #5bc0de;
+@fluorescent-yellow: #f3f315;
+@fluorescent-pink: #ff0099;
+
+@fluorescent-main: @fluorescent-blue;
+@fluorescent-second: @fluorescent-yellow;
+@fluorescent-third: @fluorescent-pink;
+
+.keyword--main {
+	background-color: @fluorescent-main;
+}
+.keyword--second {
+	background-color: @fluorescent-second;
+}
+.keyword--third {
+	background-color: @fluorescent-third;
+}
 
 .ellipses(){
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

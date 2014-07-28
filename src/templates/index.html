@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope="" itemtype="http://schema.org/WebPage">
 	@@include('./partials/head.html')
 <body>
 <article class="container">
@@ -9,7 +9,9 @@
 			<input class="search__go" type="submit" value="a">
 		</form>
 	</section>
-	<div class="result"></div>
+	<div class="result">
+		@@include('./partials/welcome.html')
+	</div>
 </article>
 <script type="text/javascript" src="js/ext/jquery.js"></script>
 <script type="text/javascript" src="js/ext/mustache.js"></script>
