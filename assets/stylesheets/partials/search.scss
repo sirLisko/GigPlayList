@@ -1,12 +1,14 @@
 .search {
-	background-color: #fff;
+	background-color: #FFF;
 	margin: 0 auto;
 	position: relative;
 	width: 550px;
 }
 
-.search__artist {
+.search input {
+	@include transition(border 0.3s);
 	border: none;
+	border-bottom: solid 2px #c9c9c9;
 	display: block;
 	font-family: Arial, sans-serif;
 	font-size: 40px;
@@ -14,34 +16,33 @@
 	letter-spacing: 1px;
 	line-height: 50px;
 	margin: 0 auto;
+	outline: none;
 	padding: 0 60px 0 10px;
 	width: 100%;
-	&::selection {
-		background: #ff0099;
-	}
-	::-moz-selection {
-		background: #ff0099;
+	&:focus {
+		border-bottom: solid 2px #000;
 	}
 }
 
-.search__go {
+.search__submit {
 	background-color: #333;
 	border: 1px solid #000;
-	color: #fff;
+	color: #FFF;
 	cursor: pointer;
-	font-family: "icons";
-	font-size: 20px;
 	height: 100%;
+	outline: none;
 	position: absolute;
 	right: 0;
 	top: 0;
 	width: 50px;
-	&:hover {
-		font-size: 30px;
-	}
 }
 
-@media (max-width: @desktop-trigger) {
+.search__icon {
+	height: 25px;
+	width: 25px;
+}
+
+@media (max-width: $desktop-trigger) {
 	.search {
 		width: 100%;
 	}

@@ -1,13 +1,13 @@
 .track {
 	background-color: rgba(255, 255, 255, 0.5);
-	border: 1px solid #ebebeb;
+	border: 1px solid #EBEBEB;
 	height: 50px;
 	line-height: 50px;
 	position: relative;
 }
 
 .track__title {
-	.ellipses();
+	@include ellipses;
 	font-size: 25px;
 	margin: 0 auto;
 	max-width: 500px;
@@ -30,14 +30,14 @@
 }
 
 .track__percentage {
-	background-color: #5bc0de;
-	border: 1px solid #46b8da;
+	@include transition(width 5s ease);
+	background-color: #5BC0DE;
+	border: 1px solid #46B8DA;
 	height: 50px;
 	left: 0;
 	opacity: 0.5;
 	position: absolute;
 	top: 0;
-	transition: all 5s ease;
 	width: 1%;
 }
 
@@ -48,7 +48,7 @@
 	z-index: 1;
 }
 
-@media (max-width: @desktop-trigger) {
+@media (max-width: $desktop-trigger) {
 	.track__title {
 		width: 95%;
 	}

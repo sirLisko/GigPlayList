@@ -1,8 +1,7 @@
 {
-	"name": "shouldilistenit",
-	"dependencies": {
-		"html5shiv": "https://raw.github.com/aFarkas/html5shiv/3.6.2/dist/html5shiv.js",
-		"mustache": "http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js",
-		"jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
-	}
+  "name": "shouldilistenit",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "html5shiv": "~3.7.2"
+  }
 }

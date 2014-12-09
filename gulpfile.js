@@ -1,99 +1,44 @@
 'use strict';
 
 var gulp = require('gulp');
-var gutil = require('gulp-util');
-var rename = require('gulp-rename');
+var $ = require('gulp-load-plugins')();
 
 
 var onError = function(err){
-	gutil.log(err);
+	$.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
+	$.util.beep();
 };
 
 
-var gulpBowerFiles = require('gulp-bower-files');
+var bower = require('main-bower-files');
 
-gulp.task('bower', function(cb){
-	var dest = gulp.dest('./dist/js/ext');
-	dest.on('end', cb);
-
-	gulpBowerFiles().pipe(rename(function (path) {
-		path.basename = path.dirname;
-		path.dirname = '';
-	})).pipe(dest);
+gulp.task('bower', function() {
+	return gulp.src(bower())
+		.pipe(gulp.dest('./public/javascripts/ext'));
 });
 
 
-var clean = require('gulp-clean');
-
-gulp.task('clean', function () {
-	return gulp.src('./dist', {read: false})
-	  .pipe(clean());
+gulp.task('js', function() {
+	gulp.src('./assets/javascripts/**/*.js')
+		.pipe($.jshint())
+		.pipe($.jshint.reporter('default'))
+		.pipe($.uglifyjs('base.js'))
+		.pipe(gulp.dest('./public/javascripts'));
 });
 
 
-var concat = require('gulp-concat');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
-
-gulp.task('js:prod', function() {
-  return gulp.src('./src/**/*.js')
-	.pipe(jshint())
-	.pipe(jshint.reporter('default'))
-	.pipe(concat('base.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('./dist/js/'));
-});
-
-gulp.task('js:dev', function() {
-  return gulp.src('./src/**/*.js')
-	.pipe(concat('base.js'))
-	.pipe(gulp.dest('./dist/js/'));
-});
-
-
-gulp.task('copy', function(){
-  gulp.src('./public/**/*')
-	.pipe(gulp.dest('./dist/public/'));
-  gulp.src('./extras/**/*')
-	.pipe(gulp.dest('./dist/'));
-});
-
-
-var fileinclude = require('gulp-file-include');
-
-gulp.task('fileinclude', function() {
-  gulp.src(['./src/templates/index.html'])
-	.pipe(fileinclude())
-	.pipe(gulp.dest('./dist'));
-});
-
-
-var less = require('gulp-less');
-
-gulp.task('less', function () {
-	gulp.src('./src/styles/*.less')
-	  .pipe(less({
-		strictImports:true,
-		  compress:true
-	  })).on('error', onError)
-	  .pipe(gulp.dest('./dist/styles/'));
-});
-
-
-var openFile = require('gulp-open');
-
-gulp.task('open', function(){
-  gulp.src('./dist/index.html')
-	.pipe(openFile('<%file.path%>'));
+gulp.task('sass', function () {
+	return gulp.src('./assets/stylesheets/*.scss')
+		.pipe($.sass())
+		.on('error', onError)
+		.pipe(gulp.dest('./public/stylesheets'));
 });
 
 
 gulp.task('watch', function() {
-	gulp.start('bower', 'fileinclude', 'less', 'js:dev', 'copy');
-	gulp.watch('./src/**/*.html', ['fileinclude']);
-	gulp.watch('./src/**/*.less', ['less']);
-	gulp.watch('./src/**/*.js', ['js:dev']);
+	gulp.start('default');
+	gulp.watch('./assets/**/*.scss', ['sass']);
+	gulp.watch('./assets/**/*.js', ['js']);
 });
 
-
-gulp.task('default', ['bower', 'fileinclude', 'less', 'js:prod', 'copy']);
+gulp.task('default', ['sass', 'js', 'bower']);

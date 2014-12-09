@@ -8,22 +8,23 @@
     "url": "git://github.com/sirLisko/sirLisko/shouldilistenit.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node_modules/.bin/bower install"
+    "start": "node ./bin/www",
+    "postinstall": "node_modules/.bin/bower install && gulp"
+  },
+  "dependencies": {
+    "hjs": "~0.0.6",
+    "express": "~4.9.0",
+    "serve-favicon": "~2.1.3",
+    "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git"
   },
   "devDependencies": {
-    "bower": "1.2.8",
-    "gulp": "^3.6.2",
-    "gulp-bower-files": "0.1.12",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat": "^2.3.3",
-    "gulp-file-include": "^0.3.1",
+    "gulp": "^3.8.10",
     "gulp-jshint": "^1.6.1",
-    "gulp-less": "^1.3.2",
-    "gulp-open": "^0.2.8",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1",
-    "gulp-util": "^3.0.0"
+    "gulp-load-plugins": "^0.7.1",
+    "gulp-sass": "^1.1.0",
+    "gulp-uglifyjs": "^0.5.0",
+    "gulp-util": "^3.0.1",
+    "main-bower-files": "^2.4.0"
   },
   "keywords": [
     "music",

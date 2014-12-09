@@ -1,15 +1,16 @@
 @import "partials/reset";
 @import "partials/generic";
-@import "partials/icons";
 
-@import "partials/messages";
 @import "partials/search";
 @import "partials/result";
 @import "partials/track";
 
+* {
+	@include box-sizing();
+}
 
 body {
-	background-color: #e2e2e2;
-	font-family: @main-font;
-	margin: 0;
+	background-color: #E2E2E2;
+	font-family: $main-font;
 }
+
