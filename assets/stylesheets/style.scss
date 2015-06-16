@@ -6,7 +6,7 @@
 @import "partials/track";
 
 * {
-	@include box-sizing();
+	box-sizing: border-box;
 }
 
 body {

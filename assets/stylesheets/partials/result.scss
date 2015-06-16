@@ -13,10 +13,10 @@
 }
 
 .error {
-	@include transform(translate(-50%));
 	font-size: 30px;
 	left: 50%;
 	position: absolute;
 	text-align: center;
 	top: 50%;
+	transform: translate(-50%);
 }

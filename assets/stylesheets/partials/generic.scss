@@ -14,35 +14,8 @@ svg {
 	fill: currentColor;
 }
 
-@mixin animation($animation) {
-	-webkit-animation: $animation;
-	-moz-animation: $animation;
-	-o-animation: $animation;
-	animation: $animation;
-}
-
-@mixin box-sizing($type: border-box) {
-	-moz-box-sizing: $type;
-	-webkit-box-sizing: $type;
-	-ms-box-sizing: $type;
-	box-sizing: $type;
-}
-
 @mixin ellipses(){
 	overflow: hidden;
-	white-space: nowrap;
 	text-overflow: ellipsis;
-}
-
-@mixin transform($tranform...) {
-	-moz-transform: $tranform;
-	-webkit-transform: $tranform;
-	-o-transform: $tranform;
-	transform: $tranform;
-}
-
-@mixin transition($transition...) {
-	-webkit-transition: $transition;
-	-moz-transition: $transition;
-	transition: $transition;
+	white-space: nowrap;
 }

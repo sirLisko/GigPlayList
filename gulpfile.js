@@ -27,6 +27,12 @@ gulp.task('sass', function () {
 	return gulp.src('./assets/stylesheets/*.scss')
 		.pipe($.sass())
 		.on('error', onError)
+		.pipe($.autoprefixer({
+			browsers: ['> 5%'],
+			cascade: false
+		}))
+		.pipe($.combineMediaQueries())
+		.pipe($.csso())
 		.pipe(gulp.dest('./public/stylesheets'));
 });
 
