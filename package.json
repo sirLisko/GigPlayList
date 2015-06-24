@@ -9,17 +9,12 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "node_modules/.bin/gulp"
+    "postinstall": "./node_modules/.bin/gulp"
   },
   "dependencies": {
     "body-parser": "^1.13.1",
     "debug": "^2.2.0",
     "express": "^4.12.4",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-combine-media-queries": "^0.2.0",
-    "gulp-csso": "^1.0.0",
-    "hjs": "~0.0.6",
-    "jquery": "^2.1.4",
     "morgan": "^1.6.0",
     "robots.txt": "^1.1.0",
     "serve-favicon": "^2.3.0",
@@ -30,8 +25,13 @@
     "gulp-jshint": "^1.11.0",
     "gulp-load-plugins": "^1.0.0-rc",
     "gulp-sass": "^2.0.1",
-    "gulp-uglifyjs": "^0.6.2",
-    "gulp-util": "^3.0.5"
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-combine-media-queries": "^0.2.0",
+    "gulp-csso": "^1.0.0",
+    "hjs": "~0.0.6",
+    "jquery": "^2.1.4"
   },
   "keywords": [
     "music",

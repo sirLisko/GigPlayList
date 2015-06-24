@@ -1,5 +1,6 @@
-bower_components/
 extras/
+fixtures/
 node_modules/
 public/stylesheets/
 public/javascripts/
+env.sh

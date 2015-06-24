@@ -14,7 +14,7 @@ gulp.task('js', function() {
 	return gulp.src('./assets/javascripts/**/*.js')
 		.pipe($.jshint())
 		.pipe($.jshint.reporter('default'))
-		.pipe($.uglifyjs('base.js'))
+		/*.pipe($.uglify('base.js'))*/
 		.pipe(gulp.dest('./public/javascripts'));
 });
 
