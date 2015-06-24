@@ -15,7 +15,7 @@ router.get('/:artist', function(req, res) {
 	setList.getTracks(artist).then(function(setList){
 		res.render('index', setList);
 	}).catch(function (error) {
-		res.render('index', { error: (error.statusCode === 404) ? 'not found' : 'an error occured' });
+		res.render('index', { artist: artist, error: (error.statusCode === 404) ? 'not found' : 'an error occured' });
 	}).done();
 
 });
