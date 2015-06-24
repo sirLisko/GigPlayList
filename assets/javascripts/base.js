@@ -9,7 +9,7 @@
 		$tracks.each(function () {
 			var track = this;
 			setTimeout(function () {
-				$(track).children('.track__percentage').css('width', $(track).children('[data-count]').data('count') / max * 100 + '%');
+				$(track).children('.track__percentage').css('opacity', $(track).children('[data-count]').data('count') / max);
 			}, 0);
 		});
 	}

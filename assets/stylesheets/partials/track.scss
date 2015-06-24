@@ -40,8 +40,8 @@
 	opacity: 0.5;
 	position: absolute;
 	top: 0;
-	transition: width 5s ease;
-	width: 1%;
+	transition: opacity 1s ease;
+	width: 100%;
 }
 
 .track__count {
