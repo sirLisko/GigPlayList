@@ -1,8 +1,10 @@
 @import "partials/reset";
 @import "partials/generic";
 
-@import "partials/search";
+@import "partials/home";
+@import "partials/footer";
 @import "partials/result";
+@import "partials/search";
 @import "partials/track";
 
 * {
@@ -10,7 +12,13 @@
 }
 
 body {
-	background-color: #E2E2E2;
-	font-family: $main-font;
+	background-color: $background-light;
+	display: flex;
+	font-family: $font-main;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
+.main {
+  flex: 1;
+}

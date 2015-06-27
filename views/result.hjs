@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Should I Listen It - Best Guess for your Next Gig</title>
+	<title>Should I Listen It - {{ artist }}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="author" content="Luca Lischetti">
 	<link type="text/plain" rel="author" href="http://shouldilisten.it/humans.txt" />
@@ -10,10 +10,10 @@
 	<meta name="description" content="Should I listen it set up you ready for your next Gig.It gives you the list of your favourite artists' most played tracks... in the last year of gigs." />
 
 	<meta property="og:url" content="http://shouldilisten.it{{#artist}}/{{artist}}{{/artist}}" />
-	<meta property="og:description" content="Should I listen it set up you ready for your next Gig. It gives you the list of your favourite artists' most played tracks." />
-	<meta property="og:title" content="Should I listen it - Best Guess for your Next Gig" />
+	<meta property="og:description" content="Should I listen it set up you ready for your next Gig.It gives you the list of your favourite artists' most played tracks... in the last year of gigs." />
+	<meta property="og:title" content="Should I listen it - {{ artist }}" />
 
-	<link href='http://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
@@ -25,20 +25,29 @@
 
 	ga('create', 'UA-7433914-13', 'auto');
 	ga('send', 'pageview');
+
+	ga('send', 'event', {{^error}}'found'{{/error}}{{#error}}'not_found'{{/error}}, "{{artist}}");
 </script>
-	<article class="main home">
-		<header>Best Guess for your Next Gig</header>
+	<article class="main list">
 
-
-		<form class="search search--empty" action="/">
-			<input type="search" placeholder="Type-in an Artist" autocomplete="off" spellcheck="false" autofocus="true" {{#artist}}value="{{artist}}"{{/artist}}>
+		<form class="search search--compact" action="/">
+			<input type="search" placeholder="Search for ..." autocomplete="off" spellcheck="false" {{#artist}}value="{{artist}}"{{/artist}}>
 			<button class="search__submit" type="submit">></button>
 		</form>
 
+		{{#tracksTot}}
+			<div class="result">
+	    		<ul>{{#tracks}}<li class="track"><p class="track__title" data-count="{{count}}">{{title}}</p><p class="track__percentage"></p></li>{{/tracks}}</ul>
+			</div>
+		{{/tracksTot}}
+		{{#error}}
+			<div class="error">No gigs found for <b>{{artist}}</b></div>
+		{{/error}}
 	</article>
 	<footer>
 		<p>
-			<span>Created with &#9829; by <a href="http://sirlisko.com">Luca Lischetti</a>.</span>
+			<span>Created with Love by <a href="http://sirlisko.com">Luca Lischetti</a>.</span>
+			<span>Thanks to <a href="http://setlist.fm">setlist.fm</a> API.</span>
 			<span>View project source on <a href="https://github.com/sirLisko/shouldilistenit">Github</a>.</span>
 		</p>
 	</footer>

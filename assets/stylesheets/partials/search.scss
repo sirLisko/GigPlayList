@@ -1,6 +1,6 @@
 .search {
 	background-color: #FFF;
-	margin: 0 auto;
+	margin: 20vh auto;
 	position: relative;
 	width: 550px;
 	@media (max-width: $desktop-trigger) {
@@ -9,38 +9,68 @@
 }
 
 .search input {
+	-webkit-appearance: none;
+	background-color: $background-light;
 	border: none;
-	border-bottom: solid 2px #C9C9C9;
+	border-bottom: solid 2px $background-light;
+	border-radius: 0;
 	display: block;
-	font-family: Arial, sans-serif;
+	font-family: $font-main;
 	font-size: 40px;
-	height: 50px;
+	height: 70px;
 	letter-spacing: 1px;
 	line-height: 50px;
 	margin: 0 auto;
 	outline: none;
-	padding: 0 60px 0 10px;
+	padding: 0 45px 0 10px;
 	transition: border 0.3s;
 	width: 100%;
+	@media (max-width: $desktop-trigger) {
+		font-size: 20px;
+	}
+	&::placeholder {
+		color: $main-color;
+		letter-spacing: 2px;
+	}
 	&:focus {
-		border-bottom: solid 2px #000;
+		border-color: $main-color;
+		&::placeholder {
+			opacity: 0.3;
+		}
+	}
+}
+.search--empty {
+	border-color: $background-color;
+}
+.search--compact {
+	margin: 0 auto;
+	@media (max-width: $desktop-trigger) {
+		input {
+			font-size: 40px;
+		}
 	}
 }
 
 .search__submit {
-	background-color: #333;
-	border: 1px solid #000;
-	color: #FFF;
+	background-color: $background-light;
+	border: none;
+	color: $main-color;
 	cursor: pointer;
-	height: 100%;
+	font-size: 30px;
+	height: 68px;
 	outline: none;
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 50px;
+	width: 40px;
+	&:hover {
+		transition: 0.5s;
+		transform: translate(6px, 0px);
+	}
 }
 
-.search__icon {
-	height: 25px;
-	width: 25px;
+.search--empty .search__submit {
+	animation-name: shake;
+	animation-duration: 1s;
+	animation-fill-mode: both;
 }

@@ -1,0 +1,19 @@
+footer {
+	background-color: $background-dark;
+	p {
+		color: #E5E5E5;
+		line-height: 1.5;
+		padding: 20px;
+		text-align: center;
+	}
+	a {
+		color: #FFF;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	span {
+		white-space: nowrap;
+	}
+}

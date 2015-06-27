@@ -14,9 +14,11 @@
 
 .error {
 	font-size: 30px;
-	left: 50%;
-	position: absolute;
+	line-height: 1.5;
+	margin: 40vh auto;
 	text-align: center;
-	top: 50%;
-	transform: translate(-50%);
+	max-width: 90%;
+	b {
+		font-weight: bold;
+	}
 }
