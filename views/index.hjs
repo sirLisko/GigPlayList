@@ -13,7 +13,7 @@
 	<meta property="og:description" content="Should I listen it set up you ready for your next Gig. It gives you the list of your favourite artists' most played tracks." />
 	<meta property="og:title" content="Should I listen it - Best Guess for your Next Gig" />
 
-	<link href='http://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans' rel='stylesheet' type='text/css'>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
@@ -38,7 +38,7 @@
 	</article>
 	<footer>
 		<p>
-			<span>Created with &#9829; by <a href="http://sirlisko.com">Luca Lischetti</a>.</span>
+			<span>Created with &#9829; by <a href="http://sirlisko.com">Luca Lischetti</a> (<a href="http://twitter.com/sirLisko">@sirLisko</a>).</span>
 			<span>View project source on <a href="https://github.com/sirLisko/shouldilistenit">Github</a>.</span>
 		</p>
 	</footer>
