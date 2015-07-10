@@ -1,0 +1,38 @@
+.howTo {
+	font-size: 23px;
+	line-height: 35px;
+	margin: 0 auto 30px;
+	max-width: 600px;
+	width: 90%;
+	@media (max-width: 675px) {
+		display: none;
+		font-size: 18px;
+		max-width: 470px;
+	}
+	em {
+		font-weight: bold;
+	}
+	ul {
+		list-style-position: inside;
+		list-style-type: decimal;
+	}
+	li {
+		padding-left: 1em;
+		text-indent: -1em;
+	}
+}
+
+ .howTo__title {
+ 	font-family: $font-header;
+	font-size: 35px;
+	letter-spacing: 1px;
+	margin-bottom: 15px;
+	text-align: center;
+	@media (max-width: 675px) {
+		font-size: 30px;
+	}
+	a {
+ 		color: $main-dark;
+		text-decoration: none;
+	}
+ }

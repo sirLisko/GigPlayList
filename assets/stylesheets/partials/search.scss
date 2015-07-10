@@ -3,7 +3,7 @@
 	margin: 20vh auto;
 	position: relative;
 	width: 550px;
-	@media (max-width: $desktop-trigger) {
+	@media (max-width: 550px) {
 		width: 100%;
 	}
 }
@@ -25,7 +25,7 @@
 	padding: 0 45px 0 10px;
 	transition: border 0.3s;
 	width: 100%;
-	@media (max-width: $desktop-trigger) {
+	@media (max-width: 550px) {
 		font-size: 20px;
 	}
 	&::placeholder {
@@ -44,7 +44,7 @@
 }
 .search--compact {
 	margin: 0 auto;
-	@media (max-width: $desktop-trigger) {
+	@media (max-width: 550px) {
 		input {
 			font-size: 40px;
 		}

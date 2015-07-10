@@ -29,12 +29,19 @@
 	<article class="main home">
 		<header>Best Guess for your Next Gig</header>
 
-
-		<form class="search search--empty" action="/">
+		<form id="search" class="search search--empty" action="/">
 			<input type="search" placeholder="Type-in an Artist" autocomplete="off" spellcheck="false" autofocus="true" {{#artist}}value="{{artist}}"{{/artist}}>
 			<button class="search__submit" type="submit">></button>
 		</form>
 
+		<div class="howTo">
+			<h3 class="howTo__title"><a href="#search">How does it work?</a></h3>
+			<ul>
+				<li><em>Should I listen it</em> scans the last <em>20 gigs</em> of a given Artist</li>
+				<li>does his stuff (aggregation &amp; calculation)</li>
+				<li>shows the <em>%</em> of the songs to be played at the <em>next gig</em>.</li>
+			</ul>
+		</div>
 	</article>
 	<footer>
 		<p>
