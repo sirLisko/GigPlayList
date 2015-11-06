@@ -17,6 +17,8 @@
     "express": "^4.12.4",
     "lodash": "^3.10.1",
     "morgan": "^1.6.0",
+    "nice-date": "^0.1.12",
+    "request": "^2.65.0",
     "robots.txt": "^1.1.0",
     "serve-favicon": "^2.3.0",
     "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git"

@@ -34,7 +34,20 @@
 			<input type="search" placeholder="Search for ..." autocomplete="off" spellcheck="false" {{#artist}}value="{{artist}}"{{/artist}}>
 			<button class="search__submit" type="submit">></button>
 		</form>
-
+		<div class="result__events">
+			{{#events}}
+				<a class="event" href="{{buyUrl}}" target="_blank">
+					<div class="event__date">
+						<p class="event__month">{{date.month}}</p>
+						<p class="event__day">{{date.day}}</p>
+					</div>
+					<div class="event__details">
+						<p class="event__venue">{{venueName}}</p>
+						<p class="event__location">{{location}}</p>
+					</div>
+				</a>
+			{{/events}}
+		</div>
 		{{#tracksTot}}
 			<div class="result">
 	    		<ul>{{#tracks}}<li class="track">
@@ -42,6 +55,9 @@
 	    		<p class="track__percentage"></p></li>{{/tracks}}</ul>
 			</div>
 		{{/tracksTot}}
+		{{^tracksTot}}{{^error}}
+			<div class="error">No setlists found for <b>{{artist}}</b></div>
+		{{/error}}{{/tracksTot}}
 		{{#error}}
 			<div class="error">No gigs found for <b>{{artist}}</b></div>
 		{{/error}}
