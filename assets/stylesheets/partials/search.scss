@@ -1,5 +1,4 @@
 .search {
-	background-color: #FFF;
 	margin: 20vh auto;
 	position: relative;
 	width: 550px;
@@ -10,7 +9,7 @@
 
 .search input {
 	-webkit-appearance: none;
-	background-color: $background-light;
+	background-color: rgba(0,0,0,0);
 	border: none;
 	border-bottom: solid 2px $background-light;
 	border-radius: 0;
@@ -29,11 +28,11 @@
 		font-size: 20px;
 	}
 	&::placeholder {
-		color: $main-color;
+		color: $background-dark;
 		letter-spacing: 2px;
 	}
 	&:focus {
-		border-color: $main-color;
+		border-color: $background-dark;
 		&::placeholder {
 			opacity: 0.3;
 		}
@@ -52,9 +51,9 @@
 }
 
 .search__submit {
-	background-color: $background-light;
+	background-color: rgba(0,0,0,0);
 	border: none;
-	color: $main-color;
+	color: $background-dark;
 	cursor: pointer;
 	font-size: 30px;
 	height: 68px;
