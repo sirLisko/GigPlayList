@@ -1,0 +1,124 @@
+{
+  "resultsPage": {
+    "status": "ok",
+    "results": {
+      "event": [
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "displayName": "Ludovico Einaudi at Eventim Apollo (March 16, 2016)",
+          "status": "ok",
+          "start": {
+            "datetime": "2016-03-16T19:30:00+0000",
+            "time": "19:30:00",
+            "date": "2016-03-16"
+          },
+          "location": {
+            "city": "London, UK",
+            "lat": 51.4908747,
+            "lng": -0.2252653
+          },
+          "uri": "http://www.songkick.com/concerts/25175004-ludovico-einaudi-at-eventim-apollo?utm_source=29773&utm_medium=partner",
+          "performance": [
+            {
+              "artist": {
+                "displayName": "Ludovico Einaudi",
+                "uri": "http://www.songkick.com/artists/114869-ludovico-einaudi?utm_source=29773&utm_medium=partner",
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:fa34b363-79df-434f-a5b8-be4e6898543f.json",
+                    "mbid": "fa34b363-79df-434f-a5b8-be4e6898543f"
+                  }
+                ],
+                "id": 114869
+              },
+              "billingIndex": 1,
+              "displayName": "Ludovico Einaudi",
+              "billing": "headline",
+              "id": 49452489
+            }
+          ],
+          "venue": {
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=29773&utm_medium=partner",
+              "country": {
+                "displayName": "UK"
+              },
+              "id": 24426
+            },
+            "displayName": "Eventim Apollo",
+            "lat": 51.4908747,
+            "lng": -0.2252653,
+            "uri": "http://www.songkick.com/venues/8086-eventim-apollo?utm_source=29773&utm_medium=partner",
+            "id": 8086
+          },
+          "id": 25175004,
+          "popularity": 0.058587
+        },
+        {
+          "type": "Concert",
+          "displayName": "Ludovico Einaudi at Eventim Apollo (March 17, 2016)",
+          "status": "ok",
+          "start": {
+            "datetime": "2016-03-17T19:30:00+0000",
+            "time": "19:30:00",
+            "date": "2016-03-17"
+          },
+          "location": {
+            "city": "London, UK",
+            "lat": 51.4908747,
+            "lng": -0.2252653
+          },
+          "popularity": 0.058678,
+          "uri": "http://www.songkick.com/concerts/25175009-ludovico-einaudi-at-eventim-apollo?utm_source=29773&utm_medium=partner",
+          "performance": [
+            {
+              "artist": {
+                "displayName": "Ludovico Einaudi",
+                "uri": "http://www.songkick.com/artists/114869-ludovico-einaudi?utm_source=29773&utm_medium=partner",
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:fa34b363-79df-434f-a5b8-be4e6898543f.json",
+                    "mbid": "fa34b363-79df-434f-a5b8-be4e6898543f"
+                  }
+                ],
+                "id": 114869
+              },
+              "billingIndex": 1,
+              "billing": "headline",
+              "displayName": "Ludovico Einaudi",
+              "id": 49452494
+            }
+          ],
+          "ageRestriction": null,
+          "venue": {
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=29773&utm_medium=partner",
+              "country": {
+                "displayName": "UK"
+              },
+              "id": 24426
+            },
+            "displayName": "Eventim Apollo",
+            "lat": 51.4908747,
+            "lng": -0.2252653,
+            "uri": "http://www.songkick.com/venues/8086-eventim-apollo?utm_source=29773&utm_medium=partner",
+            "id": 8086
+          },
+          "id": 25175009
+        }
+      ]
+    },
+    "perPage": 50,
+    "page": 1,
+    "totalEntries": 2,
+    "clientLocation": {
+      "ip": "1.1.1.1",
+      "lat": 51.5142,
+      "lng": -0.0931,
+      "metroAreaId": 24426
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "resultsPage": {
+    "status": "ok",
+    "results": {},
+    "perPage": 50,
+    "page": 1,
+    "totalEntries": 0,
+    "clientLocation": {
+      "ip": "1.1.1.1",
+      "lat": 51.5142,
+      "lng": -0.0931,
+      "metroAreaId": 24426
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "resultsPage": {
+    "status": "ok",
+    "results": {
+      "event": [
+        {
+          "displayName": "Calibro 35 at 100 Club (February 26, 2016)",
+          "type": "Concert",
+          "status": "ok",
+          "ageRestriction": "18+",
+          "start": {
+            "time": "19:30:00",
+            "datetime": "2016-02-26T19:30:00+0000",
+            "date": "2016-02-26"
+          },
+          "performance": [
+            {
+              "billingIndex": 1,
+              "displayName": "Calibro 35",
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:7b6baeda-94ec-4475-9b09-6486a36c8e40.json",
+                    "mbid": "7b6baeda-94ec-4475-9b09-6486a36c8e40"
+                  }
+                ],
+                "displayName": "Calibro 35",
+                "uri": "http://www.songkick.com/artists/665887-calibro-35?utm_source=29773&utm_medium=partner",
+                "id": 665887
+              },
+              "billing": "headline",
+              "id": 49155234
+            }
+          ],
+          "location": {
+            "city": "London, UK",
+            "lat": 51.5160992,
+            "lng": -0.1351725
+          },
+          "venue": {
+            "displayName": "100 Club",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=29773&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "lat": 51.5160992,
+            "lng": -0.1351725,
+            "uri": "http://www.songkick.com/venues/8128-100-club?utm_source=29773&utm_medium=partner",
+            "id": 8128
+          },
+          "uri": "http://www.songkick.com/concerts/25003304-calibro-35-at-100-club?utm_source=29773&utm_medium=partner",
+          "id": 25003304,
+          "popularity": 0.001797
+        }
+      ]
+    },
+    "perPage": 50,
+    "page": 1,
+    "totalEntries": 1,
+    "clientLocation": {
+      "ip": "1.1.1.1",
+      "lat": 51.5142,
+      "lng": -0.0931,
+      "metroAreaId": 24426
+    }
+  }
+}
