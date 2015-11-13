@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node bin/www",
     "postinstall": "node_modules/.bin/gulp",
-    "test": "node_modules/.bin/tape test/*.js"
+    "test": "node_modules/.bin/tape test/*.js | node_modules/.bin/faucet"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -26,6 +26,7 @@
     "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git"
   },
   "devDependencies": {
+    "faucet": "0.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-combine-media-queries": "^0.2.0",

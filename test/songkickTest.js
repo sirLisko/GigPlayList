@@ -23,7 +23,23 @@ test('A gig has been found', function(t){
 	});
 });
 
-test('No gig found', function(t){
+test('More than one gig has been found', function(t){
+	var fixture = require('./fixtures/songkick__multipleresults.json');
+
+	var apiSongkick = nock('http://api.songkick.com')
+		.get('/api/3.0/events.json?artist_name=ludovico_einaudi&location=ip:1.1.1.1&apikey='+process.env.SKAPI)
+		.reply(200, fixture);
+
+	songkick('ludovico_einaudi', '1.1.1.1', function(err, gig){
+		t.equal(gig.artist, 'Ludovico Einaudi', 'the artist is present');
+		t.equal(gig.date.day, 16, 'the first day is present');
+
+		apiSongkick.done();
+		t.end();
+	});
+});
+
+test('Gig not found', function(t){
 	var fixture = require('./fixtures/songkick__notfound.json');
 
 	var apiSongkick = nock('http://api.songkick.com')
@@ -38,7 +54,7 @@ test('No gig found', function(t){
 	});
 });
 
-test('On API error', function(t){
+test('On Songkick API error', function(t){
 	var fixture = require('./fixtures/songkick__error.json');
 
 	var apiSongkick = nock('http://api.songkick.com')
@@ -47,22 +63,6 @@ test('On API error', function(t){
 
 	songkick('foo', '1.1.1.1', function(err, gig){
 		t.equal(gig, undefined, 'if not gig are found returns undefined');
-
-		apiSongkick.done();
-		t.end();
-	});
-});
-
-test('More than one gig has been found', function(t){
-	var fixture = require('./fixtures/songkick__multipleresults.json');
-
-	var apiSongkick = nock('http://api.songkick.com')
-		.get('/api/3.0/events.json?artist_name=ludovico_einaudi&location=ip:1.1.1.1&apikey='+process.env.SKAPI)
-		.reply(200, fixture);
-
-	songkick('ludovico_einaudi', '1.1.1.1', function(err, gig){
-		t.equal(gig.artist, 'Ludovico Einaudi', 'the artist is present');
-		t.equal(gig.date.day, 16, 'the first day is present');
 
 		apiSongkick.done();
 		t.end();

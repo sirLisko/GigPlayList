@@ -7,7 +7,7 @@ var spotifyUrl = 'https://api.spotify.com/v1/search?q={{artist}}&type=track&limi
 
 function parser(artist, cb){
 	request(spotifyUrl.replace('{{artist}}', artist), function(err, resp, body){
-		cb(err, _.map(JSON.parse(body).tracks.items, function (track) {
+		cb(err, body && _.map(JSON.parse(body).tracks.items, function (track) {
 			return {
 				artist: track.artists[0].name,
 				title: track.name.toLowerCase(),
