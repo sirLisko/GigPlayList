@@ -13,17 +13,17 @@ test('Tracks are merged', function(t){
 	};
 
 	var tracksToMerge = [
-		{ title: 'foo', artist: 'asd' },
-		{ title: 'foobar', artist: 'zxc' },
-		{ title: 'barfoo', artist: 'qwe' }
+		{ title: 'foo', link: 'asd' },
+		{ title: 'foobar', link: 'zxc' },
+		{ title: 'barfoo', link: 'qwe' }
 	];
 
 	merger(setList, tracksToMerge);
 
 	t.equal(setList.tracks.length, 3, 'only the tracks in setList are present');
-	t.deepEqual(setList.tracks[0], { title: 'foo', artist: 'asd' }, 'the first track is extended');
+	t.deepEqual(setList.tracks[0], { title: 'foo', link: 'asd' }, 'the first track is extended');
 	t.deepEqual(setList.tracks[1], { title: 'bar' }, 'the second track is not extended');
-	t.deepEqual(setList.tracks[2], { title: 'foobar', artist: 'zxc' }, 'the third track is extended');
+	t.deepEqual(setList.tracks[2], { title: 'foobar', link: 'zxc' }, 'the third track is extended');
 
 	t.end();
 });
@@ -50,9 +50,9 @@ test('if no tracksToMerge presents nothing happens', function(t){
 test('if no tracks are present nothing happens', function(t){
 	var setList = { tracks: [] };
 	var tracksToMerge = [
-		{ title: 'foo', artist: 'asd' },
-		{ title: 'foobar', artist: 'zxc' },
-		{ title: 'barfoo', artist: 'qwe' }
+		{ title: 'foo', link: 'asd' },
+		{ title: 'foobar', link: 'zxc' },
+		{ title: 'barfoo', link: 'qwe' }
 	];
 
 	merger(setList, tracksToMerge);

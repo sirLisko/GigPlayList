@@ -8,7 +8,7 @@ var songKick = 'http://api.songkick.com/api/3.0/events.json?artist_name={{artist
 
 function getGig(artist, ip, cb){
 	request(songKick.replace('{{artist}}', artist).replace('{{ip}}', ip), function(err, resp, body){
-		cb(err, _.map(JSON.parse(body).resultsPage.results, function(result){
+		cb(err, body && _.map(JSON.parse(body).resultsPage.results, function(result){
 			var date = new NiceDate(result[0].start.date);
 			return {
 				artist: result[0].performance[0].displayName,
