@@ -1,3 +1,4 @@
+/*eslint no-console: 0*/
 'use strict';
 
 var express = require('express');
@@ -27,6 +28,7 @@ router.get('/:artist', function(req, res) {
 				songkick(artist, clientIp, cb);
 			}
 		}, function(err, results) {
+			if (err) console.error(err);
 			trackMerger(setList, results.spotify);
 			setList.events = results.songkick;
 			res.render('result', setList);

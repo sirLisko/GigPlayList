@@ -44,8 +44,8 @@ test('on Spotify API error', function(t){
 		.reply(400);
 
 	spotify('calibro_35', function(err, tracks){
-		t.notOk(tracks instanceof Array, 'tracks is an array');
-		t.equal(tracks.length, 0, 'no tracks found');
+		t.notOk(tracks, 'tracks is not returned');
+		t.ok(err, 'an error is returned');
 
 		apiSpotify.done();
 		t.end();
