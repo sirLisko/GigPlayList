@@ -12,8 +12,8 @@ var onError = function(err){
 
 gulp.task('js', function() {
 	return gulp.src('./assets/javascripts/**/*.js')
-		.pipe($.jshint())
-		.pipe($.jshint.reporter('default'))
+		.pipe($.eslint())
+		.pipe($.eslint.format())
 		.pipe($.uglify())
 		.pipe(gulp.dest('./public/javascripts'));
 });
