@@ -1,28 +1,32 @@
-/*global jQuery */
-
-(function ($) {
+(function () {
 	'use strict';
 
-	function animate() {
-		var $tracks = $('.track');
-		var max = $tracks.first().find('[data-count]').data('count');
-		$tracks.each(function () {
-			var track = this;
+	function barGrow(max) {
+		return function(track) {
 			setTimeout(function () {
-				$(track).children('.track__percentage').css('opacity', $(track).children('[data-count]').data('count') / max);
+				var count = track.querySelector('[data-count]').getAttribute('data-count');
+				track.querySelector('.track__percentage').style.opacity = count / max;
 			}, 0);
-		});
+		};
 	}
 
-	$('.search').on('submit', function (e) {
+	function animate() {
+		var tracks = document.querySelectorAll('.track');
+		var max = tracks[0].querySelector('[data-count]').getAttribute('data-count');
+		[].forEach.call(tracks, barGrow(max));
+	}
+
+	function onSearchSubmit(e) {
 		e.preventDefault();
 
-		var artist = $('.search input').val();
+		var artist = document.querySelector('.search input').value;
 		if (artist !== '') {
 			window.location = artist;
 		}
-	});
+	}
+
+	document.querySelector('.search').addEventListener('submit', onSearchSubmit);
 
 	animate();
 
-})(jQuery);
+})();

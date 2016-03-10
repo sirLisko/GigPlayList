@@ -18,11 +18,6 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('./public/javascripts'));
 });
 
-gulp.task('copy-jquery', function() {
-	return gulp.src('./node_modules/jquery/dist/jquery.min.js')
-		.pipe(gulp.dest('./public/javascripts/ext'));
-});
-
 gulp.task('sass', function () {
 	return gulp.src('./assets/stylesheets/*.scss')
 		.pipe($.sass())
@@ -44,4 +39,4 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('default', ['sass', 'js', 'copy-jquery']);
+gulp.task('default', ['sass', 'js']);
