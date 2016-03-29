@@ -50,9 +50,18 @@
 		</div>
 		{{#tracksTot}}
 			<div class="result">
-	    		<ul>{{#tracks}}<li class="track">
-	    			<p class="track__title" data-count="{{count}}">{{#link}}<a href="{{link}}">{{/link}}{{title}}{{#link}}</a>{{/link}}</p>
-	    		<p class="track__percentage"></p></li>{{/tracks}}</ul>
+	    	<ul>
+					{{#tracks}}
+						<li class="track {{#link}}track--link{{/link}}">
+		    			<p class="track__title" data-count="{{count}}">
+								{{#link}}<a href="{{link}}">{{/link}}
+									<span>{{title}}</span>
+								{{#link}}</a>{{/link}}
+							</p>
+	    				<p class="track__percentage"></p>
+						</li>
+					{{/tracks}}
+				</ul>
 			</div>
 		{{/tracksTot}}
 		{{^tracksTot}}{{^error}}
