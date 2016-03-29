@@ -4,12 +4,6 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 
-var onError = function(err){
-	$.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
-	$.util.beep();
-};
-
-
 gulp.task('js', function() {
 	return gulp.src('./assets/javascripts/**/*.js')
 		.pipe($.eslint())
@@ -21,12 +15,11 @@ gulp.task('js', function() {
 gulp.task('sass', function () {
 	return gulp.src('./assets/stylesheets/*.scss')
 		.pipe($.sass())
-		.on('error', onError)
+		.on('error', $.sass.logError)
 		.pipe($.autoprefixer({
 			browsers: ['> 5%'],
 			cascade: false
 		}))
-		.pipe($.combineMediaQueries())
 		.pipe($.csso())
 		.pipe(gulp.dest('./public/stylesheets'));
 });
