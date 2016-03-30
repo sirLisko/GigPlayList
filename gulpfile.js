@@ -2,12 +2,14 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var dev;
 
 
 gulp.task('js', function() {
 	return gulp.src('./assets/javascripts/**/*.js')
 		.pipe($.eslint())
 		.pipe($.eslint.format())
+		.pipe($.if(!dev, $.eslint.failAfterError()))
 		.pipe($.uglify())
 		.pipe(gulp.dest('./public/javascripts'));
 });
@@ -26,6 +28,7 @@ gulp.task('sass', function () {
 
 
 gulp.task('watch', function() {
+	dev = true;
 	gulp.start('default');
 	gulp.watch('./assets/**/*.scss', ['sass']);
 	gulp.watch('./assets/**/*.js', ['js']);
