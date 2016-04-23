@@ -53,12 +53,10 @@
 	    	<ul>
 					{{#tracks}}
 						<li class="track {{#link}}track--link{{/link}}">
-		    			<p class="track__title" data-count="{{count}}">
-								{{#link}}<a href="{{link}}">{{/link}}
-									<span>{{title}}</span>
-								{{#link}}</a>{{/link}}
-							</p>
-	    				<p class="track__percentage"></p>
+		    				<{{^link}}p{{/link}}{{#link}}a href="{{link}}"{{/link}} class="track__title" data-count="{{count}}">
+		    					{{title}}
+							</{{^link}}p{{/link}}{{#link}}a{{/link}}>
+	    					<p class="track__percentage"></p>
 						</li>
 					{{/tracks}}
 				</ul>
