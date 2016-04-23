@@ -17,7 +17,6 @@ router.get('/', function(req, res) {
 
 router.get('/:artist', function(req, res) {
 	var artist = req.params.artist;
-	var clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
 	setList.getTracks(artist).then(function(setList){
 		async.parallel({
@@ -25,7 +24,7 @@ router.get('/:artist', function(req, res) {
 				spotifyParser(artist, cb);
 			},
 			songkick: function(cb){
-				songkick(artist, clientIp, cb);
+				songkick(artist, req.clientIp, cb);
 			}
 		}, function(err, results) {
 			if (err) console.error(err);
