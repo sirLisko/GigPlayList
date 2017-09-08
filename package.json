@@ -9,6 +9,7 @@
   },
   "scripts": {
     "forever": "forever start -a -o out.log -e error.log --uid shouldilistenit bin/www",
+    "lint": "eslint .",
     "start": "node bin/www",
     "postinstall": "node_modules/.bin/gulp",
     "test": "node_modules/.bin/tape test/*.js | node_modules/.bin/faucet"
@@ -17,6 +18,7 @@
     "async": "^1.5.0",
     "body-parser": "^1.13.1",
     "debug": "^2.2.0",
+    "eslint": "^4.6.1",
     "express": "^4.12.4",
     "hjs": "~0.0.6",
     "ipware": "0.0.8",
@@ -29,11 +31,15 @@
     "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git"
   },
   "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "faucet": "0.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-csso": "^1.0.0",
-    "gulp-eslint": "^2.0.0",
     "gulp-if": "^2.0.0",
     "gulp-load-plugins": "^1.0.0-rc",
     "gulp-sass": "^2.0.1",
