@@ -9,13 +9,21 @@
   },
   "scripts": {
     "forever": "forever start -a -o out.log -e error.log --uid shouldilistenit bin/www",
+    "build": "run-p build:*",
+    "build:js": "webpack -p",
+    "build:other": "gulp",
     "lint": "eslint .",
     "start": "node bin/www",
-    "postinstall": "node_modules/.bin/gulp",
-    "test": "node_modules/.bin/tape test/*.js | node_modules/.bin/faucet"
+    "postinstall": "npm run build",
+    "test": "tape test/*.js | faucet",
+    "watch": "run-p watch:*",
+    "watch:js": "webpack -w"
   },
   "dependencies": {
     "async": "^1.5.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.13.1",
     "debug": "^2.2.0",
     "eslint": "^4.6.1",
@@ -25,10 +33,12 @@
     "lodash": "^4.6.1",
     "morgan": "^1.6.0",
     "nice-date": "^0.1.12",
+    "npm-run-all": "^4.1.1",
     "request": "^2.65.0",
     "robots.txt": "^1.1.0",
     "serve-favicon": "^2.3.0",
-    "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git"
+    "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git",
+    "webpack": "^3.5.6"
   },
   "devDependencies": {
     "eslint-config-standard": "^10.2.1",
@@ -40,10 +50,8 @@
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-csso": "^1.0.0",
-    "gulp-if": "^2.0.0",
     "gulp-load-plugins": "^1.0.0-rc",
     "gulp-sass": "^2.0.1",
-    "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.5",
     "nock": "^7.2.2",
     "tape": "^4.2.2"
@@ -52,5 +60,10 @@
     "music",
     "gig",
     "live"
-  ]
+  ],
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
 }

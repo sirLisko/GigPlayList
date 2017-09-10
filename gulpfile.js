@@ -3,12 +3,6 @@
 var gulp = require('gulp')
 var $ = require('gulp-load-plugins')()
 
-gulp.task('js', function () {
-  return gulp.src('./assets/javascripts/**/*.js')
-    .pipe($.uglify())
-    .pipe(gulp.dest('./public/javascripts'))
-})
-
 gulp.task('sass', function () {
   return gulp.src('./assets/stylesheets/*.scss')
     .pipe($.sass())
@@ -24,7 +18,6 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
   gulp.start('default')
   gulp.watch('./assets/**/*.scss', ['sass'])
-  gulp.watch('./assets/**/*.js', ['js'])
 })
 
-gulp.task('default', ['sass', 'js'])
+gulp.task('default', ['sass'])
