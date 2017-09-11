@@ -7,8 +7,6 @@ var spotifyUrl = 'https://api.spotify.com/v1/search?q={{artist}}&type=track&limi
 
 function parser (artist, cb) {
   request(spotifyUrl.replace('{{artist}}', artist), function (err, resp, body, tracks) {
-    console.log(err)
-    console.log(resp)
     if (err) return cb(new Error('Unable to connect to the Spotify API endpoint'))
     if (resp.statusCode !== 200) return cb(new Error('Status code is not 200'))
 

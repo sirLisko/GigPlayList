@@ -65,7 +65,7 @@ test('On Songkick API error', function (t) {
     .reply(400, fixture)
 
   songkick('foo', '1.1.1.1', function (err, gig) {
-    if (err) return false
+    if (err) { console.log(err) }
     t.equal(gig, undefined, 'if not gig are found returns undefined')
 
     apiSongkick.done()

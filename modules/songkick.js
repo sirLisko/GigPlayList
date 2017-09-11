@@ -7,10 +7,8 @@ var NiceDate = require('nice-date')
 var songKick = 'http://api.songkick.com/api/3.0/events.json?artist_name={{artist}}&location=ip:{{ip}}&apikey=' + process.env.SKAPI
 
 function getGig (artist, ip, cb) {
-  console.log('asd')
   var url = songKick.replace('{{artist}}', artist).replace('{{ip}}', ip)
   request(url, function (err, resp, body, resultsPage) {
-    console.log('asd')
     if (err) { return cb(err) }
     if (resp.statusCode !== 200) return cb(new Error('Status code is not 200'))
 
