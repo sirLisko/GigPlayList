@@ -18,17 +18,19 @@
 }
 
 .track__title {
-	@include ellipses;
-	color: #000;
+    color: #000;
 	font-size: 25px;
 	margin: 0 auto;
 	max-width: 500px;
+    overflow: hidden;
 	padding-right: 45px;
 	position: relative;
 	text-align: left;
+    text-overflow: ellipsis;
 	text-transform: uppercase;
+	white-space: nowrap;
 	z-index: 1;
-	@media (max-width: $desktop-trigger) {
+	@media (max-width: 1000px) {
 		width: 95%;
 	}
 	&:after {

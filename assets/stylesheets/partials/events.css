@@ -47,9 +47,11 @@
 	text-align: left;
 	vertical-align: middle;
 	width: 100%;
-	p {
-		@include ellipses();
+	& p {
+        overflow: hidden;
 		padding: 3px 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 	}
 }
 

@@ -11,10 +11,10 @@
 	-webkit-appearance: none;
 	background-color: rgba(0,0,0,0);
 	border: none;
-	border-bottom: solid 2px $background-light;
+	border-bottom: solid 2px var(--background-light);
 	border-radius: 0;
 	display: block;
-	font-family: $font-main;
+	font-family: var(--font-main);
 	font-size: 40px;
 	height: 70px;
 	letter-spacing: 1px;
@@ -28,23 +28,23 @@
 		font-size: 20px;
 	}
 	&::placeholder {
-		color: $background-dark;
+		color: var(--background-dark);
 		letter-spacing: 2px;
 	}
 	&:focus {
-		border-color: $background-dark;
+		border-color: var(--background-dark);
 		&::placeholder {
 			opacity: 0.3;
 		}
 	}
 }
 .search--empty {
-	border-color: $background-color;
+	border-color: var(--background-color);
 }
 .search--compact {
 	margin: 0 auto;
 	@media (max-width: 550px) {
-		input {
+		& input {
 			font-size: 40px;
 		}
 	}
@@ -53,7 +53,7 @@
 .search__submit {
 	background-color: rgba(0,0,0,0);
 	border: none;
-	color: $background-dark;
+	color: var(--background-dark);
 	cursor: pointer;
 	font-size: 30px;
 	height: 68px;

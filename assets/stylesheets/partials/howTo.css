@@ -9,21 +9,21 @@
 		font-size: 18px;
 		max-width: 470px;
 	}
-	em {
+	& em {
 		font-weight: bold;
 	}
-	ul {
+	& ul {
 		list-style-position: inside;
 		list-style-type: decimal;
 	}
-	li {
+	& li {
 		padding-left: 1em;
 		text-indent: -1em;
 	}
 }
 
  .howTo__title {
- 	font-family: $font-header;
+ 	font-family: var(--font-header);
 	font-size: 35px;
 	letter-spacing: 1px;
 	margin-bottom: 15px;
@@ -31,8 +31,8 @@
 	@media (max-width: 675px) {
 		font-size: 30px;
 	}
-	a {
- 		color: $main-dark;
+	& a {
+ 		color: var(--main-dark);
 		text-decoration: none;
 	}
  }
