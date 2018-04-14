@@ -20,16 +20,16 @@ router.get('/:artist', function (req, res) {
 
   setList.getTracks(artist).then(function (setList) {
     async.parallel({
-      spotify: function (cb) {
+      spotify: async.reflect(function (cb) {
         spotifyParser(artist, cb)
-      },
-      songkick: function (cb) {
+      }),
+      songkick: async.reflect(function (cb) {
         songkick(artist, req.clientIp, cb)
-      }
+      })
     }, function (err, results) {
       if (err) console.error(err)
       trackMerger(setList, results.spotify)
-      setList.events = results.songkick
+      setList.events = results.songkick.value
       res.render('result', setList)
     })
   }).catch(function (error) {

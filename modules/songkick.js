@@ -18,17 +18,17 @@ function getGig (artist, ip, cb) {
       return cb(new Error('Error parsing JSON response from Songkick API'))
     }
 
-    cb(err, body && _.map(resultsPage.results, function (result) {
-      var date = new NiceDate(result[0].start.date)
+    cb(err, body && _.map(resultsPage.results.event, function (result) {
+      var date = new NiceDate(result.start.date)
       return {
-        artist: result[0].performance[0].displayName,
-        buyUrl: result[0].uri,
+        artist: result.performance[0].artist.displayName,
+        buyUrl: result.uri,
         date: {
           month: date.get('monthShort'),
           day: date.get('day')
         },
-        venueName: result[0].venue.displayName,
-        location: result[0].location.city
+        venueName: result.venue.displayName,
+        location: result.location.city
       }
     })[0])
   })
