@@ -4,16 +4,16 @@
 	<title>Should I Listen It - Best Guess for your Next Gig</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="author" content="Luca Lischetti">
-	<link type="text/plain" rel="author" href="http://shouldilisten.it/humans.txt" />
+	<link type="text/plain" rel="author" href="https://shouldilisten.it/humans.txt" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<meta name="keywords" content="shouldilistenit, music, gig" />
 	<meta name="description" content="Should I listen it set up you ready for your next Gig.It gives you the list of your favourite artists' most played tracks... in the last year of gigs." />
 
-	<meta property="og:url" content="http://shouldilisten.it{{#artist}}/{{artist}}{{/artist}}" />
+	<meta property="og:url" content="https://shouldilisten.it{{#artist}}/{{artist}}{{/artist}}" />
 	<meta property="og:description" content="Should I listen it set up you ready for your next Gig. It gives you the list of your favourite artists' most played tracks." />
 	<meta property="og:title" content="Should I listen it - Best Guess for your Next Gig" />
 
-	<link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans' rel='stylesheet' type='text/css'>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
@@ -45,7 +45,7 @@
 	</article>
 	<footer>
 		<p>
-			<span>Created with &#9829; by <a href="http://sirlisko.com">Luca Lischetti</a> (<a href="http://twitter.com/sirLisko">@sirLisko</a>).</span>
+			<span>Created with &#9829; by <a href="https://sirlisko.com">Luca Lischetti</a> (<a href="https://twitter.com/sirLisko">@sirLisko</a>).</span>
 			<span>View project source on <a href="https://github.com/sirLisko/shouldilistenit">Github</a>.</span>
 		</p>
 	</footer>
