@@ -9,7 +9,7 @@ function barGrow (max) {
 
 function animate () {
   const tracks = document.querySelectorAll('.track')
-  const max = tracks[0].querySelector('[data-count]').getAttribute('data-count');
+  const max = tracks.length && tracks[0].querySelector('[data-count]').getAttribute('data-count');
   [].forEach.call(tracks, barGrow(max))
 }
 

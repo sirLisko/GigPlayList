@@ -1,14 +1,14 @@
 {
   "name": "shouldilistenit",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Should I listen set you up for your next Gig.",
-  "author": "Luca Lischetti <sirlisko@gmail.com> (http://sirlisko.com)",
+  "author": "Luca Lischetti <luca@sirlisko.com> (https://sirlisko.com)",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/sirLisko/sirLisko/shouldilistenit.git"
   },
   "scripts": {
-    "forever": "forever start -a -o out.log -e error.log --uid shouldilistenit bin/www",
     "build": "run-p build:*",
     "build:css": "postcss assets/stylesheets/style.css -u postcss-import -u postcss-cssnext -u cssnano -d public/stylesheets",
     "build:js": "webpack -p",
@@ -42,7 +42,7 @@
     "request": "~2.65.0",
     "robots.txt": "~1.1.0",
     "serve-favicon": "~2.3.0",
-    "setlistfm-parser": "git://github.com/sirLisko/setlistfm-parser.git",
+    "setlistfm-parser": "sirLisko/setlistfm-parser#f13c485",
     "webpack": "~3.5.6"
   },
   "devDependencies": {
