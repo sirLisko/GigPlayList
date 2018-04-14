@@ -5,8 +5,17 @@ var request = require('request')
 
 var spotifyUrl = 'https://api.spotify.com/v1/search?q={{artist}}&type=track&limit=50'
 
+var headers = {
+  Authorization: 'Bearer ' + process.env.SPOTIFYTOKEN
+}
+
 function parser (artist, cb) {
-  request(spotifyUrl.replace('{{artist}}', artist), function (err, resp, body, tracks) {
+  var options = {
+    url: spotifyUrl.replace('{{artist}}', artist),
+    headers: headers
+  }
+
+  request(options, function (err, resp, body, tracks) {
     if (err) return cb(new Error('Unable to connect to the Spotify API endpoint'))
     if (resp.statusCode !== 200) return cb(new Error('Status code is not 200'))
 

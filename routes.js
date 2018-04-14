@@ -28,7 +28,7 @@ router.get('/:artist', function (req, res) {
       })
     }, function (err, results) {
       if (err) console.error(err)
-      trackMerger(setList, results.spotify)
+      trackMerger(setList, results.spotify.value)
       setList.events = results.songkick.value
       res.render('result', setList)
     })
