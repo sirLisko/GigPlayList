@@ -38,7 +38,7 @@
     "postcss-cli": "^4.1.1",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^10.0.0",
-    "request": "~2.65.0",
+    "request": "~2.84.0",
     "request-ip": "^2.0.2",
     "robots.txt": "~1.1.0",
     "serve-favicon": "~2.3.0",
