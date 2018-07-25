@@ -18,9 +18,7 @@
     "test": "tape test/*.js | faucet",
     "watch": "run-p watch:*",
     "watch:css": "postcss assets/stylesheets/style.css -u postcss-import -u postcss-cssnext -w -d public/stylesheets",
-    "watch:js": "webpack -w",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "watch:js": "webpack -w"
   },
   "dependencies": {
     "async": "~2.5.0",
@@ -45,8 +43,7 @@
     "robots.txt": "~1.1.0",
     "serve-favicon": "~2.4.5",
     "setlistfm-parser": "sirLisko/setlistfm-parser#f13c485",
-    "webpack": "~3.5.6",
-    "snyk": "^1.89.0"
+    "webpack": "~3.5.6"
   },
   "devDependencies": {
     "eslint-config-standard": "~10.2.1",
@@ -67,6 +64,5 @@
     "presets": [
       "es2015"
     ]
-  },
-  "snyk": true
+  }
 }
