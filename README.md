@@ -1,6 +1,4 @@
-# Should I Listen It
-
-[![Codeship Status for sirLisko/shouldilistenit](https://app.codeship.com/projects/e29af940-2243-0136-ace1-4263fc77234a/status?branch=master)](https://app.codeship.com/projects/286005) [![dependency Status](https://david-dm.org/sirlisko/shouldilistenit/status.svg)](https://david-dm.org/sirlisko/shouldilistenit#info=dependencies) [![devDependency Status](https://david-dm.org/sirlisko/shouldilistenit/dev-status.svg)](https://david-dm.org/sirlisko/shouldilistenit#info=devDependencies)
+# Should I Listen It [![Test Status][test-image]][test-url]
 
 > Set you up for your next Gig.
 
@@ -92,3 +90,6 @@ export SKAPI={token}
 ```bash
 export SPOTIFYTOKEN={token}
 ```
+
+[test-image]: https://travis-ci.org/sirLisko/shouldilistenit.svg
+[test-url]: https://travis-ci.org/sirLisko/shouldilistenit
