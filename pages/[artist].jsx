@@ -9,8 +9,9 @@ import Footer from "components/Footer/Footer";
 import Events from "components/Events/Events";
 import Search from "components/Search/Search";
 
-const ResultPage = ({ events }) => {
+const ResultPage = () => {
   const [tracks, setTracks] = useState();
+  const [events, setEvents] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const router = useRouter();
@@ -19,7 +20,6 @@ const ResultPage = ({ events }) => {
     setLoading(true);
     setTracks();
     setError();
-    console.log(artist);
     try {
       const { data } = await axios.get(`/api/artists/${artist}`);
       setTracks(data);
@@ -28,8 +28,19 @@ const ResultPage = ({ events }) => {
     }
     setLoading();
   };
+  const getEvents = async (artist) => {
+    setEvents();
+    try {
+      const { data } = await axios.get(`/api/events/${artist}`);
+      setEvents(data);
+    } catch (e) {
+      // error
+    }
+  };
   useEffect(() => {
-    artistName && getArtist(artistName);
+    if (!artistName) return;
+    getArtist(artistName);
+    getEvents(artistName);
   }, [artistName]);
   return (
     <div className="container">

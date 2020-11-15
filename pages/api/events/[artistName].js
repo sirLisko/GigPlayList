@@ -1,13 +1,14 @@
-import { getArtistSetlist } from "utils/apis/setlistFm";
-import { getAggregatedSetlists } from "utils/setlists";
+import { getClientIp } from "request-ip";
+
+import { getArtistEvent } from "utils/apis/songkick";
 
 export default async (req, res) => {
   const {
     query: { artistName },
   } = req;
   try {
-    const setList = await getArtistSetlist(artistName);
-    res.status(200).json(getAggregatedSetlists(setList));
+    const events = await getArtistEvent(artistName); //, getClientIp(req));
+    res.status(200).json(events);
   } catch (e) {
     res
       .status(e?.response?.data?.code ?? 500)
