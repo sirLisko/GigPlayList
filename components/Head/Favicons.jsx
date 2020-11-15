@@ -1,7 +1,8 @@
 import React from "react";
+import Head from "next/head";
 
 const Favicons = () => (
-  <>
+  <Head>
     <link
       rel="apple-touch-icon"
       sizes="57x57"
@@ -64,7 +65,7 @@ const Favicons = () => (
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
     <meta name="msapplication-TileColor" content="#5bc0de" />
     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-  </>
+  </Head>
 );
 
 export default Favicons;

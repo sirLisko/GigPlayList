@@ -12,6 +12,7 @@ import Search from "components/Search/Search";
 const ResultPage = () => {
   const [tracks, setTracks] = useState();
   const [events, setEvents] = useState();
+  const [links, setLinks] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const router = useRouter();
@@ -37,10 +38,20 @@ const ResultPage = () => {
       // error
     }
   };
+  const getTracks = async (artist) => {
+    setLinks();
+    try {
+      const { data } = await axios.get(`/api/spotify/${artist}`);
+      setLinks(data);
+    } catch (e) {
+      // error
+    }
+  };
   useEffect(() => {
     if (!artistName) return;
     getArtist(artistName);
     getEvents(artistName);
+    getTracks(artistName);
   }, [artistName]);
   return (
     <div className="container">
@@ -55,11 +66,12 @@ const ResultPage = () => {
         {tracks && tracks.length > 0 && (
           <div className="result">
             <ul>
-              {tracks.map(({ link, count, title }) => {
+              {tracks.map(({ count, title }) => {
                 const props = {
                   className: "track__title",
                   "data-count": count,
                 };
+                const link = links?.find((link) => link.title === title)?.uri;
                 return (
                   <li
                     key={title}

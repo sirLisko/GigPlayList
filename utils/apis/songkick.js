@@ -4,7 +4,7 @@ const URL = "http://api.songkick.com/api/3.0/events.json";
 
 const { SKAPI } = process.env;
 
-export const getArtistEvent = async (artist_name, ip = "94.0.120.2") => {
+export const getArtistEvent = async (artist_name, ip) => {
   const { data } = await axios(URL, {
     params: {
       artist_name,

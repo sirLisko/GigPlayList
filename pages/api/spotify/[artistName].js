@@ -1,14 +1,12 @@
-import { getClientIp } from "request-ip";
-
-import { getArtistEvent } from "utils/apis/songkick";
+import { getArtistTracks } from "utils/apis/spotify";
 
 export default async (req, res) => {
   const {
     query: { artistName },
   } = req;
   try {
-    const events = await getArtistEvent(artistName, getClientIp(req));
-    res.status(200).json(events);
+    const tracks = await getArtistTracks(artistName);
+    res.status(200).json(tracks);
   } catch (e) {
     res
       .status(e?.response?.data?.code ?? 500)
