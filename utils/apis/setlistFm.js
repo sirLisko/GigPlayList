@@ -8,7 +8,9 @@ const headers = {
   "x-api-key": process.env.SETLISTFMAPIKEY,
 };
 
-export const getArtistSetlist = async (artist) =>
-  await axios(`${DOMAIN}${PATH}${artist}`, {
+export const getArtistSetlist = async (artist) => {
+  const { data } = await axios(`${DOMAIN}${PATH}${artist}`, {
     headers,
   });
+  return data;
+};

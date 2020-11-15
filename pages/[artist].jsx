@@ -1,16 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import cx from "classnames";
-
-import { getArtistSetlist } from "utils/apis/setlistFm";
-import { getAggregatedSetlists } from "utils/setlists";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Loader from "react-loader-spinner";
 
 import Head from "components/Head/Head";
 import Footer from "components/Footer/Footer";
 import Events from "components/Events/Events";
 import Search from "components/Search/Search";
 
-const ResultPage = ({ artist, events, tracks, error }) => {
+const ResultPage = ({ events }) => {
+  const [tracks, setTracks] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const router = useRouter();
+  const artistName = router.query.artist;
+  const getArtist = async (artist) => {
+    setLoading(true);
+    setTracks();
+    setError();
+    console.log(artist);
+    try {
+      const { data } = await axios.get(`/api/artists/${artist}`);
+      setTracks(data);
+    } catch (e) {
+      setError(e.response);
+    }
+    setLoading();
+  };
+  useEffect(() => {
+    artistName && getArtist(artistName);
+  }, [artistName]);
   return (
     <div className="container">
       <Head />
@@ -18,7 +38,7 @@ const ResultPage = ({ artist, events, tracks, error }) => {
         <Search
           type="compact"
           placeholder="Search for ..."
-          defaultValue={artist}
+          defaultValue={artistName}
         />
         {events && <Events events={events} />}
         {tracks && tracks.length > 0 && (
@@ -51,10 +71,13 @@ const ResultPage = ({ artist, events, tracks, error }) => {
             </ul>
           </div>
         )}
-        {error === 404 && (
+        {loading && (
+          <Loader className="loading" type="Audio" height={80} width={80} />
+        )}
+        {error?.status === 404 && (
           <div className="error">
             <span>
-              No setlists found for <b>{artist}</b>
+              No setlists found for <b>{artistName}</b>
             </span>
           </div>
         )}
@@ -63,32 +86,5 @@ const ResultPage = ({ artist, events, tracks, error }) => {
     </div>
   );
 };
-
-ResultPage.propTypes = {
-  artist: PropTypes.string.isRequired,
-  events: PropTypes.array,
-  tracks: PropTypes.array,
-  error: PropTypes.number,
-};
-
-export async function getServerSideProps({ query }) {
-  const { artist } = query;
-  try {
-    const { data } = await getArtistSetlist(artist);
-    return {
-      props: {
-        artist,
-        tracks: data && getAggregatedSetlists(data),
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        artist,
-        error: e.response.status,
-      },
-    };
-  }
-}
 
 export default ResultPage;
