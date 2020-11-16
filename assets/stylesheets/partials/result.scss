@@ -1,0 +1,28 @@
+.result {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.result__credits {
+  color: #777;
+  font-size: 13px;
+  margin: 10px;
+}
+
+.error {
+  font-size: 30px;
+  line-height: 1.5;
+  padding: 40vh 20px;
+  text-align: center;
+  & b {
+    font-weight: bold;
+  }
+}
+
+.loading {
+  padding: 38vh 20px;
+  text-align: center;
+}

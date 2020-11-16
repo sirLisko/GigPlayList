@@ -1,8 +1,0 @@
-{
-  "resultsPage": {
-    "status": "error",
-    "error": {
-      "message": "Parameter 'location' must be one of the forms: 'sk:1234', 'geo:-21.22,40.0', 'clientip' or 'ip:127.0.0.1'"
-    }
-  }
-}
