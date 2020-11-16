@@ -56,9 +56,6 @@
   top: 0;
   transition: opacity 1s ease;
   width: 100%;
-}
-
-.track__percentage {
   opacity: 0;
   transition: opacity 1s ease-in;
   animation-name: color;

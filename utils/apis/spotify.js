@@ -1,22 +1,21 @@
-import axios from "axios";
+import SpotifyWebApi from "spotify-web-api-node";
 
-const URL = "https://api.spotify.com/v1/search";
+const { SPOTIFY_ID, SPOTIFY_SECRET } = process.env;
 
-const { SPOTIFY_TOKEN } = process.env;
+var spotifyApi = new SpotifyWebApi({
+  clientId: SPOTIFY_ID,
+  clientSecret: SPOTIFY_SECRET,
+});
 
 export const getArtistTracks = async (artist_name) => {
-  const { data } = await axios(URL, {
-    headers: {
-      Authorization: SPOTIFY_TOKEN,
-    },
-    params: {
-      q: artist_name,
-      type: "track",
-      limit: 50,
-    },
+  const {
+    body: { access_token },
+  } = await spotifyApi.clientCredentialsGrant();
+  spotifyApi.setAccessToken(access_token);
+  const { body } = await spotifyApi.searchTracks(`artist:${artist_name}`, {
+    limit: 50,
   });
-  return data?.tracks?.items?.map((track) => ({
-    artist: track.artists[0].name,
+  return body?.tracks?.items?.map((track) => ({
     title: track.name.toLowerCase(),
     uri: track.uri,
   }));

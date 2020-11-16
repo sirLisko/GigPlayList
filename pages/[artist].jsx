@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import cx from "classnames";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "react-loader-spinner";
@@ -8,6 +7,7 @@ import Head from "components/Head/Head";
 import Footer from "components/Footer/Footer";
 import Events from "components/Events/Events";
 import Search from "components/Search/Search";
+import Tracks from "components/Tracks/Tracks";
 
 const ResultPage = () => {
   const [tracks, setTracks] = useState();
@@ -64,35 +64,7 @@ const ResultPage = () => {
         />
         {events && <Events events={events} />}
         {tracks && tracks.length > 0 && (
-          <div className="result">
-            <ul>
-              {tracks.map(({ count, title }) => {
-                const props = {
-                  className: "track__title",
-                  "data-count": count,
-                };
-                const link = links?.find((link) => link.title === title)?.uri;
-                return (
-                  <li
-                    key={title}
-                    className={cx("track", { "track--link": Boolean(link) })}
-                  >
-                    {link ? (
-                      <a href={link} {...props}>
-                        {title}
-                      </a>
-                    ) : (
-                      <p {...props}>{title}</p>
-                    )}
-                    <p
-                      className="track__percentage"
-                      style={{ opacity: count / tracks[0].count }}
-                    ></p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <Tracks tracks={tracks} links={links} />
         )}
         {loading && (
           <Loader className="loading" type="Audio" height={80} width={80} />

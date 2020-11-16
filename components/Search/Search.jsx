@@ -8,7 +8,8 @@ const Search = ({ type, placeholder, defaultValue }) => {
   const router = useRouter();
   const onFormSubmit = (e) => {
     e.preventDefault();
-    router.push("/[artist]", `/${search.current.value}`);
+    search.current.value &&
+      router.push("/[artist]", `/${search.current.value}`);
   };
   return (
     <>
