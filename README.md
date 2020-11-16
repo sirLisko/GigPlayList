@@ -47,7 +47,8 @@ export SKAPI={token}
 - [Spotify Auth Token](https://developer.spotify.com)
 
 ```bash
-export SPOTIFYTOKEN={token}
+export SPOTIFY_ID={clientId}
+export SPOTIFY_SECRET={clientSecret}
 ```
 
 [test-image]: https://travis-ci.org/sirLisko/shouldilistenit.svg
