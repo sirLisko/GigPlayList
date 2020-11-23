@@ -37,6 +37,12 @@ const HeadSection = () => (
         rel="stylesheet"
         type="text/css"
       />
+      <script
+        async
+        defer
+        data-domain="shouldilisten.it"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
     <Favicons />
   </>
