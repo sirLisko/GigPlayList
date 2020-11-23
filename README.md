@@ -2,7 +2,7 @@
 
 > Set you up for your next Gig.
 
-Check a live example @ [https://shouldilistenit.sirlisko.com/the+strokes](http://shouldilistenit.sirlisko.com/the+strokes)
+Check a live example @ [https://shouldilisten.it/the%20strokes](http://shouldilisten.it/the%20strokes)
 
 ---
 
