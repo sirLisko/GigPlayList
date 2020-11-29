@@ -20,7 +20,11 @@ const Search = ({ type, placeholder, defaultValue }) => {
         })}
         onSubmit={onFormSubmit}
       >
+        <label htmlFor="search" className="sr-only">
+          Search for an artist:
+        </label>
         <input
+          id="search"
           type="search"
           placeholder={placeholder}
           autoComplete="off"
