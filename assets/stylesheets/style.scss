@@ -50,7 +50,7 @@ body {
     content: "";
     display: block;
     position: absolute;
-    background-image: url(../concert.jpg);
+    background-image: url(../concert.webp);
     top: 0;
     bottom: 0;
     left: 0;
@@ -71,4 +71,13 @@ body {
 
 .main {
   flex: 1;
+}
+
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
 }

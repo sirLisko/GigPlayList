@@ -16,7 +16,7 @@ const HeadSection = () => (
       />
       <meta
         name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
       <meta name="keywords" content="shouldilistenit, music, gig" />
       <meta
@@ -32,10 +32,10 @@ const HeadSection = () => (
         property="og:title"
         content="Should I listen it - Best Guess for your Next Gig"
       />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
-        href="https://fonts.googleapis.com/css?family=Pacifico|Open+Sans"
+        href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Pacifico&display=swap"
         rel="stylesheet"
-        type="text/css"
       />
       <script
         async

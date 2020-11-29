@@ -1,1 +1,6 @@
-User-agent: * Allow: /
+Sitemap: https://shouldilisten.it/sitemap.xml
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
