@@ -1,6 +1,7 @@
 import { getAggregatedSetlists } from "./setlists";
+import { Setlists } from "types";
 
-const fakeData = {
+const fakeData: Setlists = {
   setlist: [
     {
       artist: { name: "best_artist" },

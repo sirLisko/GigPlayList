@@ -1,15 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import type { AppProps } from "next/app";
 
-import "../assets/stylesheets/style.scss";
+import "assets/stylesheets/style.scss";
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />;
-};
-
-MyApp.propTypes = {
-  Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.shape({}),
 };
 
 export default MyApp;

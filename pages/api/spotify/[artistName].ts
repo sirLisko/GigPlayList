@@ -1,9 +1,12 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+
 import { getArtistTracks } from "utils/apis/spotify";
 
-export default async (req, res) => {
-  const {
-    query: { artistName },
-  } = req;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { artistName } = req.query as { artistName: string };
+  if (!artistName) {
+    res.status(400).end();
+  }
   try {
     const tracks = await getArtistTracks(artistName);
     res.status(200).json(tracks);

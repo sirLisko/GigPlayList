@@ -7,7 +7,7 @@ var spotifyApi = new SpotifyWebApi({
   clientSecret: SPOTIFY_SECRET,
 });
 
-export const getArtistTracks = async (artist_name) => {
+export const getArtistTracks = async (artist_name: string) => {
   const {
     body: { access_token },
   } = await spotifyApi.clientCredentialsGrant();
