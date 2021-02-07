@@ -1,6 +1,6 @@
-import { getAggregatedSetlists } from "./setlists";
+import { getAggregatedSetlists, Setlists } from "./setlists";
 
-const fakeData = {
+const fakeData: Setlists = {
   setlist: [
     {
       artist: { name: "best_artist" },

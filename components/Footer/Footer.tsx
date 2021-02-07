@@ -1,7 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Footer = ({ showCredits }) => (
+interface FooterProps {
+  showCredits?: boolean;
+}
+
+const Footer = ({ showCredits }: FooterProps) => (
   <footer>
     <p>
       <span>
@@ -21,9 +24,5 @@ const Footer = ({ showCredits }) => (
     </p>
   </footer>
 );
-
-Footer.propTypes = {
-  showCredits: PropTypes.bool,
-};
 
 export default Footer;

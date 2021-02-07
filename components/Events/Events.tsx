@@ -1,7 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Events = ({ events }) => (
+import { Event } from "types";
+
+interface EventsProps {
+  events: Event[];
+}
+
+const Events = ({ events }: EventsProps) => (
   <div className="result__events">
     {events.map(({ date, venueName, location, buyUrl }) => {
       const eventDate = new Date(date);
@@ -28,16 +33,4 @@ const Events = ({ events }) => (
     })}
   </div>
 );
-
-Events.propTypes = {
-  events: PropTypes.arrayOf(
-    PropTypes.shape({
-      date: PropTypes.string.isRequired,
-      venueName: PropTypes.string.isRequired,
-      location: PropTypes.string.isRequired,
-      buyUrl: PropTypes.string.isRequired,
-    })
-  ),
-};
-
 export default Events;
