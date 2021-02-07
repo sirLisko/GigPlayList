@@ -1,6 +1,7 @@
 {
   "name": "shouldilistenit",
   "version": "1.0.0",
+  "private": true,
   "description": "Should I listen set you up for your next Gig.",
   "author": "Luca Lischetti <luca@sirlisko.com> (https://sirlisko.com)",
   "license": "MIT",
