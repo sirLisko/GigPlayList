@@ -9,28 +9,34 @@ import Events from "components/Events/Events";
 import Search from "components/Search/Search";
 import Tracks from "components/Tracks/Tracks";
 
+import { Event, Track, Link } from "types";
+
+interface Error {
+  status?: number;
+}
+
 const ResultPage = () => {
-  const [tracks, setTracks] = useState();
-  const [events, setEvents] = useState();
-  const [links, setLinks] = useState();
+  const [tracks, setTracks] = useState<Track[]>();
+  const [events, setEvents] = useState<Event[]>();
+  const [links, setLinks] = useState<Link[]>();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState<Error>();
   const router = useRouter();
-  const artistName = router.query.artist;
-  const getArtist = async (artist) => {
+  const artistName = router.query.artist as string;
+  const getArtist = async (artist: string) => {
     setLoading(true);
-    setTracks();
-    setError();
+    setTracks(undefined);
+    setError(undefined);
     try {
-      const { data } = await axios.get(`/api/artists/${artist}`);
+      const { data } = await axios.get<Track[]>(`/api/artists/${artist}`);
       setTracks(data);
     } catch (e) {
       setError(e.response);
     }
-    setLoading();
+    setLoading(false);
   };
-  const getEvents = async (artist) => {
-    setEvents();
+  const getEvents = async (artist: string) => {
+    setEvents(undefined);
     try {
       const { data } = await axios.get(`/api/events/${artist}`);
       setEvents(data);
@@ -38,8 +44,8 @@ const ResultPage = () => {
       // error
     }
   };
-  const getTracks = async (artist) => {
-    setLinks();
+  const getTracks = async (artist: string) => {
+    setLinks(undefined);
     try {
       const { data } = await axios.get(`/api/spotify/${artist}`);
       setLinks(data);

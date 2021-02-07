@@ -1,14 +1,19 @@
-import React, { useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, FormEvent } from "react";
 import cx from "classnames";
 import { useRouter } from "next/router";
 
-const Search = ({ type, placeholder, defaultValue }) => {
-  const search = useRef(null);
+interface SearchProps {
+  type: "compact" | "empty";
+  placeholder: string;
+  defaultValue?: string;
+}
+
+const Search = ({ type, placeholder, defaultValue }: SearchProps) => {
+  const search = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    search.current.value &&
+  const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    search.current?.value &&
       router.push("/[artist]", `/${search.current.value}`);
   };
   return (
@@ -39,12 +44,6 @@ const Search = ({ type, placeholder, defaultValue }) => {
       </form>
     </>
   );
-};
-
-Search.propTypes = {
-  type: PropTypes.oneOf(["compact", "empty"]),
-  placeholder: PropTypes.string,
-  defaultValue: PropTypes.string,
 };
 
 export default Search;

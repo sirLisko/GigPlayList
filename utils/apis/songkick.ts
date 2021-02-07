@@ -4,7 +4,19 @@ const URL = "http://api.songkick.com/api/3.0/events.json";
 
 const { SKAPI } = process.env;
 
-export const getArtistEvent = async (artist_name, ip) => {
+interface Event {
+  performance: Array<{
+    artist: {
+      displayName: string;
+    };
+  }>;
+  uri: string;
+  start: { datetime: string };
+  venue: { displayName: string };
+  location: { city: string };
+}
+
+export const getArtistEvent = async (artist_name: string, ip: string) => {
   const { data } = await axios(URL, {
     params: {
       artist_name,
@@ -12,7 +24,7 @@ export const getArtistEvent = async (artist_name, ip) => {
       apikey: SKAPI,
     },
   });
-  return data?.resultsPage?.results?.event?.map((event) => ({
+  return data?.resultsPage?.results?.event?.map((event: Event) => ({
     artist: event.performance[0].artist.displayName,
     buyUrl: event.uri,
     date: event.start.datetime,

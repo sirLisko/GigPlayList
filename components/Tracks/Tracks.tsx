@@ -1,8 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cx from "classnames";
 
-const Tracks = ({ tracks, links }) => (
+import { Track, Link } from "types";
+
+interface TracksProps {
+  tracks: Track[];
+  links?: Link[];
+}
+
+const Tracks = ({ tracks, links }: TracksProps) => (
   <div className="result">
     <ul>
       {tracks.map(({ count, title }) => {
@@ -33,20 +39,5 @@ const Tracks = ({ tracks, links }) => (
     </ul>
   </div>
 );
-
-Tracks.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired,
-    }).isRequired
-  ).isRequired,
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      uri: PropTypes.string.isRequired,
-    })
-  ),
-};
 
 export default Tracks;
