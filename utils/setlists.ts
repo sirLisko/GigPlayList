@@ -1,4 +1,30 @@
-import { Setlists, LegitSetlist, Set, Song, Track } from "types";
+import { Track } from "types";
+
+export interface Song {
+  name: string;
+}
+
+export interface Set {
+  "@encore"?: string;
+  song: Song | Song[];
+}
+
+interface FaultySetlist {
+  sets: "";
+}
+
+export interface LegitSetlist {
+  artist?: { name: string };
+  sets: {
+    set: Set | Set[];
+  };
+}
+
+export type Setlist = LegitSetlist | FaultySetlist;
+
+export interface Setlists {
+  setlist: Setlist[];
+}
 
 const normaliseSongTitle = (song: Song | Song[]) =>
   Array.isArray(song)

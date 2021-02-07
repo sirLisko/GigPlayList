@@ -1,5 +1,4 @@
-import { getAggregatedSetlists } from "./setlists";
-import { Setlists } from "types";
+import { getAggregatedSetlists, Setlists } from "./setlists";
 
 const fakeData: Setlists = {
   setlist: [
