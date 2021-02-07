@@ -19,15 +19,15 @@
     "format": "prettier '**/*.{js,jsx,css,scss,md}' --write"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "next": "^10.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-loader-spinner": "^3.1.14",
+    "next": "^10.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-loader-spinner": "^4.0.0",
     "request-ip": "^2.1.3",
-    "sass": "^1.29.0",
-    "spotify-web-api-node": "^5.0.0"
+    "sass": "^1.32.6",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -39,14 +39,14 @@
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "jest": "^26.6.3",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   },
   "keywords": [

@@ -73,7 +73,9 @@ const ResultPage = () => {
           <Tracks tracks={tracks} links={links} />
         )}
         {loading && (
-          <Loader className="loading" type="Audio" height={80} width={80} />
+          <div className="loading">
+            <Loader type="Audio" height={80} width={80} />
+          </div>
         )}
         {error?.status === 404 && (
           <div className="error">
