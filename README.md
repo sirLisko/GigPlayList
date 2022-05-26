@@ -10,7 +10,7 @@ The Website is powered by [Next.JS](https://nextjs.org/) and hosted in [Vercel](
 
 ## Getting Started
 
-The app needs Node 12, if you have [NVM](https://github.com/nvm-sh/nvm) installed just run `nvm use` in your terminal.
+The app needs Node 16, if you have [NVM](https://github.com/nvm-sh/nvm) installed just run `nvm use` in your terminal.
 
 Install the dependencies:
 
