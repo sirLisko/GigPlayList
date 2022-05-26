@@ -5,7 +5,7 @@ const PATH = "/rest/1.0/search/setlists?artistName=";
 
 const headers = {
   Accept: "application/json",
-  "x-api-key": process.env.SETLISTFMAPIKEY,
+  "x-api-key": process.env.SETLISTFMAPIKEY as string,
 };
 
 export const getArtistSetlist = async (artist: string) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Loader from "react-loader-spinner";
+import { Audio as Loader } from "react-loader-spinner";
 
 import Head from "components/Head/Head";
 import Footer from "components/Footer/Footer";
@@ -74,7 +74,7 @@ const ResultPage = () => {
         )}
         {loading && (
           <div className="loading">
-            <Loader type="Audio" height={80} width={80} />
+            <Loader height={80} width={80} ariaLabel="loading" />
           </div>
         )}
         {error?.status === 404 && (

@@ -24,5 +24,7 @@
 
 .loading {
   padding: 38vh 20px;
-  text-align: center;
+  & > div {
+    justify-content: center;
+  }
 }

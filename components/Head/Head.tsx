@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Script from "next/script";
 
 import Favicons from "./Favicons";
 
@@ -37,12 +38,12 @@ const HeadSection = () => (
         href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Pacifico&display=swap"
         rel="stylesheet"
       />
-      <script
+      <Script
         async
         defer
         data-domain="shouldilisten.it"
         src="https://plausible.io/js/plausible.js"
-      ></script>
+      ></Script>
     </Head>
     <Favicons />
   </>

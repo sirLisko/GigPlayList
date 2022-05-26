@@ -18,7 +18,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noImplicitAny": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "incremental": true,
+    "useUnknownInCatchVariables": false,
   },
   "include": [
     "next-env.d.ts",
