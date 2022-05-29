@@ -1,4 +1,4 @@
-# Should I Listen It [![Test Status][test-image]][test-url]
+# Should I Listen It
 
 > Set you up for your next Gig.
 
@@ -50,6 +50,3 @@ export SKAPI={token}
 export SPOTIFY_ID={clientId}
 export SPOTIFY_SECRET={clientSecret}
 ```
-
-[test-image]: https://travis-ci.org/sirLisko/shouldilistenit.svg
-[test-url]: https://travis-ci.org/sirLisko/shouldilistenit
