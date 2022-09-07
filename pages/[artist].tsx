@@ -10,6 +10,7 @@ import Search from "components/Search/Search";
 import Tracks from "components/Tracks/Tracks";
 
 import { Event, Track, Link } from "types";
+import SavePlaylist from "components/SavePlaylist/SavePlaylist";
 
 interface Error {
   status?: number;
@@ -60,15 +61,18 @@ const ResultPage = () => {
     getTracks(artistName);
   }, [artistName]);
   return (
-    <div className="container">
+    <div>
       <Head />
-      <article className="main list">
+      <article className="list">
         <Search
           type="compact"
           placeholder="Search for ..."
           defaultValue={artistName}
         />
         {events && <Events events={events} />}
+        {tracks && tracks.length > 0 && (
+          <SavePlaylist tracks={tracks} links={links} artistName={artistName} />
+        )}
         {tracks && tracks.length > 0 && (
           <Tracks tracks={tracks} links={links} />
         )}
