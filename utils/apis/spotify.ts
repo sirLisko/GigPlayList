@@ -1,9 +1,9 @@
 import SpotifyWebApi from "spotify-web-api-node";
 
-const { SPOTIFY_ID, SPOTIFY_SECRET } = process.env;
+const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID, SPOTIFY_SECRET } = process.env;
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: SPOTIFY_ID,
+  clientId: NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
   clientSecret: SPOTIFY_SECRET,
 });
 
