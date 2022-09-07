@@ -14,3 +14,9 @@ export interface Link {
   title: string;
   uri: string;
 }
+
+export interface ArtistData {
+  name: string;
+  image: string | undefined;
+  tracks: Link[];
+}

@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 
-import { getArtistSetlist } from "utils/apis/setlistFm";
-import { getAggregatedSetlists } from "utils/setlists";
+import { getArtistSetlist } from "server/apis/setlistFm";
+import { getAggregatedSetlists } from "server/setlists";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 

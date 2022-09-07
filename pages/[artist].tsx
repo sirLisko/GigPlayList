@@ -9,7 +9,7 @@ import Events from "components/Events/Events";
 import Search from "components/Search/Search";
 import Tracks from "components/Tracks/Tracks";
 
-import { Event, Track, Link } from "types";
+import { Event, Track, ArtistData } from "types";
 import SavePlaylist from "components/SavePlaylist/SavePlaylist";
 
 interface Error {
@@ -19,7 +19,7 @@ interface Error {
 const ResultPage = () => {
   const [tracks, setTracks] = useState<Track[]>();
   const [events, setEvents] = useState<Event[]>();
-  const [links, setLinks] = useState<Link[]>();
+  const [artistData, setArtistData] = useState<ArtistData>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error>();
   const router = useRouter();
@@ -29,7 +29,9 @@ const ResultPage = () => {
     setTracks(undefined);
     setError(undefined);
     try {
-      const { data } = await axios.get<Track[]>(`/api/artists/${artist}`);
+      const { data } = await axios.get<Track[]>(
+        `/api/artists/${artist}/tracks`
+      );
       setTracks(data);
     } catch (e) {
       setError(e.response);
@@ -39,17 +41,21 @@ const ResultPage = () => {
   const getEvents = async (artist: string) => {
     setEvents(undefined);
     try {
-      const { data } = await axios.get(`/api/events/${artist}`);
+      const { data } = await axios.get<Event[]>(
+        `/api/artists/${artist}/events`
+      );
       setEvents(data);
     } catch (e) {
       // error
     }
   };
   const getTracks = async (artist: string) => {
-    setLinks(undefined);
+    setArtistData(undefined);
     try {
-      const { data } = await axios.get(`/api/spotify/${artist}`);
-      setLinks(data);
+      const { data } = await axios.get<ArtistData>(
+        `/api/artists/${artist}/spotify`
+      );
+      setArtistData(data);
     } catch (e) {
       // error
     }
@@ -71,10 +77,14 @@ const ResultPage = () => {
         />
         {events && <Events events={events} />}
         {tracks && tracks.length > 0 && (
-          <SavePlaylist tracks={tracks} links={links} artistName={artistName} />
+          <SavePlaylist
+            tracks={tracks}
+            links={artistData?.tracks}
+            artistName={artistName}
+          />
         )}
         {tracks && tracks.length > 0 && (
-          <Tracks tracks={tracks} links={links} />
+          <Tracks tracks={tracks} links={artistData?.tracks} />
         )}
         {loading && (
           <div className="loading">

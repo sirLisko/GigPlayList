@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { StatusCodes } from "http-status-codes";
 import { getClientIp } from "request-ip";
 
-import { getArtistEvent } from "utils/apis/songkick";
+import { getArtistEvent } from "server/apis/songkick";
 
 import { Event } from "types";
 
@@ -14,6 +14,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Event[]>) => {
   const clientIp = getClientIp(req);
   if (!clientIp) {
     return res.status(StatusCodes.NOT_FOUND).end();
+  }
+  if (clientIp === "::1") {
+    return res.status(StatusCodes.NO_CONTENT).end();
   }
   try {
     const events = await getArtistEvent(artistName, clientIp);
