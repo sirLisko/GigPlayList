@@ -1,13 +1,13 @@
 import SpotifyWebApi from "spotify-web-api-node";
 
-const { SPOTIFY_ID, SPOTIFY_SECRET } = process.env;
+const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID, SPOTIFY_SECRET } = process.env;
 
-var spotifyApi = new SpotifyWebApi({
-  clientId: SPOTIFY_ID,
+const spotifyApi = new SpotifyWebApi({
+  clientId: NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
   clientSecret: SPOTIFY_SECRET,
 });
 
-const getSongs = async (artist_name: string, offset: number = 0) => {
+const getSongs = async (artist_name: string, offset = 0) => {
   const { body } = await spotifyApi.searchTracks(`artist:${artist_name}`, {
     limit: 50,
     offset,

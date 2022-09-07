@@ -47,6 +47,6 @@ export SKAPI={token}
 - [Spotify Auth Token](https://developer.spotify.com)
 
 ```bash
-export SPOTIFY_ID={clientId}
+export NEXT_PUBLIC_SPOTIFY_CLIENT_ID={clientId} // needs NEXT_PUBLIC as it needs to be accessed to the client
 export SPOTIFY_SECRET={clientSecret}
 ```
