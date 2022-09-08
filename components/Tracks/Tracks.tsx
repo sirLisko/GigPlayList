@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 
 import { Track, Link } from "types";
+import { isSameSong } from "utils/matchSongs";
 
 interface TracksProps {
   tracks: Track[];
@@ -16,7 +17,7 @@ const Tracks = ({ tracks, links }: TracksProps) => (
           className: "track__title",
           "data-count": count,
         };
-        const link = links?.find((link) => link.title === title)?.uri;
+        const link = links?.find((link) => isSameSong(link.title, title))?.uri;
         return (
           <li
             key={title}
