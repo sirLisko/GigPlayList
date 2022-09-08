@@ -41,13 +41,15 @@ export const getAggregatedSetlists = (setlists: Setlists): Track[] => {
       : [normaliseSongTitle(set.song)]
   ) as string[];
   return Object.entries<number>(
-    songList.reduce(
-      (acc: { [key: string]: number }, song) => ({
-        ...acc,
-        [song]: (acc[song] || 0) + 1,
-      }),
-      {}
-    )
+    songList
+      .filter((song) => song.length > 0)
+      .reduce(
+        (acc: { [key: string]: number }, song) => ({
+          ...acc,
+          [song]: (acc[song] || 0) + 1,
+        }),
+        {}
+      )
   )
     .sort((a, b) => b[1] - a[1])
     .map(([title, count]): Track => ({ title, count }));
