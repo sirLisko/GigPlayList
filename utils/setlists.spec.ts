@@ -6,7 +6,14 @@ const fakeData: Setlists = {
       artist: { name: "best_artist" },
       sets: {
         set: [
-          { song: [{ name: "fOo" }, { name: "bar" }, { name: "foobar" }] },
+          {
+            song: [
+              { name: "fOo" },
+              { name: "bar" },
+              { name: "foobar" },
+              { name: "" },
+            ],
+          },
           { "@encore": "1", song: [{ name: "foo" }, { name: "barfoo" }] },
         ],
       },

@@ -5,6 +5,7 @@ import { MdDownloading, MdCheckCircle } from "react-icons/md";
 import { useAuth } from "components/UserContext/UserContext";
 import { Track, Link } from "types";
 import LoginBanner from "components/LoginBanner/LoginBanner";
+import { matchSongs } from "utils/matchSongs";
 
 interface SavePlaylistProps {
   artistName: string;
@@ -19,9 +20,7 @@ const SavePlaylist = ({ artistName, tracks, links }: SavePlaylistProps) => {
   if (!links || links.length === 0) {
     return null;
   }
-  const songs = tracks
-    .map(({ title }) => links?.find((link) => link.title === title)?.uri)
-    .filter(Boolean) as string[];
+  const songs = matchSongs(tracks, links);
   const createPlaylist = () => {
     if (user) {
       setLoading(true);
