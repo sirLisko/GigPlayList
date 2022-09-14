@@ -34,6 +34,11 @@ const HeadSection = () => (
         property="og:title"
         content="Should I listen to it - Prepare the playlist for your next gig!"
       />
+      <script
+        defer
+        data-domain="shouldilisten.it"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
     <Favicons />
   </>
