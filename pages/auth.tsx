@@ -37,7 +37,14 @@ const Home = () => {
     }
   }, [isReady]);
   return (
-    <>
+    <div
+      className="container"
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
       {query.error ? (
         <div className="error">
           Ops, an error occured
@@ -51,11 +58,11 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <div className="loading">
+        <div>
           <Loader />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

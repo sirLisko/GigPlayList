@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getArtistTracks } from "utils/apis/spotify";
+import { getArtistTracks } from "server/apis/spotify";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { artistName } = req.query as { artistName: string };
@@ -9,8 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(StatusCodes.BAD_REQUEST).end();
   }
   try {
-    const tracks = await getArtistTracks(artistName);
-    res.status(StatusCodes.OK).json(tracks);
+    const artistData = await getArtistTracks(artistName);
+    res.status(StatusCodes.OK).json(artistData);
   } catch (e) {
     res
       .status(e?.response?.data?.code ?? StatusCodes.INTERNAL_SERVER_ERROR)

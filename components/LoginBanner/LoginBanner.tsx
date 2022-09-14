@@ -4,7 +4,13 @@ import { useRouter } from "next/router";
 
 const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID } = process.env;
 
-const LoginBanner = () => {
+import styles from "./LoginBanner.module.scss";
+
+interface Props {
+  onCreatePlaylist?: () => void;
+}
+
+const LoginBanner = ({ onCreatePlaylist }: Props) => {
   const [redirect, setRedirect] = useState<string>();
   const { user } = useAuth();
   const { isReady, asPath, push } = useRouter();
@@ -30,11 +36,16 @@ const LoginBanner = () => {
       {redirect && (
         <>
           {user ? (
-            <></>
-          ) : (
-            <button className="spotify-button" onClick={onClick}>
-              Login to Spotify to save your playlist
+            <button className={styles.button} onClick={onCreatePlaylist}>
+              Save your playlist to Spotify
             </button>
+          ) : (
+            <div className={styles.box}>
+              <button className={styles.button} onClick={onClick}>
+                Login to Spotify
+              </button>
+              <span>to save your playlist</span>
+            </div>
           )}
         </>
       )}

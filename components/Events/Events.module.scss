@@ -1,31 +1,27 @@
-.result__events {
-  margin: 0 auto;
-  max-width: 500px;
-  width: 95%;
+.container {
+  background-color: #000;
+  padding-bottom: 1rem;
 }
+
 .event {
-  border-bottom: 1px solid #f0f0f0;
-  display: table;
-  padding: 12px 0;
-  position: relative;
-  table-layout: fixed;
+  background-color: #000;
+  max-width: 425px;
+  margin: 0 auto;
+  padding: 12px 5%;
+  display: flex;
   text-decoration: none;
-  width: 100%;
+  align-items: center;
 }
 
-.event:last-child {
-  border-bottom: 0;
-}
-
-.event__date {
-  display: table-cell;
+.date {
   height: 60px;
-  overflow: hidden;
   text-align: center;
   width: 60px;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 
-.event__month {
+.dateMonth {
   color: #fff;
   background-color: #d47069;
   font-size: 12px;
@@ -33,14 +29,14 @@
   padding: 1px;
 }
 
-.event__day {
+.dateDay {
   color: #000;
   background-color: #f2f2f2;
   font-size: 20px;
-  padding: 11px;
+  padding: 0.5rem;
 }
 
-.event__details {
+.details {
   display: table-cell;
   line-height: 1.5;
   padding-left: 15px;
@@ -52,18 +48,10 @@
     padding: 3px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #fff;
   }
 }
 
-.event__venue {
-  color: #000;
-  font-weight: bold;
-
-  .event:hover & {
-    color: #000;
-  }
-}
-
-.event__location {
-  color: #666;
+.venue {
+  opacity: 0.7;
 }

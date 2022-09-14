@@ -4,8 +4,10 @@ interface FooterProps {
   showCredits?: boolean;
 }
 
+import styles from "./Footer.module.scss";
+
 const Footer = ({ showCredits }: FooterProps) => (
-  <footer>
+  <footer className={styles.footer}>
     <p>
       <span>
         Created with &#9829; by{" "}

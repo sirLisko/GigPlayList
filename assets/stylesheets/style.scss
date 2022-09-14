@@ -1,18 +1,9 @@
-@import "./partials/reset";
-
-@import "./partials/auth";
-@import "./partials/home";
-@import "./partials/howTo";
-@import "./partials/events";
-@import "./partials/footer";
-@import "./partials/result";
-@import "./partials/search";
-@import "./partials/track";
+@import 'modern-css-reset';
 
 :root {
   /* Fonts */
   --font-main: "Open Sans", sans-serif;
-  --font-header: "Pacifico", sans-serif;
+  --font-header: "Roboto", sans-serif;
 
   /* Colors */
   --background-light: #d8dbe2;
@@ -45,7 +36,8 @@ svg {
 }
 
 body {
-  background-color: var(--background-light);
+  background: linear-gradient(238.72deg, #FFE5C7 0%, #00C288 100%), radial-gradient(90.88% 100% at 50% 0%, #439246 0%, #183766 100%), linear-gradient(121.28deg, #FFEAB6 0%, #003C2A 100%), radial-gradient(64.89% 100% at 50% 0%, #80BAFF 0%, #001E41 100%), linear-gradient(65.05deg, #6F0072 0%, #FFC700 100%);
+    background-blend-mode: overlay, screen, color-burn, lighten, normal;
   font-family: var(--font-main);
   &:after {
     content: "";
@@ -58,7 +50,7 @@ body {
     right: 0;
     background-size: cover;
     z-index: -1;
-    opacity: 0.2;
+    opacity: 0.05;
     filter: blur(3px);
   }
 }
@@ -66,12 +58,13 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  flex: 1;
   height: 100vh;
-}
-
-.main {
-  flex: 1;
+  article {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+  }
 }
 
 .sr-only {
