@@ -1,4 +1,5 @@
 import SpotifyWebApi from "spotify-web-api-node";
+import Vibrant from "node-vibrant";
 
 const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID, SPOTIFY_SECRET } = process.env;
 
@@ -9,10 +10,17 @@ const spotifyApi = new SpotifyWebApi({
 
 const getArtistInfo = async (artistName: string) => {
   const { body } = await spotifyApi.searchArtists(artistName);
-  const artist = body.artists?.items.find(
-    ({ name }) => name.toLowerCase() === artistName.toLocaleLowerCase()
-  );
-  return { image: artist?.images[0].url, name: artist?.name };
+  const artist =
+    body.artists?.items.find(
+      ({ name }) => name.toLowerCase() === artistName.toLocaleLowerCase()
+    ) || body.artists?.items[0];
+  const image = artist?.images[0].url;
+  const palette = image && (await Vibrant.from(image).getPalette());
+  return {
+    image: image,
+    name: artist?.name,
+    palette,
+  };
 };
 
 const getSongs = async (artistName: string, offset = 0) => {

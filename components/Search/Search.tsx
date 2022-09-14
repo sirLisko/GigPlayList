@@ -1,14 +1,10 @@
 import React, { useRef, FormEvent } from "react";
-import cx from "classnames";
 import { useRouter } from "next/router";
+import { MdSearch } from "react-icons/md";
 
-interface SearchProps {
-  type: "compact" | "empty";
-  placeholder: string;
-  defaultValue?: string;
-}
+import styles from "./Search.module.scss";
 
-const Search = ({ type, placeholder, defaultValue }: SearchProps) => {
+const Search = () => {
   const search = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -18,28 +14,21 @@ const Search = ({ type, placeholder, defaultValue }: SearchProps) => {
   };
   return (
     <>
-      <form
-        className={cx("search", {
-          "search--compact": type === "compact",
-          "search--empty": type === "empty",
-        })}
-        onSubmit={onFormSubmit}
-      >
+      <form className={styles.container} onSubmit={onFormSubmit}>
         <label htmlFor="search" className="sr-only">
           Search for an artist:
         </label>
         <input
           id="search"
           type="search"
-          placeholder={placeholder}
+          placeholder="Search an Artist"
           autoComplete="off"
           spellCheck="false"
           autoFocus={true}
           ref={search}
-          defaultValue={defaultValue}
         />
-        <button className="search__submit" type="submit">
-          {">"}
+        <button className={styles.submit} type="submit">
+          <MdSearch />
         </button>
       </form>
     </>

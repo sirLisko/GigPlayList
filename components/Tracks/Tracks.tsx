@@ -1,27 +1,30 @@
 import React from "react";
 import cx from "classnames";
 
-import { Track, Link } from "types";
+import { Track, Link, ArtistData } from "types";
 import { isSameSong } from "utils/matchSongs";
+
+import styles from "./Track.module.scss";
 
 interface TracksProps {
   tracks: Track[];
   links?: Link[];
+  palette?: ArtistData["palette"];
 }
 
-const Tracks = ({ tracks, links }: TracksProps) => (
-  <div className="result">
-    <ul>
+const Tracks = ({ tracks, links, palette }: TracksProps) => (
+  <div className={styles.container}>
+    <ul role="list" className={styles.list}>
       {tracks.map(({ count, title }) => {
         const props = {
-          className: "track__title",
+          className: styles.title,
           "data-count": count,
         };
         const link = links?.find((link) => isSameSong(link.title, title))?.uri;
         return (
           <li
             key={title}
-            className={cx("track", { "track--link": Boolean(link) })}
+            className={cx(styles.track, { [styles.link]: Boolean(link) })}
           >
             {link ? (
               <a href={link} {...props}>
@@ -31,8 +34,11 @@ const Tracks = ({ tracks, links }: TracksProps) => (
               <p {...props}>{title}</p>
             )}
             <p
-              className="track__percentage"
-              style={{ opacity: count / tracks[0].count }}
+              className={styles.percentage}
+              style={{
+                backgroundColor: `rgb(${palette?.Vibrant.rgb.join(", ")})`,
+                opacity: count / tracks[0].count,
+              }}
             ></p>
           </li>
         );

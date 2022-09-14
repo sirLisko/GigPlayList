@@ -15,8 +15,17 @@ export interface Link {
   uri: string;
 }
 
+interface Palette {
+  rgb: [number, number, number];
+}
+
 export interface ArtistData {
   name: string;
   image: string | undefined;
   tracks: Link[];
+  palette?: {
+    Vibrant: Palette;
+    DarkVibrant: Palette;
+    LightVibrant: Palette;
+  };
 }
