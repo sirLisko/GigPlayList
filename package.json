@@ -1,12 +1,12 @@
 {
-  "name": "shouldilistentoit",
+  "name": "gigplaylist",
   "private": true,
-  "description": "Should I listen to it set you up for your next Gig.",
+  "description": "GigPlayList set you up for your next Gig.",
   "author": "Luca Lischetti <luca@sirlisko.com> (https://sirlisko.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sirLisko/sirLisko/shouldilistenit.git"
+    "url": "git://github.com/sirLisko/sirLisko/GigPlayList.git"
   },
   "scripts": {
     "dev": "next",

@@ -1,4 +1,4 @@
-Sitemap: https://shouldilisten.it/sitemap.xml
+Sitemap: https://gigplaylist.sirlisko.com/sitemap.xml
 
 User-agent: *
 Allow: /*

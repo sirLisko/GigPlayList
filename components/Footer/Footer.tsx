@@ -21,7 +21,7 @@ const Footer = ({ showCredits }: FooterProps) => (
       )}{" "}
       <span>
         View project source on{" "}
-        <a href="https://github.com/sirLisko/shouldilistenit">Github</a>.
+        <a href="https://github.com/sirLisko/GigPlayList">Github</a>.
       </span>
     </p>
   </footer>
