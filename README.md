@@ -1,8 +1,8 @@
-# Should I Listen To It
+# GigPlayList
 
 > Set you up for your next Gig.
 
-Check a live example @ [https://shouldilisten.it/the%20strokes](http://shouldilisten.it/the%20strokes)
+Check a live example @ [https://gigplaylist.sirlisko.com/the%20strokes](http://gigplaylist.sirlisko.com/the%20strokes)
 
 ---
 
