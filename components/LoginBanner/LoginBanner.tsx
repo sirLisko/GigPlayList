@@ -44,7 +44,7 @@ const LoginBanner = ({ onCreatePlaylist }: Props) => {
               <button className={styles.button} onClick={onClick}>
                 Login to Spotify
               </button>
-              <span>to save your playlist</span>
+              <span onClick={onClick}>to save your playlist</span>
             </div>
           )}
         </>

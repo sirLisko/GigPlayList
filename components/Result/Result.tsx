@@ -61,7 +61,9 @@ const Result = ({ artistName }: Props) => {
     }
   };
   useEffect(() => {
-    if (!artistName) return;
+    if (!artistName) {
+      return;
+    }
     getArtist(artistName);
     getEvents(artistName);
     getTracks(artistName);
