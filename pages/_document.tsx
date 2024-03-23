@@ -14,7 +14,7 @@ const Document = () => (
         async
         defer
         data-domain="gigplaylist.sirlisko.com"
-        src="https://plausible.io/js/plausible.js"
+        src="https://stats.sirlisko.com/js/script.js"
       ></Script>
     </Head>
     <body>

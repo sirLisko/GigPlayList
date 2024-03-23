@@ -35,7 +35,7 @@ const HeadSection = () => (
       <script
         defer
         data-domain="gigplaylist.sirlisko.com"
-        src="https://plausible.io/js/plausible.js"
+        src="https://stats.sirlisko.com/js/script.js"
       ></script>
     </Head>
     <Favicons />
