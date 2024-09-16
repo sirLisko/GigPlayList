@@ -1,4 +1,4 @@
-@import 'modern-css-reset';
+@import "modern-css-reset";
 
 :root {
   /* Fonts */
@@ -36,8 +36,12 @@ svg {
 }
 
 body {
-  background: linear-gradient(238.72deg, #FFE5C7 0%, #00C288 100%), radial-gradient(90.88% 100% at 50% 0%, #439246 0%, #183766 100%), linear-gradient(121.28deg, #FFEAB6 0%, #003C2A 100%), radial-gradient(64.89% 100% at 50% 0%, #80BAFF 0%, #001E41 100%), linear-gradient(65.05deg, #6F0072 0%, #FFC700 100%);
-    background-blend-mode: overlay, screen, color-burn, lighten, normal;
+  background: linear-gradient(238.72deg, #ffe5c7 0%, #00c288 100%),
+    radial-gradient(90.88% 100% at 50% 0%, #439246 0%, #183766 100%),
+    linear-gradient(121.28deg, #ffeab6 0%, #003c2a 100%),
+    radial-gradient(64.89% 100% at 50% 0%, #80baff 0%, #001e41 100%),
+    linear-gradient(65.05deg, #6f0072 0%, #ffc700 100%);
+  background-blend-mode: overlay, screen, color-burn, lighten, normal;
   font-family: var(--font-main);
   &:after {
     content: "";
