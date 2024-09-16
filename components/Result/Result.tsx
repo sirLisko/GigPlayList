@@ -33,7 +33,7 @@ const Result = ({ artistName }: Props) => {
         `/api/artists/${artist}/tracks`
       );
       setTracks(data);
-    } catch (e) {
+    } catch (e: any) {
       setError(e.response);
     }
     setLoading(false);
@@ -45,7 +45,7 @@ const Result = ({ artistName }: Props) => {
         `/api/artists/${artist}/events`
       );
       setEvents(data);
-    } catch (e) {
+    } catch (e: any) {
       // error
     }
   };
@@ -56,7 +56,7 @@ const Result = ({ artistName }: Props) => {
         `/api/artists/${artist}/spotify`
       );
       setArtistData(data);
-    } catch (e) {
+    } catch (e: any) {
       // error
     }
   };

@@ -21,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Event[]>) => {
   try {
     const events = await getArtistEvent(artistName, clientIp);
     res.status(StatusCodes.OK).json(events);
-  } catch (e) {
+  } catch (e: any) {
     res
       .status(e?.response?.data?.code ?? StatusCodes.INTERNAL_SERVER_ERROR)
       .end(e?.response?.data?.message || "Ops! There was a problem!");
