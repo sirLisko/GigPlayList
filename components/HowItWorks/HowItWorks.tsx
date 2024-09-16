@@ -1,29 +1,23 @@
 import React from "react";
-import { MdLibraryMusic, MdSearch } from "react-icons/md";
-import { ImMagicWand } from "react-icons/im";
-
-import styles from "./HowItWorks.module.scss";
+import { Search, WandSparkles, ListMusic } from "lucide-react";
 
 const HowItWorks = () => (
-  <div className={styles.container}>
-    <h3 className="howTo__title">How it works</h3>
-    <ul role="list" className={styles.list}>
-      <li>
-        <MdSearch />
-        <span>The search scans the last 20 gigs of the artist</span>
-      </li>
-      <li>
-        <ImMagicWand />
-        <span>
-          Creates a setlist in order of likelyhood being played at their next
-          gig based on the percentage of songs played at previous gigs
-        </span>
-      </li>
-      <li>
-        <MdLibraryMusic />
-        <span>Save the list as a playlist!</span>
-      </li>
-    </ul>
+  <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 w-full max-w-2xl">
+    <h2 className="text-2xl font-semibold mb-6">How it works</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="flex flex-col items-center text-center">
+        <Search size={32} className="mb-2" />
+        <p>The search scans the last 20 gigs of the artist</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <WandSparkles size={32} className="mb-2" />
+        <p>Creates a setlist based on likelihood of being played</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <ListMusic size={32} className="mb-2" />
+        <p>Save the list as a playlist! Directly in your Spotify</p>
+      </div>
+    </div>
   </div>
 );
 

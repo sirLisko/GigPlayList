@@ -1,11 +1,10 @@
 .title {
   font-family: var(--font-header);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
   width: 230px;
   text-align: center;
   display: block;
-  margin: 10vh auto -7vh;
-  @media (min-width: 550px) {
-    font-size: 3rem;
-    width: 500px;
-  }
+  margin: 10vh auto 8rem;
+
 }

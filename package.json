@@ -22,6 +22,7 @@
     "axios": "^1.7.7",
     "classnames": "^2.5.1",
     "http-status-codes": "^2.3.0",
+    "lucide-react": "^0.441.0",
     "modern-css-reset": "^1.4.0",
     "next": "^14.2.11",
     "node-vibrant": "^3.2.1-alpha.1",
@@ -42,10 +43,13 @@
     "@types/spotify-web-api-node": "^5.0.11",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
+    "autoprefixer": "^10.4.20",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "jest": "^29.7.0",
+    "postcss": "^8.4.47",
     "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.11",
     "typescript": "^5.6.2"
   },
   "keywords": [
