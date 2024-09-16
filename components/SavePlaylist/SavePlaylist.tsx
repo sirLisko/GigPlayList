@@ -60,10 +60,10 @@ const SavePlaylist = ({
           )`,
       }}
     >
-      <Link href="/" passHref>
-        <a className={styles.backbutton}>
-          <MdOutlineArrowBack />
-        </a>
+      <Link href="/" passHref className={styles.backbutton}>
+
+        <MdOutlineArrowBack />
+
       </Link>
       <picture>
         <source srcSet={image} />

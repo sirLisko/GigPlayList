@@ -53,7 +53,7 @@ const Home = () => {
           </div>
           <div>
             <Link href={"/"} passHref>
-              <a>Go back to the Home</a>
+              Go back to the Home
             </Link>
           </div>
         </div>
