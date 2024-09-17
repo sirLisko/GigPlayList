@@ -1,17 +1,30 @@
+import classNames from "classnames";
 import React from "react";
 
 interface FooterProps {
+  className?: string;
   showCredits?: boolean;
 }
 
-import styles from "./Footer.module.scss";
-
-const Footer = ({ showCredits }: FooterProps) => (
-  <footer className={styles.footer}>
+const Footer = ({ className, showCredits }: FooterProps) => (
+  <footer
+    className={classNames(
+      "text-sm text-muted-foreground pb-3 pt-10 text-center whitespace-nowrap",
+      className,
+    )}
+  >
     <p>
-      <span>
-        Created with &#9829; by{" "}
-        <a href="https://sirlisko.com">Luca Lischetti (@sirLisko)</a>.
+      <span className="block sm:inline">
+        Created with ❤ by{" "}
+        <a
+          className="underline"
+          href="https://sirlisko.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          sirlisko
+        </a>
+        .
       </span>
       {showCredits && (
         <span>
@@ -19,9 +32,17 @@ const Footer = ({ showCredits }: FooterProps) => (
           Thanks to <a href="https://setlist.fm">setlist.fm</a> API.
         </span>
       )}{" "}
-      <span>
+      <span className="block sm:inline">
         View project source on{" "}
-        <a href="https://github.com/sirLisko/GigPlayList">Github</a>.
+        <a
+          className="underline"
+          href="https://github.com/sirLisko/GigPlayList"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          github
+        </a>
+        .
       </span>
     </p>
   </footer>

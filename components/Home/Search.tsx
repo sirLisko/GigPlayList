@@ -1,8 +1,6 @@
 import React, { useRef, FormEvent } from "react";
 import { useRouter } from "next/router";
-import { MdSearch } from "react-icons/md";
-
-import styles from "./Search.module.scss";
+import { Search as SearchIcon } from "lucide-react";
 
 const Search = () => {
   const search = useRef<HTMLInputElement>(null);
@@ -13,11 +11,8 @@ const Search = () => {
       router.push("/[artist]", `/${search.current.value}`);
   };
   return (
-    <>
-      <form className={styles.container} onSubmit={onFormSubmit}>
-        <label htmlFor="search" className="sr-only">
-          Search for an artist:
-        </label>
+    <form className="w-full max-w-md mb-12" onSubmit={onFormSubmit}>
+      <div className="relative">
         <input
           id="search"
           type="search"
@@ -26,12 +21,16 @@ const Search = () => {
           spellCheck="false"
           autoFocus={true}
           ref={search}
+          className="w-full py-3 px-4 pr-12 rounded-full bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-white"
         />
-        <button className={styles.submit} type="submit">
-          <MdSearch />
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white"
+          type="submit"
+        >
+          <SearchIcon />
         </button>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 

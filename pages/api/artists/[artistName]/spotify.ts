@@ -12,8 +12,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const artistData = await getArtistTracks(artistName);
     res.status(StatusCodes.OK).json(artistData);
   } catch (e: any) {
+    console.error(e);
     res
-      .status(e?.response?.data?.code ?? StatusCodes.INTERNAL_SERVER_ERROR)
-      .end(e?.response?.data?.message || "Ops! There was a problem!");
+      .status(
+        e?.response?.data?.code ??
+          e?.status ??
+          StatusCodes.INTERNAL_SERVER_ERROR,
+      )
+      .end(
+        e?.response?.data?.message ?? e?.message ?? "Ops! There was a problem!",
+      );
   }
 };

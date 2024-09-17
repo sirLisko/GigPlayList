@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "components/UserContext/UserContext";
 import { useRouter } from "next/router";
 
-const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID } = process.env;
-
-import styles from "./LoginBanner.module.scss";
+import { LogIn } from "lucide-react";
 
 interface Props {
   onCreatePlaylist?: () => void;
@@ -16,13 +14,13 @@ const LoginBanner = ({ onCreatePlaylist }: Props) => {
   const { isReady, asPath, push } = useRouter();
   useEffect(() => {
     const authEndpoint = "https://accounts.spotify.com/authorize";
-    const clientId = NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+    const clientId = "e68376bc0d3a4c3e8be32cb10f8043ae";
     const redirectUri = `${window.location.protocol}//${window.location.host}/auth`;
     const scopes = ["playlist-modify-public"];
     setRedirect(
       `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-        "%20"
-      )}&response_type=token&show_dialog=true`
+        "%20",
+      )}&response_type=token&show_dialog=true`,
     );
   }, [isReady]);
   const onClick = () => {
@@ -36,15 +34,19 @@ const LoginBanner = ({ onCreatePlaylist }: Props) => {
       {redirect && (
         <>
           {user ? (
-            <button className={styles.button} onClick={onCreatePlaylist}>
+            <button
+              className="w-full max-w-xs mx-auto py-3 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all flex items-center justify-center"
+              onClick={onCreatePlaylist}
+            >
               Save your playlist to Spotify
             </button>
           ) : (
-            <div className={styles.box}>
-              <button className={styles.button} onClick={onClick}>
-                Login to Spotify
+            <div onClick={onClick}>
+              <button className="w-full max-w-xs mx-auto py-3 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all flex items-center justify-center">
+                <LogIn size={18} className="mr-2" />
+                LOGIN TO SPOTIFY
               </button>
-              <span onClick={onClick}>to save your playlist</span>
+              <p className="mt-2 text-sm opacity-75">to save your playlist</p>
             </div>
           )}
         </>

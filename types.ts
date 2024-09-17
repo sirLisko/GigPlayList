@@ -13,6 +13,8 @@ export interface Track {
 export interface Link {
   title: string;
   uri: string;
+  cover: string;
+  previewUrl: string;
 }
 
 interface Palette {
