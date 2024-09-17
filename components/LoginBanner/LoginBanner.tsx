@@ -35,7 +35,7 @@ const LoginBanner = ({ onCreatePlaylist }: Props) => {
     <div suppressHydrationWarning={true}>
       {redirect && (
         <>
-          {!user ? (
+          {user ? (
             <button
               className="w-full max-w-xs mx-auto py-3 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all flex items-center justify-center"
               onClick={onCreatePlaylist}

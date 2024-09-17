@@ -6,6 +6,7 @@ export const useTracks = (artist?: string) => {
   const { data, error, isLoading } = useSWR(
     artist ? `/api/artists/${artist}/tracks` : null,
     fetcher<Track[]>,
+    { revalidateOnFocus: false, revalidateOnReconnect: false },
   );
 
   return {

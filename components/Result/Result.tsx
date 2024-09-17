@@ -32,14 +32,13 @@ const Result = ({ artistName }: Props) => {
 
   useEffect(() => {
     document.body.style.background = from;
-    return () => {
-      document.body.style.background = "";
-    };
   }, [from]);
 
   if (isLoadingArtist || isLoadingTracks) {
     return null;
   }
+
+  const isArtistiWithTrack = tracks && tracks.length > 0 && artistData;
 
   return (
     <article
@@ -58,40 +57,37 @@ const Result = ({ artistName }: Props) => {
               <ArrowLeft size={24} />
             </button>
           </Link>
-          <h1 className="text-3xl font-bold">{artistData?.name}</h1>
+          <h1 className="text-3xl font-bold">
+            {isArtistiWithTrack && artistData?.name}
+          </h1>
           <div className="w-6"></div>
         </header>
+        {isArtistiWithTrack ? (
+          <>
+            <picture>
+              <img
+                src={artistData?.image}
+                alt={artistData?.name}
+                className="w-32 h-32 mx-auto mb-4 rounded-lg shadow-lg"
+              />
+            </picture>
 
-        {artistData && (
-          <picture>
-            <img
-              src={artistData?.image}
-              alt={artistData?.name}
-              className="w-32 h-32 mx-auto mb-4 rounded-lg shadow-lg"
-            />
-          </picture>
-        )}
+            {events && <Events events={events} />}
 
-        {events && artistData && <Events events={events} />}
-
-        {/* <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
+            {/* <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
           <h2 className="text-xl font-semibold mb-2">Playlist Info</h2>
           <p>Based on last 20 concerts from 2022 to 2024</p>
           <p>13 songs • Estimated playtime: 65 minutes</p>
         </div> */}
 
-        {tracks && tracks.length > 0 && artistData && (
-          <SavePlaylist artistData={artistData} tracks={tracks} />
-        )}
-
-        {tracks && tracks.length > 0 && artistData && (
-          <Tracks
-            tracks={tracks}
-            links={artistData?.tracks}
-            palette={artistData?.palette}
-          />
-        )}
-        {(artistError || trackError) && (
+            <SavePlaylist artistData={artistData} tracks={tracks} />
+            <Tracks
+              tracks={tracks}
+              links={artistData?.tracks}
+              palette={artistData?.palette}
+            />
+          </>
+        ) : (
           <div className="flex flex-col">
             <div className="m-auto text-center text-2xl p-3">
               <Frown height={100} width={100} />

@@ -56,7 +56,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
       }
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, [audio, router.events]);
+  }, [router.events]);
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 1);

@@ -12,10 +12,11 @@ import { useTracks } from "services/tracks";
 const ResultPage = () => {
   const router = useRouter();
   const artistName = router.query.artist as string | undefined;
-  const { isLoading: isLoadingArtist, isError } = useArtistData(artistName);
+  const { isLoading: isLoadingArtist } = useArtistData(artistName);
   const { isLoading: isLoadingTracks } = useTracks(artistName);
   const isLoading = isLoadingArtist || isLoadingTracks;
-  const showAlternate = isLoading || isError || !artistName;
+  const showAlternate = isLoading || !artistName;
+
   return (
     <div
       className={classNames("min-h-screen", {
