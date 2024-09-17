@@ -8,6 +8,7 @@ import classNames from "classnames";
 import SpotifyLogo from "components/Icons/Spotify";
 import PauseIcon from "components/Icons/Pause";
 import PlayIcon from "components/Icons/Play";
+import { useRouter } from "next/router";
 
 interface TracksProps {
   tracks: Track[];
@@ -19,6 +20,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
   const [loaded, setLoaded] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<string | null>(null);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const router = useRouter();
 
   const handlePreview = (audioUrl: string | undefined, title: string) => {
     if (!audioUrl) return;
@@ -35,6 +37,26 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
       setCurrentTrack(title);
     }
   };
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (audio) {
+        audio.pause();
+        setAudio(null);
+        setCurrentTrack(null);
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      if (audio) {
+        audio.pause();
+        setAudio(null);
+      }
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [audio, router.events]);
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 1);
