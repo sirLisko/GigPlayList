@@ -1,10 +1,13 @@
-import React from "react";
-import cx from "classnames";
+import React, { useEffect, useState } from "react";
 
 import { Track, Link, ArtistData } from "types";
 import { isSameSong } from "utils/matchSongs";
 
-import styles from "./Track.module.scss";
+import { Disc3 as Disc } from "lucide-react";
+import classNames from "classnames";
+import SpotifyLogo from "components/Icons/Spotify";
+import PauseIcon from "components/Icons/Pause";
+import PlayIcon from "components/Icons/Play";
 
 interface TracksProps {
   tracks: Track[];
@@ -12,39 +15,108 @@ interface TracksProps {
   palette?: ArtistData["palette"];
 }
 
-const Tracks = ({ tracks, links, palette }: TracksProps) => (
-  <div className={styles.container}>
-    <ul role="list" className={styles.list}>
+const Tracks = ({ tracks, links, palette }: TracksProps) => {
+  const [loaded, setLoaded] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState<string | null>(null);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  const handlePreview = (audioUrl: string | undefined, title: string) => {
+    if (!audioUrl) return;
+    if (audio) {
+      audio.pause();
+      setAudio(null);
+    }
+    if (currentTrack === title) {
+      setCurrentTrack(null);
+    } else {
+      const newAudio = new Audio(audioUrl);
+      newAudio.play();
+      setAudio(newAudio);
+      setCurrentTrack(title);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => setLoaded(true), 1);
+  }, []);
+
+  const getGradientStyle = (count: number, maxCount: number) => {
+    const intensity = (count / maxCount) * 100;
+    return {
+      background: `linear-gradient(90deg, rgba(${palette?.Vibrant.rgb?.join(",")},${intensity / 100}) 0%, rgba(0,0,0,0) 100%)`,
+      transition: "all 1s ease-out",
+      opacity: loaded ? 1 : 0,
+      transform: `translateX(${loaded ? "0" : "-20px"})`,
+    };
+  };
+
+  return (
+    <ul role="list" className="space-y-2">
       {tracks.map(({ count, title }) => {
-        const props = {
-          className: styles.title,
-          "data-count": count,
-        };
-        const link = links?.find((link) => isSameSong(link.title, title))?.uri;
+        const link = links?.find((link) => isSameSong(link.title, title));
+        const isPlaying = currentTrack === title;
+
         return (
           <li
             key={title}
-            className={cx(styles.track, { [styles.link]: Boolean(link) })}
+            style={getGradientStyle(count, tracks[0].count)}
+            className="group flex items-center space-between justify-between rounded p-3 transition-all"
           >
-            {link ? (
-              <a href={link} {...props}>
-                {title}
-              </a>
-            ) : (
-              <p {...props}>{title}</p>
-            )}
-            <p
-              className={styles.percentage}
-              style={{
-                backgroundColor: `rgb(${palette?.Vibrant.rgb.join(", ")})`,
-                opacity: count / tracks[0].count,
-              }}
-            ></p>
+            <div className="pl-12 flex items-center">
+              <div className="absolute left-0 top-0 h-full">
+                {link?.cover ? (
+                  <picture>
+                    <img
+                      src={link.cover}
+                      alt={`${title} album cover`}
+                      className="w-12 object-cover rounded h-full"
+                    />
+                  </picture>
+                ) : (
+                  <div
+                    className="w-12 h-12 flex items-center justify-center rounded"
+                    style={{
+                      background: `rgba(${palette?.Vibrant.rgb.join(",")}, 255)`,
+                    }}
+                  >
+                    <Disc size={24} className="text-gray-500" />{" "}
+                  </div>
+                )}
+              </div>
+              {link?.previewUrl && (
+                <button
+                  onClick={() => handlePreview(link.previewUrl, title)}
+                  className={classNames("absolute left-0 top-0 h-full p-3")}
+                >
+                  {isPlaying ? (
+                    <PauseIcon
+                      stroke={`rgb(${palette?.DarkVibrant.rgb.join(",")}`}
+                    />
+                  ) : (
+                    <PlayIcon
+                      stroke={`rgb(${palette?.DarkVibrant.rgb.join(",")}`}
+                    />
+                  )}
+                </button>
+              )}
+              <span className="font-medium">{title}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              {link?.uri && (
+                <a href={link.uri}>
+                  <SpotifyLogo />
+                </a>
+              )}
+              <div className="text-sm opacity-75">
+                <span className="hidden md:inline">Played </span>
+                {count} times
+              </div>
+            </div>
           </li>
         );
       })}
     </ul>
-  </div>
-);
+  );
+};
 
 export default Tracks;

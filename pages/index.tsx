@@ -1,8 +1,8 @@
 import React from "react";
 
 import Head from "components/Head/Head";
-import Search from "components/Search/Search";
-import HowItWorks from "components/HowItWorks/HowItWorks";
+import Search from "components/Home/Search";
+import HowItWorks from "components/Home/HowItWorks";
 import Footer from "components/Footer/Footer";
 
 const Home = () => {

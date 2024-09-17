@@ -1,11 +1,18 @@
+import classNames from "classnames";
 import React from "react";
 
 interface FooterProps {
+  className?: string;
   showCredits?: boolean;
 }
 
-const Footer = ({ showCredits }: FooterProps) => (
-  <footer className="text-sm text-muted-foreground pb-3 pt-10 text-center whitespace-nowrap">
+const Footer = ({ className, showCredits }: FooterProps) => (
+  <footer
+    className={classNames(
+      "text-sm text-muted-foreground pb-3 pt-10 text-center whitespace-nowrap",
+      className,
+    )}
+  >
     <p>
       <span className="block sm:inline">
         Created with ❤ by{" "}

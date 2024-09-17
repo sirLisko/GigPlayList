@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #3b82f6;
+}
+
 @keyframes shake {
 
   0%,

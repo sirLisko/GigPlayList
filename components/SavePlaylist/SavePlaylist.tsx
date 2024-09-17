@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import Spotify from "spotify-web-api-js";
-import {
-  MdDownloading,
-  MdCheckCircle,
-  MdOutlineArrowBack,
-} from "react-icons/md";
+import { MdDownloading, MdCheckCircle } from "react-icons/md";
 
 import { useAuth } from "components/UserContext/UserContext";
 import LoginBanner from "components/LoginBanner/LoginBanner";
 import { matchSongs } from "utils/matchSongs";
 import { Track, ArtistData } from "types";
-
-import styles from "./SavePlaylist.module.scss";
 
 interface SavePlaylistProps {
   artistData: ArtistData;
@@ -20,7 +13,7 @@ interface SavePlaylistProps {
 }
 
 const SavePlaylist = ({
-  artistData: { name, image, palette, tracks: links },
+  artistData: { name, tracks: links },
   tracks,
 }: SavePlaylistProps) => {
   const [loading, setLoading] = useState(false);
@@ -49,34 +42,7 @@ const SavePlaylist = ({
   };
 
   return (
-    <div
-      className={styles.container}
-      style={{
-        backgroundImage: `linear-gradient(
-            rgb(${palette?.LightVibrant.rgb.join(", ")}) 5%,
-            rgb(${palette?.Vibrant.rgb.join(", ")}) 25%,
-            rgb(${palette?.DarkVibrant.rgb.join(", ")}),
-            black
-          )`,
-      }}
-    >
-      <Link href="/" passHref className={styles.backbutton}>
-
-        <MdOutlineArrowBack />
-
-      </Link>
-      <picture>
-        <source srcSet={image} />
-        <img
-          src={image}
-          alt={name}
-          height={200}
-          width={200}
-          className={styles.image}
-        />
-      </picture>
-
-      <div className={styles.artist}>{name}</div>
+    <div className="text-center mb-8">
       {loading ? (
         <MdDownloading />
       ) : done ? (

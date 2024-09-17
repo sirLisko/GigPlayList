@@ -2,33 +2,27 @@ import React from "react";
 
 import { Event } from "types";
 
-import styles from "./Events.module.scss";
+import { Calendar } from "lucide-react";
 
 interface EventsProps {
   events: Event[];
 }
 
 const Events = ({ events }: EventsProps) => (
-  <div className={styles.container}>
+  <div>
     {events.map(({ date, venueName, location, buyUrl }) => {
       const eventDate = new Date(date);
       return (
-        <a
-          key={buyUrl}
-          className={styles.event}
-          href={buyUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className={styles.date}>
-            <p className={styles.dateMonth}>
-              {eventDate.toLocaleDateString("en-gb", { month: "short" })}
-            </p>
-            <p className={styles.dateDay}>{eventDate.getDate()}</p>
-          </div>
-          <div className={styles.details}>
-            <p>{venueName}</p>
-            <p className={styles.venue}>{location}</p>
+        <a key={buyUrl} href={buyUrl} target="_blank" rel="noreferrer">
+          <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
+            <h2 className="text-xl font-semibold mb-2">Next Gig</h2>
+            <div className="flex items-center">
+              <Calendar className="mr-2" size={18} />
+              <p>
+                {eventDate.toLocaleDateString("en-gb", { month: "short" })}{" "}
+                {eventDate.getDate()} - {venueName}, {location}
+              </p>
+            </div>
           </div>
         </a>
       );

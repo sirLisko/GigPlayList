@@ -8,6 +8,6 @@ export const isSameSong = (linkTitle: string, title: string) => {
 export const matchSongs = (tracks: Track[], links: Link[]) =>
   tracks
     .map(
-      ({ title }) => links?.find((link) => isSameSong(link.title, title))?.uri
+      ({ title }) => links?.find((link) => isSameSong(link.title, title))?.uri,
     )
     .filter(Boolean) as string[];
