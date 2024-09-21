@@ -14,7 +14,7 @@
     "start": "next start",
     "unit": "jest",
     "lint": "eslint . --ext .jsx,.js --fix",
-    "test": "yarn lint && yarn type-check && yarn unit",
+    "test": "pnpm lint && pnpm type-check && pnpm unit",
     "type-check": "tsc",
     "format": "prettier '**/*.{js,jsx,css,scss,md}' --write"
   },
