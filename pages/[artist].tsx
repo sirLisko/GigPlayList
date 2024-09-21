@@ -18,7 +18,7 @@ const ResultPage = () => {
   const showAlternate = isLoading || !artistName;
 
   return (
-    <div
+    <main
       className={classNames("min-h-screen", {
         "main-c bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-6 text-white":
           showAlternate,
@@ -26,7 +26,7 @@ const ResultPage = () => {
     >
       <Head />
       {isLoading || !artistName ? (
-        <div className="m-auto text-center text-2xl p-3">
+        <div className="m-auto text-center text-2xl p-3" aria-label="lo">
           <Loader height={80} width={80} ariaLabel="loading" color="white" />
         </div>
       ) : (
@@ -40,7 +40,7 @@ const ResultPage = () => {
           })}
         />
       )}
-    </div>
+    </main>
   );
 };
 

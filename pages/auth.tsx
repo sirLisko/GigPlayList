@@ -5,6 +5,8 @@ import { AuthUser, useAuth } from "components/UserContext/UserContext";
 import { Audio as Loader } from "react-loader-spinner";
 import LoginBanner from "components/LoginBanner/LoginBanner";
 import Link from "next/link";
+import { ArrowLeft, Frown } from "lucide-react";
+import Head from "components/Head/Head";
 
 export const auth = () => {
   const hash = window.location.hash
@@ -37,32 +39,35 @@ const Home = () => {
     }
   }, [isReady]);
   return (
-    <div
-      className="container"
-      style={{
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
+    <main className="main-c min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-6 text-white">
+      <Head />
       {query.error ? (
-        <div className="error">
-          Ops, an error occured
+        <div className="flex flex-col items-center">
+          <div className="m-auto text-center text-2xl p-3">
+            <Frown height={100} width={100} />
+          </div>
+          <div className="m-auto text-center text-2xl p-3">
+            Ops, an error occured
+          </div>
           <div style={{ margin: "2rem" }}>
             <LoginBanner />
           </div>
-          <div>
-            <Link href={"/"} passHref>
+          <Link href="/" passHref>
+            <button
+              className="text-white hover:text-gray-300 flex"
+              aria-label="Go to homepage"
+            >
+              <ArrowLeft size={24} className="mr-3" />
               Go back to the Home
-            </Link>
-          </div>
+            </button>
+          </Link>
         </div>
       ) : (
-        <div>
-          <Loader />
+        <div className="m-auto text-center text-2xl p-3" aria-label="lo">
+          <Loader height={80} width={80} ariaLabel="loading" color="white" />
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

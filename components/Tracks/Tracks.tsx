@@ -109,6 +109,8 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
                 <button
                   onClick={() => handlePreview(link.previewUrl, title)}
                   className={classNames("absolute left-0 top-0 h-full p-3")}
+                  aria-pressed={isPlaying}
+                  aria-label={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
                     <PauseIcon
@@ -125,7 +127,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
             </div>
             <div className="flex items-center space-x-2">
               {link?.uri && (
-                <a href={link.uri}>
+                <a href={link.uri} aria-label="Open song in Spotify">
                   <SpotifyLogo />
                 </a>
               )}

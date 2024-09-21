@@ -13,6 +13,9 @@ const Search = () => {
   return (
     <form className="w-full max-w-md mb-12" onSubmit={onFormSubmit}>
       <div className="relative">
+        <label htmlFor="search" className="sr-only">
+          Search for an artist:
+        </label>
         <input
           id="search"
           type="search"
@@ -26,6 +29,7 @@ const Search = () => {
         <button
           className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white"
           type="submit"
+          aria-labelledby="search"
         >
           <SearchIcon />
         </button>

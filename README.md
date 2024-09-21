@@ -1,52 +1,75 @@
 # GigPlayList
 
-> Set you up for your next Gig.
+> **Get ready for your next gig with a personalized playlist.**
 
-Check a live example @ [https://gigplaylist.sirlisko.com/the%20strokes](http://gigplaylist.sirlisko.com/the%20strokes)
+Check out a live demo: [https://gigplaylist.sirlisko.com/the%20strokes](http://gigplaylist.sirlisko.com/the%20strokes)
 
 ---
 
-The Website is powered by [Next.JS](https://nextjs.org/) and hosted in [Vercel](https://vercel.com/).
+## Overview
+
+GigPlayList is a web app that curates playlists for upcoming gigs based on setlists and artist data. Powered by [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com/), it integrates with external APIs like SetListFM, Songkick, and Spotify to create tailored music experiences.
 
 ## Getting Started
 
-The app needs Node 16, if you have [NVM](https://github.com/nvm-sh/nvm) installed just run `nvm use` in your terminal.
+### Prerequisites
 
-Install the dependencies:
+- **Node.js 20+**
+  Make sure you have Node.js version 20 or higher installed. You can easily manage your Node versions using [NVM](https://github.com/nvm-sh/nvm).
+  Run `nvm use` to switch to the correct version.
 
-```bash
-npm install
-```
+- [**pnpm**](https://pnpm.io/)
+  is used as the package manager. You can install it globally using:
 
-Create your `.env` file from `.env.sample`. You will need to grab some API keys (see below for more info).
+  ```bash
+  npm install -g pnpm
+  ```
 
-### Run the development server
+### Installation
 
-```bash
-npm run dev
-```
+1. Install project dependencies:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   pnpm install
+   ```
 
-### API keys
+2. Create a `.env` file by copying the `.env.sample` file:
 
-The following API keys are needed in order to have everything up and running:
+   ```bash
+   cp .env.sample .env
+   ```
 
-- [SetListFM](https://api.setlist.fm/docs/1.0/index.html)
+3. Obtain API keys from the services listed below and add them to your `.env` file.
 
-```bash
-export SETLISTFMAPIKEY={token}
-```
+### Running the Development Server
 
-- [Songkick](https://www.songkick.com/api_key_requests/new)
-
-```bash
-export SKAPI={token}
-```
-
-- [Spotify Auth Token](https://developer.spotify.com)
+To start the app in development mode, run:
 
 ```bash
-export NEXT_PUBLIC_SPOTIFY_CLIENT_ID={clientId} // needs NEXT_PUBLIC as it needs to be accessed to the client
-export SPOTIFY_SECRET={clientSecret}
+pnpm dev
 ```
+
+Then, open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+
+## API Keys Setup
+
+The following API keys are required to enable full functionality:
+
+- **[SetListFM API](https://api.setlist.fm/docs/1.0/index.html)**
+
+  ```bash
+  export SETLISTFMAPIKEY={your_token}
+  ```
+
+- **[Songkick API](https://www.songkick.com/api_key_requests/new)**
+
+  ```bash
+  export SKAPI={your_token}
+  ```
+
+- **[Spotify API](https://developer.spotify.com)**
+
+  ```bash
+  export NEXT_PUBLIC_SPOTIFY_CLIENT_ID={your_client_id} # needs NEXT_PUBLIC as it needs to be accessed to the client
+  export SPOTIFY_SECRET={your_client_secret}
+  ```
