@@ -9,15 +9,30 @@ const headers = {
   "x-api-key": process.env.SETLISTFMAPIKEY as string,
 };
 
-export const getArtistSetlist = async (artist: string) => {
-  const { data: artistData } = await axios(`${DOMAIN}${ARTIST_PATH}${artist}`, {
-    headers,
-  });
-  const { data } = await axios(
-    `${DOMAIN}${SETLIST_PATH}${artistData?.artist?.[0].mbid}`,
-    {
+export const getArtistSetlist = async (
+  artistName?: string,
+  artistId?: string,
+) => {
+  if (artistId) {
+    const { data } = await axios(`${DOMAIN}${SETLIST_PATH}${artistId}`, {
       headers,
-    }
-  );
-  return data;
+    });
+    return data;
+  }
+  if (artistName) {
+    const { data: artistData } = await axios(
+      `${DOMAIN}${ARTIST_PATH}${artistName}`,
+      {
+        headers,
+      },
+    );
+    const { data } = await axios(
+      `${DOMAIN}${SETLIST_PATH}${artistData?.artist?.[0].mbid}`,
+      {
+        headers,
+      },
+    );
+    return data;
+  }
+  throw new Error("No artist name or id provided");
 };
