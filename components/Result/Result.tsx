@@ -12,13 +12,16 @@ import { ArrowLeft, Frown } from "lucide-react";
 import Link from "next/link";
 
 interface Props {
-  artistName: string;
+  artist: string[];
 }
 
-const Result = ({ artistName }: Props) => {
-  const { artistData, isLoading: isLoadingArtist } = useArtistData(artistName);
-  const { tracks, isLoading: isLoadingTracks } = useTracks(artistName);
-  const { events } = useEvents(artistName);
+const Result = ({ artist }: Props) => {
+  const { artistData, isLoading: isLoadingArtist } = useArtistData(artist[0]);
+  const { tracks, isLoading: isLoadingTracks } = useTracks(
+    artist[0],
+    artist[1],
+  );
+  const { events } = useEvents(artist[0]);
 
   const from = `rgba(${artistData?.palette?.DarkVibrant.rgb.join(",")},100)`;
 
@@ -88,7 +91,7 @@ const Result = ({ artistName }: Props) => {
               <Frown height={100} width={100} />
             </div>
             <div className="m-auto text-center text-2xl p-3">
-              No setlists found for <b>{artistName}</b>
+              No setlists found for <b>{artist[0]}</b>
             </div>
           </div>
         )}

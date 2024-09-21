@@ -11,11 +11,12 @@ import { useTracks } from "services/tracks";
 
 const ResultPage = () => {
   const router = useRouter();
-  const artistName = router.query.artist as string | undefined;
-  const { isLoading: isLoadingArtist } = useArtistData(artistName);
-  const { isLoading: isLoadingTracks } = useTracks(artistName);
+  const artist = router.query.artist as string[] | undefined;
+
+  const { isLoading: isLoadingArtist } = useArtistData(artist?.[0]);
+  const { isLoading: isLoadingTracks } = useTracks(artist?.[0], artist?.[1]);
   const isLoading = isLoadingArtist || isLoadingTracks;
-  const showAlternate = isLoading || !artistName;
+  const showAlternate = isLoading || !artist;
 
   return (
     <main
@@ -25,12 +26,12 @@ const ResultPage = () => {
       })}
     >
       <Head />
-      {isLoading || !artistName ? (
+      {isLoading || !artist ? (
         <div className="m-auto text-center text-2xl p-3" aria-label="lo">
           <Loader height={80} width={80} ariaLabel="loading" color="white" />
         </div>
       ) : (
-        <Result artistName={artistName} />
+        <Result artist={artist} />
       )}
       {!isLoading && (
         <Footer

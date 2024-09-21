@@ -2,9 +2,13 @@ import useSWR from "swr";
 import { Track } from "types";
 import { fetcher } from "utils/api";
 
-export const useTracks = (artist?: string) => {
+export const useTracks = (artistName?: string, artistId?: string) => {
   const { data, error, isLoading } = useSWR(
-    artist ? `/api/artists/${artist}/tracks` : null,
+    artistId
+      ? `/api/tracks?artistId=${artistId}`
+      : artistName
+        ? `/api/tracks?artistName=${artistName}`
+        : null,
     fetcher<Track[]>,
     { revalidateOnFocus: false, revalidateOnReconnect: false },
   );
