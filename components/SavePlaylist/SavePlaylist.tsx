@@ -48,7 +48,7 @@ const SavePlaylist = ({
       ) : done ? (
         <MdCheckCircle />
       ) : (
-        <LoginBanner onCreatePlaylist={createPlaylist} />
+        <LoginBanner onCreatePlaylist={createPlaylist} showDesc />
       )}
     </div>
   );

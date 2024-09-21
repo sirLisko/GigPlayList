@@ -6,9 +6,10 @@ import { LogIn } from "lucide-react";
 
 interface Props {
   onCreatePlaylist?: () => void;
+  showDesc?: boolean;
 }
 
-const LoginBanner = ({ onCreatePlaylist }: Props) => {
+const LoginBanner = ({ onCreatePlaylist, showDesc }: Props) => {
   const [redirect, setRedirect] = useState<string>();
   const { user } = useAuth();
   const { isReady, asPath, push } = useRouter();
@@ -42,11 +43,13 @@ const LoginBanner = ({ onCreatePlaylist }: Props) => {
             </button>
           ) : (
             <div onClick={onClick}>
-              <button className="w-full max-w-xs mx-auto py-3 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all flex items-center justify-center">
+              <button className="w-full max-w-xs mx-auto p-3 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all flex items-center justify-center">
                 <LogIn size={18} className="mr-2" />
                 LOGIN TO SPOTIFY
               </button>
-              <p className="mt-2 text-sm opacity-75">to save your playlist</p>
+              {showDesc && (
+                <p className="mt-2 text-sm opacity-75">to save your playlist</p>
+              )}
             </div>
           )}
         </>
