@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Spotify from "spotify-web-api-js";
-import { MdDownloading, MdCheckCircle } from "react-icons/md";
 
 import { useAuth } from "components/UserContext/UserContext";
 import LoginBanner from "components/LoginBanner/LoginBanner";
 import { matchSongs } from "utils/matchSongs";
 import { Track, ArtistData } from "types";
+import { CassetteTape, CircleCheckBig } from "lucide-react";
 
 interface SavePlaylistProps {
   artistData: ArtistData;
@@ -44,9 +44,14 @@ const SavePlaylist = ({
   return (
     <div className="text-center mb-8">
       {loading ? (
-        <MdDownloading />
+        <p className="m-12 text-lg font-medium flex items-center justify-center">
+          <CassetteTape className="mr-1 animate-bounce" /> Generating your
+          playlist...
+        </p>
       ) : done ? (
-        <MdCheckCircle />
+        <p className="m-12 text-lg font-medium flex items-center justify-center">
+          <CircleCheckBig className="mr-2" /> Playlist created!
+        </p>
       ) : (
         <LoginBanner onCreatePlaylist={createPlaylist} showDesc />
       )}
