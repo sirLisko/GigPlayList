@@ -53,7 +53,10 @@ const Home = () => {
             <LoginBanner />
           </div>
           <Link href="/" passHref>
-            <button className="text-white hover:text-gray-300 flex">
+            <button
+              className="text-white hover:text-gray-300 flex"
+              aria-label="Go to homepage"
+            >
               <ArrowLeft size={24} className="mr-3" />
               Go back to the Home
             </button>

@@ -45,7 +45,10 @@ const Result = ({ artistName }: Props) => {
       <div className="w-full max-w-2xl mx-auto">
         <header className="flex justify-between items-center mb-6">
           <Link href="/" passHref>
-            <button className="text-white hover:text-gray-300">
+            <button
+              className="text-white hover:text-gray-300"
+              aria-label="Go to homepage"
+            >
               <ArrowLeft size={24} />
             </button>
           </Link>
