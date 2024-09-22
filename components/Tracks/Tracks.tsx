@@ -46,17 +46,11 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
         setCurrentTrack(null);
       }
     };
-
     router.events.on("routeChangeStart", handleRouteChange);
-
     return () => {
-      if (audio) {
-        audio.pause();
-        setAudio(null);
-      }
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, [router.events]);
+  }, [router.events, audio]);
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 1);
