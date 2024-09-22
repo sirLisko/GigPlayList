@@ -6,7 +6,7 @@ import Favicons from "./Favicons";
 const HeadSection = () => (
   <>
     <Head>
-      <title>GigPlayList - Prepare the playlist for your next gig!</title>
+      <title>GigPlayList - prepare the playlist for your next gig!</title>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="author" content="Luca Lischetti" />
       <link
@@ -18,19 +18,22 @@ const HeadSection = () => (
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
-      <meta name="keywords" content="gigplaylist, music, gig" />
+      <meta
+        name="keywords"
+        content="gigplaylist, music, gig, setlists, playlist, concerts, spotify"
+      />
       <meta
         name="description"
-        content="GigPlayList set up you ready for your next Gig.It gives you the list of your favourite artists' most played tracks..."
+        content="GigPlayList curates playlists for upcoming gigs based on setlists and artist data."
       />
       <meta property="og:url" content="https://gigplaylist.sirlisko.com" />
       <meta
         property="og:description"
-        content="GigPlayList set up you ready for your next Gig. It gives you the list of your favourite artists' most played tracks."
+        content="GigPlayList curates playlists for upcoming gigs based on setlists and artist data."
       />
       <meta
         property="og:title"
-        content="GigPlayList - Prepare the playlist for your next gig!"
+        content="GigPlayList - prepare the playlist for your next gig!"
       />
       <script
         defer

@@ -8,7 +8,7 @@ Check out a live demo: [https://gigplaylist.sirlisko.com/the%20strokes](http://g
 
 ## Overview
 
-GigPlayList is a web app that curates playlists for upcoming gigs based on setlists and artist data. Powered by [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com/), it integrates with external APIs like SetListFM, Songkick, and Spotify to create tailored music experiences.
+GigPlayList is a web app that curates playlists for upcoming gigs based on setlists and artist data. Powered by [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com/), it integrates with external APIs like MusicBrainz, SetListFM, Songkick, and Spotify to create tailored music experiences.
 
 ## Getting Started
 

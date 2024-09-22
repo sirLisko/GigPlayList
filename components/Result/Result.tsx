@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Events from "components/Events/Events";
 import Tracks from "components/Tracks/Tracks";
@@ -16,6 +16,7 @@ interface Props {
 }
 
 const Result = ({ artist }: Props) => {
+  const [initialBaground] = useState<string>(document.body.style.background);
   const { artistData, isLoading: isLoadingArtist } = useArtistData(artist[0]);
   const { tracks, isLoading: isLoadingTracks } = useTracks(
     artist[0],
@@ -24,6 +25,12 @@ const Result = ({ artist }: Props) => {
   const { events } = useEvents(artist[0]);
 
   const from = `rgba(${artistData?.palette?.DarkVibrant.rgb.join(",")},100)`;
+
+  useEffect(() => {
+    return () => {
+      document.body.style.background = initialBaground;
+    };
+  }, []);
 
   useEffect(() => {
     document.body.style.background = from;
