@@ -4,7 +4,6 @@ import { Track, Link, ArtistData } from "types";
 import { isSameSong } from "utils/matchSongs";
 
 import { Disc3 as Disc } from "lucide-react";
-import classNames from "classnames";
 import SpotifyLogo from "components/Icons/Spotify";
 import PauseIcon from "components/Icons/Pause";
 import PlayIcon from "components/Icons/Play";
@@ -102,7 +101,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
               {link?.previewUrl && (
                 <button
                   onClick={() => handlePreview(link.previewUrl, title)}
-                  className={classNames("absolute left-0 top-0 h-full p-3")}
+                  className="absolute left-0 top-0 h-full p-3 rounded-full bg-transparent hover:bg-black/50 transition-colors duration-300"
                   aria-pressed={isPlaying}
                   aria-label={isPlaying ? "Pause" : "Play"}
                 >
@@ -127,7 +126,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
               )}
               <div className="text-sm opacity-75">
                 <span className="hidden md:inline">Played </span>
-                {count} times
+                <span className="whitespace-nowrap">{count} times</span>
               </div>
             </div>
           </li>
