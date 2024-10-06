@@ -10,11 +10,21 @@ export interface Track {
   count: number;
 }
 
+export interface SetList {
+  tracks: Track[];
+  from: string;
+  to: string;
+  totalTracks: number;
+  totalSetLists: number;
+  encores?: Record<string, number>;
+}
+
 export interface Link {
   title: string;
   uri: string;
   cover: string;
   previewUrl: string;
+  duration_ms: number;
 }
 
 interface Palette {
