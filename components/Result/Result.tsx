@@ -8,21 +8,25 @@ import SavePlaylist from "components/SavePlaylist/SavePlaylist";
 import { useArtistData } from "services/artistData";
 import { useTracks } from "services/tracks";
 import { useEvents } from "services/events";
-import { ArrowLeft, Frown } from "lucide-react";
+import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
 import Link from "next/link";
+import { useGetArtist } from "services/searchArtist";
 
 interface Props {
-  artist: string[];
+  artistQuery: string[];
 }
 
-const Result = ({ artist }: Props) => {
+const Result = ({ artistQuery }: Props) => {
   const [initialBaground] = useState<string>(document.body.style.background);
-  const { artistData, isLoading: isLoadingArtist } = useArtistData(artist[0]);
-  const { tracks, isLoading: isLoadingTracks } = useTracks(
-    artist[0],
-    artist[1],
+  const { artistData, isLoading: isLoadingArtist } = useArtistData(
+    artistQuery[0],
   );
-  const { events } = useEvents(artist[0]);
+  const { tracks, isLoading: isLoadingTracks } = useTracks(
+    artistQuery[0],
+    artistQuery[1],
+  );
+  const { artist } = useGetArtist(artistQuery?.[1]);
+  const { events } = useEvents(artistQuery[0]);
 
   const from = `rgba(${artistData?.palette?.DarkVibrant.rgb.join(",")},100)`;
 
@@ -79,11 +83,28 @@ const Result = ({ artist }: Props) => {
 
             {events && <Events events={events} />}
 
-            {/* <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
-          <h2 className="text-xl font-semibold mb-2">Playlist Info</h2>
-          <p>Based on last 20 concerts from 2022 to 2024</p>
-          <p>13 songs • Estimated playtime: 65 minutes</p>
-        </div> */}
+            {artist?.["life-span"].ended && (
+              <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
+                <h2 className="text-xl font-semibold mb-2 flex gap-1">
+                  <TriangleAlert /> Important notice
+                </h2>
+                <p>
+                  The data displayed may not be fully accurate as this artist or
+                  band stopped performing on{" "}
+                  <strong>
+                    {new Date(artist["life-span"].end).toLocaleDateString(
+                      undefined,
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      },
+                    )}
+                  </strong>
+                  .
+                </p>
+              </div>
+            )}
 
             <SavePlaylist artistData={artistData} tracks={tracks} />
             <Tracks
@@ -98,7 +119,7 @@ const Result = ({ artist }: Props) => {
               <Frown height={100} width={100} />
             </div>
             <div className="m-auto text-center text-2xl p-3">
-              No setlists found for <b>{artist[0]}</b>
+              No setlists found for <b>{artistQuery[0]}</b>
             </div>
           </div>
         )}

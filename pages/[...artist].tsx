@@ -31,7 +31,7 @@ const ResultPage = () => {
           <Loader height={80} width={80} ariaLabel="loading" color="white" />
         </div>
       ) : (
-        <Result artist={artist} />
+        <Result artistQuery={artist} />
       )}
       {!isLoading && (
         <Footer

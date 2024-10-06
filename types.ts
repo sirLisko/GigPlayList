@@ -21,6 +21,7 @@ interface Palette {
   rgb: [number, number, number];
 }
 
+// returned by Spotify
 export interface ArtistData {
   name: string;
   image: string | undefined;
@@ -29,5 +30,17 @@ export interface ArtistData {
     Vibrant: Palette;
     DarkVibrant: Palette;
     LightVibrant: Palette;
+  };
+}
+
+// returned by MusicBrainz
+export interface ArtistInfo {
+  id: string;
+  name: string;
+  disambiguation: string;
+  "life-span": {
+    end: string;
+    begin: string;
+    ended: boolean;
   };
 }

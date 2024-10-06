@@ -7,46 +7,31 @@ import React, {
 } from "react";
 import { useRouter } from "next/router";
 import { Search as SearchIcon, X as CloseIcon } from "lucide-react";
-
-type Artist = {
-  id: string;
-  name: string;
-  disambiguation?: string;
-};
+import { useSearchArtistByName } from "services/searchArtist";
+import { ArtistInfo } from "types";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<Artist[]>([]);
+  const [suggestions, setSuggestions] = useState<ArtistInfo[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isOpen, setIsOpen] = useState(false);
   const search = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (searchTerm.length > 1) {
-        try {
-          const response = await fetch(
-            `https://musicbrainz.org/ws/2/artist?query=${encodeURIComponent(searchTerm)}&fmt=json`,
-          );
-          const data = await response.json();
-          setSuggestions(data.artists.slice(0, 5));
-          setSelectedIndex(-1);
-          setIsOpen(true);
-        } catch (error) {
-          console.error("Error fetching suggestions:", error);
-        }
-      } else {
-        setSuggestions([]);
-        setSelectedIndex(-1);
-        setIsOpen(false);
-      }
-    };
+  const { data } = useSearchArtistByName(searchTerm);
 
-    const debounceTimer = setTimeout(fetchSuggestions, 300);
-    return () => clearTimeout(debounceTimer);
-  }, [searchTerm]);
+  useEffect(() => {
+    if (data && searchTerm.length > 1) {
+      const newSuggestions = data.artists.slice(0, 5);
+      setSuggestions(newSuggestions);
+      setSelectedIndex(-1);
+      setIsOpen(newSuggestions.length > 0);
+    } else if (searchTerm.length <= 1) {
+      setSuggestions([]);
+      setIsOpen(false);
+    }
+  }, [data, searchTerm]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -62,14 +47,14 @@ const Search = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [wrapperRef]);
+  }, []);
 
   const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
       handleSuggestionSelect(suggestions[selectedIndex]);
-    } else {
-      searchTerm && router.push("/[...artist]", `/${searchTerm}`);
+    } else if (searchTerm) {
+      router.push("/[...artist]", `/${searchTerm}`);
     }
   };
 
@@ -77,18 +62,17 @@ const Search = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSuggestionSelect = (suggestion: Artist) => {
+  const handleSuggestionSelect = (suggestion: ArtistInfo) => {
     setSearchTerm(suggestion.name);
-    setSuggestions([]);
     setIsOpen(false);
     router.push("/[...artist]", `/${suggestion.name}/${suggestion.id}`);
   };
 
   const clearSearch = () => {
     setSearchTerm("");
-    setSuggestions([]);
     setSelectedIndex(-1);
     setIsOpen(false);
+    setSuggestions([]);
     if (search.current) {
       search.current.focus();
     }
