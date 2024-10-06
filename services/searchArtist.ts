@@ -29,16 +29,15 @@ export const useSearchArtistByName = (searchTerm: string | undefined) => {
 export const useGetArtist = (mbid: string | undefined) => {
   const { data, error, isLoading } = useSWR(
     mbid ? `https://musicbrainz.org/ws/2/artist/${mbid}?fmt=json` : null,
-    fetcher<SearchResults>,
+    fetcher<ArtistInfo>,
     {
-      dedupingInterval: 300,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
     },
   );
 
   return {
-    data,
+    artist: data,
     isLoading,
     isError: error,
   };

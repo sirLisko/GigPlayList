@@ -38,4 +38,9 @@ export interface ArtistInfo {
   id: string;
   name: string;
   disambiguation: string;
+  "life-span": {
+    end: string;
+    begin: string;
+    ended: boolean;
+  };
 }
