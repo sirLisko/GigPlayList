@@ -4,6 +4,9 @@ import { SetList, Track } from "types";
 
 export interface Song {
   name: string;
+  cover?: {
+    name: string;
+  };
 }
 
 interface Set {
@@ -32,8 +35,11 @@ export interface Setlists {
 
 const normaliseSongTitle = (song: Song | Song[]) =>
   Array.isArray(song)
-    ? song.map(({ name }: { name: string }) => name.toLowerCase())
-    : [song.name.toLowerCase()];
+    ? song.map(({ name, cover }: Song) => ({
+        name: name.toLowerCase(),
+        cover: cover?.name,
+      }))
+    : [{ name: song.name.toLowerCase(), cover: song.cover?.name }];
 
 const isLegitSetlist = (setlist: Setlist): setlist is LegitSetlist =>
   setlist.sets !== "" &&
@@ -45,27 +51,43 @@ const isLegitSetlist = (setlist: Setlist): setlist is LegitSetlist =>
 
 export const getAggregatedSetlists = (setlists: Setlists): SetList => {
   const legitSets = setlists.setlist.filter(isLegitSetlist);
-  const songList = legitSets.flatMap(({ sets: { set } }) => [
-    ...new Set(
-      Array.isArray(set)
-        ? set.flatMap(({ song }: Set) => normaliseSongTitle(song))
-        : normaliseSongTitle(set.song),
+  const songList = legitSets.flatMap(({ sets: { set } }) =>
+    (Array.isArray(set)
+      ? set.flatMap(({ song }: Set) => normaliseSongTitle(song))
+      : normaliseSongTitle(set.song)
+    ).filter(
+      (item, index, self) =>
+        index === self.findIndex((t) => t.name === item.name),
     ),
-  ]);
+  );
 
-  const tracks = Object.entries<number>(
+  const tracks = Object.entries<{
+    count: number;
+    cover?: string;
+  }>(
     songList
-      .filter((song) => song.length > 0)
+      .filter(({ name }) => name !== "")
       .reduce(
-        (acc: { [key: string]: number }, song) => ({
+        (
+          acc: {
+            [key: string]: {
+              count: number;
+              cover?: string;
+            };
+          },
+          song,
+        ) => ({
           ...acc,
-          [song]: (acc[song] || 0) + 1,
+          [song.name]: {
+            cover: song.cover,
+            count: (acc[song.name]?.count || 0) + 1,
+          },
         }),
         {},
       ),
   )
-    .sort((a, b) => b[1] - a[1])
-    .map(([title, count]): Track => ({ title, count }));
+    .sort((a, b) => b[1].count - a[1].count)
+    .map(([title, { count, cover }]): Track => ({ title, count, cover }));
 
   return {
     tracks,

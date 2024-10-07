@@ -12,7 +12,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const artistData = await getArtistTracks(artistName);
     res.status(HttpStatusCode.Ok).json(artistData);
   } catch (e: any) {
-    console.error(e);
     res
       .status(
         e?.response?.data?.code ??
