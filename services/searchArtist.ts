@@ -15,6 +15,7 @@ export const useSearchArtistByName = (searchTerm: string | undefined) => {
     {
       dedupingInterval: 300,
       revalidateOnFocus: false,
+      shouldRetryOnError: false,
       revalidateOnReconnect: false,
     },
   );
@@ -32,6 +33,7 @@ export const useGetArtist = (mbid: string | undefined) => {
     fetcher<ArtistInfo>,
     {
       revalidateOnFocus: false,
+      shouldRetryOnError: false,
       revalidateOnReconnect: false,
     },
   );
