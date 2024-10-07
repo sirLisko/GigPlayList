@@ -10,7 +10,7 @@ const fakeData: Setlists = {
           {
             song: [
               { name: "fOo" },
-              { name: "bar" },
+              { name: "bar", cover: { name: "coverBand" } },
               { name: "foobar" },
               { name: "" },
             ],
@@ -25,9 +25,20 @@ const fakeData: Setlists = {
       eventDate: "2000-01-01",
       sets: {
         set: [
-          { song: [{ name: "foo" }, { name: "bar" }] },
-          { "@encore": "1", song: [{ name: "BAR" }] },
-          { encore: "2", song: [{ name: "bar" }, { name: "foobar" }] },
+          {
+            song: [
+              { name: "foo" },
+              { name: "bar", cover: { name: "coverBand" } },
+            ],
+          },
+          {
+            "@encore": "1",
+            song: [{ name: "BAR" }],
+          },
+          {
+            encore: "2",
+            song: [{ name: "bar" }, { name: "foobar" }],
+          },
         ],
       },
     },
@@ -44,10 +55,10 @@ describe("setlists util", () => {
         totalSetLists: 3,
         totalTracks: 8,
         tracks: [
-          { title: "bar", count: 3 },
-          { title: "foo", count: 2 },
-          { title: "foobar", count: 2 },
-          { title: "barfoo", count: 1 },
+          { title: "bar", count: 3, cover: "coverBand" },
+          { title: "foo", count: 2, cover: undefined },
+          { title: "foobar", count: 2, cover: undefined },
+          { title: "barfoo", count: 1, cover: undefined },
         ],
       });
     });

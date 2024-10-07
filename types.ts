@@ -7,6 +7,7 @@ export interface Event {
 
 export interface Track {
   title: string;
+  cover?: string;
   count: number;
 }
 

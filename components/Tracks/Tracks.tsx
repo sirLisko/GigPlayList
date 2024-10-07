@@ -72,7 +72,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
 
   return (
     <ul role="list" className="space-y-2">
-      {tracks.map(({ count, title }) => {
+      {tracks.map(({ count, title, cover }) => {
         const link = links?.find((link) => isSameSong(link.title, title));
         const isPlaying = currentTrack === title;
         return (
@@ -93,7 +93,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
                   </picture>
                 ) : (
                   <div
-                    className="w-12 h-12 flex items-center justify-center rounded"
+                    className="w-12 flex items-center justify-center rounded h-full"
                     style={{
                       background: `rgba(${palette?.Vibrant.rgb.join(",")}, 255)`,
                     }}
@@ -126,7 +126,14 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
                   )}
                 </button>
               )}
-              <span className="font-medium">{title}</span>
+              <div className="flex flex-col md:flex-row md:items-baseline">
+                <span className="font-medium">{title}</span>
+                {cover && (
+                  <span className="md:ml-1 text-sm opacity-75">
+                    (cover of <span className="italic">{cover}</span>)
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex items-center space-x-2">
               {link?.uri && (
