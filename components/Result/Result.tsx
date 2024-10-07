@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
-import duration from "humanize-duration";
 
 import Events from "components/Events/Events";
 import Tracks from "components/Tracks/Tracks";
@@ -13,51 +12,15 @@ import { useTracks } from "services/tracks";
 import { useEvents } from "services/events";
 import { useGetArtist } from "services/searchArtist";
 import { matchSongs } from "utils/matchSongs";
-import type { Link as LinkType, SetList } from "types";
+import {
+  calculatePlaylistDuration,
+  generateEncoreLabel,
+  sanitiseDate,
+} from "utils/labels";
 
 interface Props {
   artistQuery: string[];
 }
-
-const sanitiseDate = (dateString: string) => {
-  if (!dateString) return null;
-  const [day, month, year] = dateString.split("-");
-  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-};
-
-const calculatePlaylistDuration = (songs: LinkType[]) => {
-  if (!songs.length) return 0;
-  return duration(
-    songs.reduce((acc, song) => acc + song.duration_ms, 0),
-    { round: true, largest: 2 },
-  );
-};
-
-const generateEncoreLabel = (data: SetList) => {
-  const totalSetLists = data.totalSetLists;
-  const encores = data.encores;
-
-  if (!encores) {
-    return null;
-  }
-
-  const numberToWord = (n: number) => {
-    const words = ["zero", "one", "two", "three"];
-    return words[n] || n.toString();
-  };
-
-  const encoreLabels = Object.entries(encores).map(([encoreNumber, count]) => {
-    const probability = ((count / totalSetLists) * 100).toFixed(0);
-    return `${probability}% chance of ${numberToWord(parseInt(encoreNumber))}`;
-  });
-
-  return (
-    <>
-      <strong>Encore likelihood: </strong>
-      {encoreLabels.join(", ")}
-    </>
-  );
-};
 
 const Result = ({ artistQuery }: Props) => {
   const [initialBaground] = useState<string>(document.body.style.background);

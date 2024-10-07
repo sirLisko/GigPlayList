@@ -7,7 +7,6 @@ import LoginBanner from "components/LoginBanner/LoginBanner";
 import Link from "next/link";
 import { ArrowLeft, Frown } from "lucide-react";
 import Head from "components/Head/Head";
-import classNames from "classnames";
 import { backgroundGradient } from "assets/stylesheets/style";
 
 export const auth = () => {
