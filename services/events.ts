@@ -6,7 +6,11 @@ export const useEvents = (artist: string) => {
   const { data, error, isLoading } = useSWR(
     `/api/artists/${artist}/concerts`,
     fetcher<Event[]>,
-    { revalidateOnFocus: false, revalidateOnReconnect: false },
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false,
+      revalidateOnReconnect: false,
+    },
   );
 
   return {

@@ -10,7 +10,11 @@ export const useTracks = (artistName?: string, artistId?: string) => {
         ? `/api/tracks?artistName=${artistName}`
         : null,
     fetcher<SetList>,
-    { revalidateOnFocus: false, revalidateOnReconnect: false },
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false,
+      revalidateOnReconnect: false,
+    },
   );
 
   return {
