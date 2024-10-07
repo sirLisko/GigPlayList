@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
 
 import Events from "components/Events/Events";
 import Tracks from "components/Tracks/Tracks";
@@ -8,20 +10,65 @@ import SavePlaylist from "components/SavePlaylist/SavePlaylist";
 import { useArtistData } from "services/artistData";
 import { useTracks } from "services/tracks";
 import { useEvents } from "services/events";
-import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
-import Link from "next/link";
 import { useGetArtist } from "services/searchArtist";
+import { matchSongs } from "utils/matchSongs";
+import type { Link as LinkType, SetList } from "types";
 
 interface Props {
   artistQuery: string[];
 }
+
+const sanitiseDate = (dateString: string) => {
+  if (!dateString) return null;
+  const [day, month, year] = dateString.split("-");
+  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+};
+
+const getMinutesAndSeconds = (ms: number) => {
+  const minutes = Math.floor(ms / 60000); // 60000 ms in one minute
+  const seconds = Math.floor((ms % 60000) / 1000); // remaining seconds
+  return { minutes, seconds };
+};
+
+const calculatePlaylistDuration = (songs: LinkType[]) => {
+  if (!songs.length) return 0;
+  return getMinutesAndSeconds(
+    songs.reduce((acc, song) => acc + song.duration_ms, 0),
+  );
+};
+
+const generateEncoreLabel = (data: SetList) => {
+  const totalSetLists = data.totalSetLists;
+  const encores = data.encores;
+
+  if (!encores || !Object.keys(encores).length) return null;
+
+  const ordinalSuffix = (n: string) => {
+    const suffixes = ["th", "st", "nd", "rd"];
+    const v = parseInt(n) % 100;
+    return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+  };
+
+  const encoreEntries = Object.entries(encores);
+
+  const encoreLabels = encoreEntries.map(([encoreNumber, count]) => {
+    const probability = ((count / totalSetLists) * 100).toFixed(0);
+    return `${ordinalSuffix(encoreNumber)} ${probability}%`;
+  });
+
+  return (
+    <>
+      <strong>Encore probability</strong>: {encoreLabels.join(", ")}
+    </>
+  );
+};
 
 const Result = ({ artistQuery }: Props) => {
   const [initialBaground] = useState<string>(document.body.style.background);
   const { artistData, isLoading: isLoadingArtist } = useArtistData(
     artistQuery[0],
   );
-  const { tracks, isLoading: isLoadingTracks } = useTracks(
+  const { data, isLoading: isLoadingTracks } = useTracks(
     artistQuery[0],
     artistQuery[1],
   );
@@ -44,7 +91,16 @@ const Result = ({ artistQuery }: Props) => {
     return null;
   }
 
-  const isArtistiWithTrack = tracks && tracks.length > 0 && artistData;
+  const isArtistiWithTrack =
+    data?.tracks && data.tracks.length > 0 && artistData;
+
+  const songs =
+    artistData?.tracks && data?.tracks
+      ? matchSongs(data.tracks, artistData.tracks)
+      : [];
+
+  const playlistDuration = calculatePlaylistDuration(songs);
+  const encoreLabel = data && generateEncoreLabel(data);
 
   return (
     <article
@@ -89,15 +145,14 @@ const Result = ({ artistQuery }: Props) => {
                   <TriangleAlert /> Important notice
                 </h2>
                 <p>
-                  The data displayed may not be fully accurate as this artist or
-                  band stopped performing on{" "}
+                  Data may be inaccurate as this artist or band stopped
+                  performing on{" "}
                   <strong>
                     {new Date(artist["life-span"].end).toLocaleDateString(
                       undefined,
                       {
                         year: "numeric",
                         month: "long",
-                        day: "numeric",
                       },
                     )}
                   </strong>
@@ -106,9 +161,48 @@ const Result = ({ artistQuery }: Props) => {
               </div>
             )}
 
-            <SavePlaylist artistData={artistData} tracks={tracks} />
+            {songs && songs.length > 0 ? (
+              <>
+                <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
+                  <h2 className="text-xl font-semibold mb-2">Playlist Info</h2>
+                  <p>
+                    Based on <strong>{data.totalTracks} songs</strong> from the
+                    last <strong>{data.totalSetLists} concerts</strong> (
+                    {sanitiseDate(data.from)?.toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "long",
+                    })}{" "}
+                    to{" "}
+                    {sanitiseDate(data.to)?.toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "long",
+                    })}
+                    )
+                  </p>
+                  <p className="mt-2">
+                    <strong>Average songs per concert</strong>:{" "}
+                    {Math.round(data.totalTracks / data.totalSetLists)}
+                  </p>
+                  <p>{encoreLabel ? <p>{encoreLabel}</p> : null}</p>
+                  <p className="mt-2">
+                    <strong>{songs.length} songs</strong>{" "}
+                    {playlistDuration ? (
+                      <>
+                        • Estimated playtime:{" "}
+                        <strong>
+                          {playlistDuration?.minutes} minutes and{" "}
+                          {playlistDuration?.seconds} seconds
+                        </strong>
+                      </>
+                    ) : null}
+                  </p>
+                </div>
+                <SavePlaylist artistData={artistData} songs={songs} />
+              </>
+            ) : null}
+
             <Tracks
-              tracks={tracks}
+              tracks={data.tracks}
               links={artistData?.tracks}
               palette={artistData?.palette}
             />

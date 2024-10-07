@@ -6,7 +6,7 @@ import Favicons from "./Favicons";
 const HeadSection = () => (
   <>
     <Head>
-      <title>GigPlayList - prepare the playlist for your next gig!</title>
+      <title>GigPlayList - Prepare the playlist for your next gig!</title>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="author" content="Luca Lischetti" />
       <link
@@ -33,7 +33,7 @@ const HeadSection = () => (
       />
       <meta
         property="og:title"
-        content="GigPlayList - prepare the playlist for your next gig!"
+        content="GigPlayList - Prepare the playlist for your next gig!"
       />
       <script
         defer

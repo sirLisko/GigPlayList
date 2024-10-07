@@ -35,11 +35,13 @@ const getSongs = async (artistName: string, offset = 0) => {
     limit: 50,
     offset,
   });
+
   return body?.tracks?.items?.map((track) => ({
     title: track.name.toLowerCase(),
     uri: track.uri,
     cover: track.album.images[2].url,
     previewUrl: track.preview_url,
+    duration_ms: track.duration_ms,
   }));
 };
 

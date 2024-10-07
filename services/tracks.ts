@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Track } from "types";
+import { SetList } from "types";
 import { fetcher } from "utils/api";
 
 export const useTracks = (artistName?: string, artistId?: string) => {
@@ -9,12 +9,12 @@ export const useTracks = (artistName?: string, artistId?: string) => {
       : artistName
         ? `/api/tracks?artistName=${artistName}`
         : null,
-    fetcher<Track[]>,
+    fetcher<SetList>,
     { revalidateOnFocus: false, revalidateOnReconnect: false },
   );
 
   return {
-    tracks: data,
+    data,
     isLoading,
     isError: error,
   };

@@ -3,26 +3,18 @@ import Spotify from "spotify-web-api-js";
 
 import { useAuth } from "components/UserContext/UserContext";
 import LoginBanner from "components/LoginBanner/LoginBanner";
-import { matchSongs } from "utils/matchSongs";
-import { Track, ArtistData } from "types";
+import { ArtistData, Link } from "types";
 import { CassetteTape, CircleCheckBig } from "lucide-react";
 
 interface SavePlaylistProps {
   artistData: ArtistData;
-  tracks: Track[];
+  songs: Link[];
 }
 
-const SavePlaylist = ({
-  artistData: { name, tracks: links },
-  tracks,
-}: SavePlaylistProps) => {
+const SavePlaylist = ({ artistData: { name }, songs }: SavePlaylistProps) => {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const { user } = useAuth();
-  if (!links || links.length === 0) {
-    return null;
-  }
-  const songs = matchSongs(tracks, links);
   const createPlaylist = () => {
     if (user) {
       setLoading(true);
@@ -34,7 +26,10 @@ const SavePlaylist = ({
         public: true,
       })
         .then((data) => {
-          s.addTracksToPlaylist(data.id, songs);
+          s.addTracksToPlaylist(
+            data.id,
+            songs.map((s) => s.uri),
+          );
           setDone(true);
         })
         .finally(() => setLoading(false));
