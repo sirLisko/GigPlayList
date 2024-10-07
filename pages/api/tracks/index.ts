@@ -16,7 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const setList = await getArtistSetlist(artistName, artistId);
     res.status(HttpStatusCode.Ok).json(getAggregatedSetlists(setList));
   } catch (e: any) {
-    console.error(e);
     res
       .status(e?.response?.data?.code ?? HttpStatusCode.InternalServerError)
       .end(e?.response?.data?.message || "Ops! There was a problem!");
