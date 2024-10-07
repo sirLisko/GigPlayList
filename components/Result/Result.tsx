@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
+import duration from "humanize-duration";
 
 import Events from "components/Events/Events";
 import Tracks from "components/Tracks/Tracks";
@@ -24,22 +25,18 @@ const sanitiseDate = (dateString: string) => {
   return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 };
 
-const getMinutesAndSeconds = (ms: number) => {
-  const minutes = Math.floor(ms / 60000); // 60000 ms in one minute
-  const seconds = Math.floor((ms % 60000) / 1000); // remaining seconds
-  return { minutes, seconds };
-};
-
 const calculatePlaylistDuration = (songs: LinkType[]) => {
   if (!songs.length) return 0;
-  return getMinutesAndSeconds(
+  return duration(
     songs.reduce((acc, song) => acc + song.duration_ms, 0),
+    { round: true, largest: 2 },
   );
 };
 
 const generateEncoreLabel = (data: SetList) => {
   const totalSetLists = data.totalSetLists;
   const encores = data.encores;
+  console.log(encores);
 
   if (!encores || !Object.keys(encores).length) return null;
 
@@ -53,7 +50,9 @@ const generateEncoreLabel = (data: SetList) => {
 
   const encoreLabels = encoreEntries.map(([encoreNumber, count]) => {
     const probability = ((count / totalSetLists) * 100).toFixed(0);
-    return `${ordinalSuffix(encoreNumber)} ${probability}%`;
+    return Object.entries(encoreEntries).length > 1
+      ? `${ordinalSuffix(encoreNumber)} ${probability}%`
+      : `${probability}%`;
   });
 
   return (
@@ -189,10 +188,7 @@ const Result = ({ artistQuery }: Props) => {
                     {playlistDuration ? (
                       <>
                         • Estimated playtime:{" "}
-                        <strong>
-                          {playlistDuration?.minutes} minutes and{" "}
-                          {playlistDuration?.seconds} seconds
-                        </strong>
+                        <strong>{playlistDuration}</strong>
                       </>
                     ) : null}
                   </p>
