@@ -20,9 +20,8 @@ const ResultPage = () => {
 
   return (
     <main
-      className={classNames("min-h-screen", {
-        "main-c bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-6 text-white":
-          showAlternate,
+      className={classNames({
+        background: showAlternate,
       })}
     >
       <Head />

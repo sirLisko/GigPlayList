@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Frown, TriangleAlert } from "lucide-react";
-import duration from "humanize-duration";
 
 import Events from "components/Events/Events";
 import Tracks from "components/Tracks/Tracks";
@@ -13,54 +12,15 @@ import { useTracks } from "services/tracks";
 import { useEvents } from "services/events";
 import { useGetArtist } from "services/searchArtist";
 import { matchSongs } from "utils/matchSongs";
-import type { Link as LinkType, SetList } from "types";
+import {
+  calculatePlaylistDuration,
+  generateEncoreLabel,
+  sanitiseDate,
+} from "utils/labels";
 
 interface Props {
   artistQuery: string[];
 }
-
-const sanitiseDate = (dateString: string) => {
-  if (!dateString) return null;
-  const [day, month, year] = dateString.split("-");
-  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-};
-
-const calculatePlaylistDuration = (songs: LinkType[]) => {
-  if (!songs.length) return 0;
-  return duration(
-    songs.reduce((acc, song) => acc + song.duration_ms, 0),
-    { round: true, largest: 2 },
-  );
-};
-
-const generateEncoreLabel = (data: SetList) => {
-  const totalSetLists = data.totalSetLists;
-  const encores = data.encores;
-  console.log(encores);
-
-  if (!encores || !Object.keys(encores).length) return null;
-
-  const ordinalSuffix = (n: string) => {
-    const suffixes = ["th", "st", "nd", "rd"];
-    const v = parseInt(n) % 100;
-    return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
-  };
-
-  const encoreEntries = Object.entries(encores);
-
-  const encoreLabels = encoreEntries.map(([encoreNumber, count]) => {
-    const probability = ((count / totalSetLists) * 100).toFixed(0);
-    return Object.entries(encoreEntries).length > 1
-      ? `${ordinalSuffix(encoreNumber)} ${probability}%`
-      : `${probability}%`;
-  });
-
-  return (
-    <>
-      <strong>Encore probability</strong>: {encoreLabels.join(", ")}
-    </>
-  );
-};
 
 const Result = ({ artistQuery }: Props) => {
   const [initialBaground] = useState<string>(document.body.style.background);
@@ -163,18 +123,18 @@ const Result = ({ artistQuery }: Props) => {
             {songs && songs.length > 0 ? (
               <>
                 <div className="bg-black bg-opacity-30 rounded-lg p-4 mb-6">
-                  <h2 className="text-xl font-semibold mb-2">Playlist Info</h2>
                   <p>
-                    Based on <strong>{data.totalTracks} songs</strong> from the
-                    last <strong>{data.totalSetLists} concerts</strong> (
+                    Generated from <strong>{data.totalTracks} songs</strong>{" "}
+                    across <strong>{data.totalSetLists} recent concerts</strong>{" "}
+                    (
                     {sanitiseDate(data.from)?.toLocaleDateString(undefined, {
                       year: "numeric",
-                      month: "long",
+                      month: "short",
                     })}{" "}
                     to{" "}
                     {sanitiseDate(data.to)?.toLocaleDateString(undefined, {
                       year: "numeric",
-                      month: "long",
+                      month: "short",
                     })}
                     )
                   </p>
@@ -184,14 +144,15 @@ const Result = ({ artistQuery }: Props) => {
                   </p>
                   <p>{encoreLabel ? <p>{encoreLabel}</p> : null}</p>
                   <p className="mt-2">
-                    <strong>{songs.length} songs</strong>{" "}
-                    {playlistDuration ? (
-                      <>
-                        • Estimated playtime:{" "}
-                        <strong>{playlistDuration}</strong>
-                      </>
-                    ) : null}
+                    <strong>{songs.length}</strong> most likely songs to be
+                    played, based on performance frequency
                   </p>
+
+                  {playlistDuration ? (
+                    <p>
+                      Estimated playtime: <strong>{playlistDuration}</strong>
+                    </p>
+                  ) : null}
                 </div>
                 <SavePlaylist artistData={artistData} songs={songs} />
               </>
