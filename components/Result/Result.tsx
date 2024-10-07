@@ -169,7 +169,7 @@ const Result = ({ artistQuery }: Props) => {
             <div className="m-auto text-center text-2xl p-3">
               <Frown height={100} width={100} />
             </div>
-            <div className="m-auto text-center text-2xl p-3">
+            <div className="w-full break-words m-auto text-center text-2xl p-3">
               No setlists found for <b>{artistQuery[0]}</b>
             </div>
           </div>
