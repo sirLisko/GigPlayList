@@ -7,6 +7,8 @@ import LoginBanner from "components/LoginBanner/LoginBanner";
 import Link from "next/link";
 import { ArrowLeft, Frown } from "lucide-react";
 import Head from "components/Head/Head";
+import classNames from "classnames";
+import { backgroundGradient } from "assets/stylesheets/style";
 
 export const auth = () => {
   const hash = window.location.hash
@@ -39,7 +41,7 @@ const Home = () => {
     }
   }, [isReady]);
   return (
-    <main className="main-c min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-6 text-white">
+    <main className={backgroundGradient}>
       <Head />
       {query.error ? (
         <div className="flex flex-col items-center">
