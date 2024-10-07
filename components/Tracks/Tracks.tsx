@@ -32,6 +32,7 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
     } else {
       const newAudio = new Audio(audioUrl);
       newAudio.play();
+      newAudio.addEventListener("ended", () => setCurrentTrack(null));
       setAudio(newAudio);
       setCurrentTrack(title);
     }
@@ -65,17 +66,20 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
     };
   };
 
+  const customStyle = {
+    "--custom-bg-color": `rgba(${palette?.DarkVibrant.rgb.join(",")}, 1)`,
+  } as React.CSSProperties;
+
   return (
     <ul role="list" className="space-y-2">
       {tracks.map(({ count, title }) => {
         const link = links?.find((link) => isSameSong(link.title, title));
         const isPlaying = currentTrack === title;
-
         return (
           <li
             key={title}
             style={getGradientStyle(count, tracks[0].count)}
-            className="group flex items-center space-between justify-between rounded p-3 transition-all"
+            className="group relative flex items-center space-between justify-between rounded p-3 transition-all"
           >
             <div className="pl-12 flex items-center">
               <div className="absolute left-0 top-0 h-full">
@@ -101,9 +105,15 @@ const Tracks = ({ tracks, links, palette }: TracksProps) => {
               {link?.previewUrl && (
                 <button
                   onClick={() => handlePreview(link.previewUrl, title)}
-                  className="absolute left-0 top-0 h-full p-3 rounded-full bg-transparent hover:bg-black/50 transition-colors duration-300"
+                  className={`absolute left-0 top-0 h-full p-3 rounded-full
+                              bg-transparent
+                              opacity-100 md:opacity-0 group-hover:opacity-100
+                              transition-opacity duration-300
+                              md:group-hover:bg-black/50
+                              md:hover:!bg-[color:var(--custom-bg-color)] hover:opacity-100`}
                   aria-pressed={isPlaying}
                   aria-label={isPlaying ? "Pause" : "Play"}
+                  style={{ ...customStyle, opacity: isPlaying ? 1 : undefined }}
                 >
                   {isPlaying ? (
                     <PauseIcon
