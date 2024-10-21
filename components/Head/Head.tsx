@@ -35,11 +35,6 @@ const HeadSection = () => (
         property="og:title"
         content="GigPlayList - Prepare the playlist for your next gig!"
       />
-      <script
-        defer
-        data-domain="gigplaylist.sirlisko.com"
-        src="https://stats.sirlisko.com/js/script.js"
-      ></script>
     </Head>
     <Favicons />
   </>
