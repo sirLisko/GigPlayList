@@ -89,18 +89,20 @@ export const getAggregatedSetlists = (setlists: Setlists): SetList => {
     .sort((a, b) => b[1].count - a[1].count)
     .map(([title, { count, cover }]): Track => ({ title, count, cover }));
 
+  const encoreCounts = JSONPath({
+    json: setlists,
+    path: "$..`@encore,encore",
+  }).reduce((acc: Required<SetList>["encores"], item: string) => {
+    acc[item] = (acc[item] || 0) + 1;
+    return acc;
+  }, {});
+
   return {
     tracks,
     totalSetLists: legitSets.length,
     totalTracks: tracks.reduce((acc, track) => acc + track.count, 0),
     to: legitSets?.[0].eventDate,
     from: legitSets?.[legitSets.length - 1].eventDate,
-    encores: JSONPath({ json: setlists, path: "$..`@encore,encore" }).reduce(
-      (acc: Required<SetList>["encores"], item: string) => {
-        acc[item] = (acc[item] || 0) + 1;
-        return acc;
-      },
-      {},
-    ),
+    encores: Object.keys(encoreCounts).length === 0 ? null : encoreCounts,
   };
 };

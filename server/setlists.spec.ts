@@ -62,5 +62,24 @@ describe("setlists util", () => {
         ],
       });
     });
+
+    it("should return nomalized and aggregated data - with no encores", () => {
+      const fakeSetNoEncores = {
+        setlist: [
+          {
+            sets: { set: { song: { name: "bar" } } },
+            eventDate: "1999-09-09",
+          },
+        ],
+      };
+      expect(getAggregatedSetlists(fakeSetNoEncores)).toStrictEqual({
+        encores: null,
+        from: "1999-09-09",
+        to: "1999-09-09",
+        totalSetLists: 1,
+        totalTracks: 1,
+        tracks: [{ title: "bar", count: 1, cover: undefined }],
+      });
+    });
   });
 });
